@@ -10,6 +10,7 @@
     <script src="scripts/wutoday.js"></script>     
     <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
     <link href="styles/main.css" rel="stylesheet" />
+    <link href="styles/star_rating.css" rel="stylesheet" />
 </head>
 <body>   
     <!-- Main layout -->
@@ -36,15 +37,21 @@
         <div >
             <table style="width: 100%; height: 100%;">
                 <tr>
-                    <td style="width: 122px;" rowspan="2">
-                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="pullImage" /></td>
-                    <td style="width: 813px;">
-                        <strong>#=data.Title#</strong></td>
-                    <td >
-                        *****</td>
+                    <td style="width: 50px;text-align: center;" " rowspan="2">
+                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="pullImage" />
+                    </td>
+                    <td style="width: 100%;">
+                        <strong>#=data.Title#</strong>
+                    </td>
+                    <td style="width: 20px;">
+                        <ul class="star-rating small-star">
+                    		<li class="current-rating" style="width:#=data.StatisticsRate#%"></li>
+                    		
+                    	</ul>	
+                    </td>
                 </tr>
                 <tr>
-                    <td style="height: 24px;" colspan="2" class="sublink">
+                    <td style="height: 25px;" colspan="2" class="sublink">
                         Categorie (#=data.CategoriesCount#) | #=data.TopCategories#
                     </td>
                 </tr>
