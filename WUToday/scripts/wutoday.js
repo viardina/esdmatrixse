@@ -182,4 +182,18 @@ function OnLoadCategories(e) {
 }
 
 
+function ToggleBackButton(e) {
+    if (e.view.id == "#applications") {
+        e.view.element
+                .find("[data-role=backbutton]")
+                .css("visibility", "hidden")
+                .attr("data-target", "_top");
+    } else {
+        e.view.element
+                .find("[data-role=backbutton]")
+                .css("visibility", "visible")
+                .removeAttr("data-target");
+    }
+}
+
 
