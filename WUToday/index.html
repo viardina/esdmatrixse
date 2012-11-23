@@ -16,7 +16,7 @@
     <!-- Main layout -->
     <div data-role="layout" data-id="mobile-view" data-show="ToggleBackButton">    
         <header data-role="header">
-            <div data-role="navbar">
+            <div data-role="navbar" id="navbar">
                 <a id="back-button" class="nav-button" data-align="left" data-role="backbutton">Back</a>
                 <span data-role="view-title"></span>
                 <img class="LogoWut" src=" http://www.whatsuptoday.it/resources/images/icona_wut.png" alt="" />     
@@ -28,58 +28,73 @@
     
      <!-- View applications -->
      <div data-role="view" id="applications" data-title="What's Up Today" data-layout="mobile-view">
-        <ul id="listViewApplications"></ul>         
+        <ul id="listViewApplications" data-role="listview"></ul>         
     </div>
        
     <script id="itemTemplateApplication" type="text/x-kendo-template"> 
-        <a href="\#categories?IDApplication=#: data.ID #">
-         
-        <div >
+        <a href="\#categories?IDApplication=#:data.ID#&title=#=data.Title#"> 
+        <div style="height: 60px">
             <table style="width: 100%; height: 100%;">
                 <tr>
                     <td style="width: 50px;text-align: center;" " rowspan="2">
-                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="pullImage" />
+                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ItemIcon" />
                     </td>
                     <td style="width: 100%;">
                         <strong>#=data.Title#</strong>
                     </td>
                     <td style="width: 20px;">
+                        <span class="inline-rating">
                         <ul class="star-rating small-star">
-                    		<li class="current-rating" style="width:#=data.StatisticsRate#%"></li>
-                    		
+                    		<li class="current-rating" style="width:#=data.StatisticsRate#%"></li>                    		
                     	</ul>	
                     </td>
                 </tr>
                 <tr>
-                    <td style="height: 25px;" colspan="2" class="sublink">
+                    <td style="height: 30px;" colspan="2" class="ItemSubDescription">
                         Categorie (#=data.CategoriesCount#) | #=data.TopCategories#
                     </td>
                 </tr>
-            </table>
-         </div>         
-                
-         </a>
+            </table> 
+         </div>                   
+         </a>        
     </script>    
     
      <!-- View categories --> 
      <div data-role="view" id="categories" data-title="Categorie" data-layout="mobile-view" data-show="OnLoadCategories">
-        <ul id="listViewCategories"></ul>         
+        <ul id="listViewCategories" data-role="listview"></ul>         
     </div>
     
      <script id="itemTemplateCategory" type="text/x-kendo-template">
          <a href="\#activities?IDCategory=#: data.ID #">
-         <div class="tweet">
-            <img class="pullImage" src="http://www.whatsuptoday.it/resources/images/#= data.Icon #" />#= data.Title #
-            <div>
-                <div class="sublink"> Attivita'(34) | </div><div class="sublink">Ultimo aggiornamento 12.34</div> 
-            </div>
-        </div> 
+         <div style="height: 60px">
+            <table style="width: 100%; height: 100%;">
+                <tr>
+                    <td style="width: 50px;text-align: center;" " rowspan="2">
+                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ItemIcon" />
+                    </td>
+                    <td style="width: 100%;">
+                        <strong>#=data.Title#</strong>
+                    </td>
+                    <td style="width: 20px;">
+                        <span class="inline-rating">
+                        <ul class="star-rating small-star">
+                    		<li class="current-rating" style="width:#=data.StatisticsRate#%"></li>                    		
+                    	</ul>	
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 30px;" colspan="2" class="ItemSubDescription">
+                        Attivita' (#=data.ActivitiesCount#) | #=data.TopActivities#
+                    </td>
+                </tr>
+            </table> 
+         </div>        
         </a>    
     </script>    
     
      <!-- View activities --> 
      <div data-role="view" id="activities" data-title="Attivita'" data-layout="mobile-view" data-show="OnLoadActivities">
-        <ul id="listViewActivities"></ul>         
+        <ul id="listViewActivities" data-role="listview"></ul>         
     </div>
     
      <script id="itemTemplateActivity" type="text/x-kendo-template">
@@ -95,7 +110,7 @@
     
     <!-- View offers/events --> 
      <div data-role="view" id="offers" data-title="Offerte-Eventi" data-layout="mobile-view" data-show="OnLoadOffers">
-        <ul id="listViewOffers"></ul>         
+        <ul id="listViewOffers" data-role="listview"></ul>         
     </div>
     
      <script id="itemTemplateOffer" type="text/x-kendo-template">

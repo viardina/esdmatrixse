@@ -182,8 +182,11 @@ function ShowOffers(IDActivity,search) {
 */
 
 function OnLoadCategories(e) {
-    var IDApplication=e.view.params.IDApplication;
+    var view=e.view;
+    var title=view.params.title;
+    var IDApplication=view.params.IDApplication;
     ShowCategories(IDApplication,'');
+    $("#navbar").data("kendoMobileNavBar").title(title);
 }
 
 function OnLoadActivities(e) {
