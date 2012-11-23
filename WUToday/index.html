@@ -100,32 +100,37 @@
     
      <script id="itemTemplateActivity" type="text/x-kendo-template">
          <a href="\#offers?IDActivity=#:data.ID#&title=#=data.Title#">
-         <div>            
-             <table class="tabActivity">
+           <div style="height: 69px">
+             <table class="ActivityTable">
                  <tr>
-                     <td style="width: 10%;text-align: center;" " rowspan="2" rowspan="2">
+                     <td style="width: 10%;text-align: center;" " rowspan="2" rowspan="3">
                         <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityItemIcon" />
                     </td>
                      <td class="ActivityTitle" colspan="5">
                         <strong>#=data.Title#</strong>
                      </td>
-                     <td class="rot-neg-90" rowspan="2">
+                     <td class="rot-neg-90" rowspan="3">
                          Offerte</td>
                  </tr>
                  <tr>
-                     <td class="ActitvitySubDescription">
-                         <strong>#=data.Address#</strong></td>
-                     <td class="ActitvityInfo">
-                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.InfoIcon#" class="ActitvityIcon" /></td>
+                     <td class="ActivitySubDescription" colspan="5">
+                          <strong>#=data.Address#</strong></td>
+                 </tr>
+                 <tr>
+                     <td class="ActivitySubDescription">
+                      <strong><span class="style1">#=data.Description#</span></strong>
+                        </td>
+                     <td class="ActivityInfo">
+                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.InfoIcon#" class="ActivityIcon" /></td>
                      <td class="ActivityMail">
                         <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.EmailIcon#" class="ActivityIcon" /></td>
-                     <td class="ActivityPhone">
+                     <td class="ActivityContacts">
                         <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.PhoneIcon#" class="ActivityIcon" /></td>
                      <td class="ActivityWeb">
                         <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.WebIcon#" class="ActivityIcon" /></td>
                  </tr>
-             </table>
-         </div>        
+                 </table>       
+         </div>      
         </a>    
     </script>    
     
