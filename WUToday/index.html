@@ -23,13 +23,13 @@
         <div data-role="footer">
         </div>
     </div>
-       
+     <!-- view APPLICATIONS -->
      <div data-role="view" id="applications" data-title="What's Up Today" data-layout="mobile-view" >
         <ul id="listViewApplications"></ul>         
     </div>
        
     <script id="itemTemplateApplication" type="text/x-kendo-template">
-         <a href="\#categories">
+         <a href="\#categories?#IDApplication=#: Data.ID#">
          <div class="tweet">
             <img class="pullImage" src="http://www.whatsuptoday.it/resources/images/#= data.Icon #" />#= data.Title #
             <div>
@@ -38,7 +38,7 @@
         </div> 
         </a>
     </script>      
-      
+     <!-- view Categories --> 
      <div data-role="view" id="categories" data-title="Categorie" data-layout="mobile-view" data-show="OnLoadCategories">
         <ul id="listViewCategories"></ul>         
     </div>
