@@ -1,4 +1,4 @@
-﻿body
+body
 {
     font: Arial, sans-serif;
 }
@@ -30,6 +30,7 @@
 .tweet {
     font-size: .8em;
     line-height: 1.4em;
+    vertical-align:center;
 }
 .pullImage {
     width: 32px;
@@ -44,7 +45,7 @@
     display: inline-block;
     padding: 3px 3px 0 0;
     text-decoration: none;
-    opacity: .8;
+    opacity: .2;
 }
 
 

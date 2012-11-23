@@ -7,15 +7,15 @@
     <script src="kendo/js/jquery.min.js"></script>
     <script src="kendo/js/kendo.mobile.min.js"></script>
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script src="scripts/wutoday.js"></script>
-     
+    <script src="scripts/wutoday.js"></script>     
     <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
     <link href="styles/main.css" rel="stylesheet" />
 </head>
 <body>   
-    <div data-role="layout" data-id="mobile-tabstrip">    
+    <div data-role="layout" data-id="mobile-view">    
         <header data-role="header">
             <div data-role="navbar">
+                <a id="back-button" class="nav-button" data-align="left" data-role="backbutton">Back</a>
                 <span data-role="view-title"></span>
                 <img class="LogoWut" src=" http://www.whatsuptoday.it/resources/images/icona_wut.png" alt="" />     
             </div>
@@ -24,21 +24,36 @@
         </div>
     </div>
        
-     <div data-role="view" data-id="applications" data-title="What's Up Today">
+     <div data-role="view" id="applications" data-title="What's Up Today" data-layout="mobile-view" >
         <ul id="listViewApplications"></ul>         
     </div>
        
     <script id="itemTemplateApplication" type="text/x-kendo-template">
+         <a href="\#categories">
          <div class="tweet">
             <img class="pullImage" src="http://www.whatsuptoday.it/resources/images/#= data.Icon #" />#= data.Title #
             <div>
-
+                <div class="sublink"> Categorie(34) | </div><div class="sublink">Ultimo aggiornamento 12.34</div> 
             </div>
         </div> 
-    </script>
-
+        </a>
+    </script>      
+      
+     <div data-role="view" id="categories" data-title="Categorie" data-layout="mobile-view" data-show="OnLoadCategories">
+        <ul id="listViewCategories"></ul>         
+    </div>
+    
+     <script id="itemTemplateCategory" type="text/x-kendo-template">
+         <div class="tweet">
+            <img class="pullImage" src="http://www.whatsuptoday.it/resources/images/#= data.Icon #" />#= data.Title #
+            <div>
+                <div class="sublink"> Attività(34) | </div><div class="sublink">Ultimo aggiornamento 12.34</div> 
+            </div>
+        </div> 
+    </script>    
+    
     <script>
-        var app = new kendo.mobile.Application(document.body, { transition: "slide", layout: "mobile-tabstrip" });
+        var app = new kendo.mobile.Application(document.body, { transition: "slide", layout: "mobile-view" });
     </script>
     
 </body>
