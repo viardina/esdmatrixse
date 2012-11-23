@@ -1,3 +1,67 @@
+.tabActivity
+{
+    width: 100%;
+    height: 69px;
+}
+.ActivityTitle
+{
+    height: 5px;
+    width: 100%;
+}
+.rot-neg-90 {
+  /* rotate -90 deg, not sure if a negative number is supported so I used 270 */
+  -moz-transform: rotate(270deg);
+  -moz-transform-origin: 50% 50%;
+  -webkit-transform: rotate(270deg);
+  -webkit-transform-origin: 50% 50%;
+  /* IE support too convoluted for the time I've got on my hands... */
+   width: 10%;
+}
+.ActivityItemIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 3px;
+    float: center;
+    margin-right: 10px;
+}
+.ActivitySubDescription {
+    font-size: .9em;
+    font-weight: normal;
+    display: inline-block;
+    padding: 3px 3px 0 0;
+    text-decoration: none;
+    opacity: .4;
+    width:60%;
+}
+.ActivityInfo
+{
+    height: 5px;
+    width: 10%;
+    text-align: center;
+}
+.ActivityMail
+{
+    height: 5px;
+    width: 10%;
+    text-align: center;
+}
+.ActivityPhone
+{
+    height: 5px;
+    width: 10%;
+    text-align: center;
+}
+.ActivityWeb
+{
+    height: 5px;
+    width: 10%;
+    text-align: center;
+}
+.ActivityIcon {
+    width: 16px;
+    height: 16px;    
+}
+
 
 .ItemIcon {
     width: 40px;
@@ -22,7 +86,7 @@
     background-repeat: repeat;
     background-position: 0 0,0% 0%;
     font-family: HelveticaNeue, Roboto, 'Myriad Pro', 'Nokia Pure', Arial, sans-serif;
-    font-size: 9px;
+    font-size: .8em;
     font-weight: normal;
     font-style: normal;
     line-height: normal;
@@ -42,6 +106,16 @@
 .km-ios .km-view .km-navbar .km-button {
     background-color: rgb(0, 0, 0);
 }
+
+.km-android .km-view .km-content {
+    font-family: HelveticaNeue, Roboto, 'Myriad Pro', 'Nokia Pure', Arial, sans-serif;
+    font-size: 9px;
+    font-weight: normal;
+    font-style: normal;
+    line-height: normal;
+    text-shadow: none;
+}
+
 
 .LogoWut {
     width: 24px;

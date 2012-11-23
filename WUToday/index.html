@@ -19,7 +19,8 @@
             <div data-role="navbar" id="navbar">
                 <a id="back-button" class="nav-button" data-align="left" data-role="backbutton">Back</a>
                 <span data-role="view-title"></span>
-                <img class="LogoWut" src=" http://www.whatsuptoday.it/resources/images/icona_wut.png" alt="" />     
+                <img class="LogoWut" src=" http://www.whatsuptoday.it/resources/images/icona_wut.png" alt="" />   
+                
             </div>
         </header>
         <div data-role="footer">
@@ -33,7 +34,7 @@
        
     <script id="itemTemplateApplication" type="text/x-kendo-template"> 
         <a href="\#categories?IDApplication=#:data.ID#&title=#=data.Title#"> 
-        <div style="height: 60px">
+        <div>
             <table style="width: 100%; height: 100%;">
                 <tr>
                     <td style="width: 50px;text-align: center;" " rowspan="2">
@@ -50,7 +51,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="height: 30px;" colspan="2" class="ItemSubDescription">
+                    <td style="height: 35px;" colspan="2" class="ItemSubDescription">
                         Categorie (#=data.CategoriesCount#) | #=data.TopCategories#
                     </td>
                 </tr>
@@ -65,8 +66,8 @@
     </div>
     
      <script id="itemTemplateCategory" type="text/x-kendo-template">
-         <a href="\#activities?IDCategory=#: data.ID #">
-         <div style="height: 60px">
+         <a href="\#activities?IDCategory=#:data.ID#&title=#=data.Title#"">
+         <div>
             <table style="width: 100%; height: 100%;">
                 <tr>
                     <td style="width: 50px;text-align: center;" " rowspan="2">
@@ -83,7 +84,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="height: 30px;" colspan="2" class="ItemSubDescription">
+                    <td style="height: 35px;" colspan="2" class="ItemSubDescription">
                         Attivita' (#=data.ActivitiesCount#) | #=data.TopActivities#
                     </td>
                 </tr>
@@ -98,13 +99,33 @@
     </div>
     
      <script id="itemTemplateActivity" type="text/x-kendo-template">
-         <a href="\#offers?IDActivity=#: data.ID #">
-         <div class="tweet">
-            <img class="pullImage" src="http://www.whatsuptoday.it/resources/images/#= data.Icon #" />#= data.Title #
-            <div>
-                <div class="sublink"> Offerte(34) | </div><div class="sublink">Ultimo aggiornamento 12.34</div> 
-            </div>
-        </div> 
+         <a href="\#offers?IDActivity=#:data.ID#&title=#=data.Title#">
+         <div>            
+             <table class="tabActivity">
+                 <tr>
+                     <td style="width: 10%;text-align: center;" " rowspan="2" rowspan="2">
+                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityItemIcon" />
+                    </td>
+                     <td class="ActivityTitle" colspan="5">
+                        <strong>#=data.Title#</strong>
+                     </td>
+                     <td class="rot-neg-90" rowspan="2">
+                         Offerte</td>
+                 </tr>
+                 <tr>
+                     <td class="ActitvitySubDescription">
+                         <strong>#=data.Address#</strong></td>
+                     <td class="ActitvityInfo">
+                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.InfoIcon#" class="ActitvityIcon" /></td>
+                     <td class="ActivityMail">
+                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.EmailIcon#" class="ActivityIcon" /></td>
+                     <td class="ActivityPhone">
+                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.PhoneIcon#" class="ActivityIcon" /></td>
+                     <td class="ActivityWeb">
+                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.WebIcon#" class="ActivityIcon" /></td>
+                 </tr>
+             </table>
+         </div>        
         </a>    
     </script>    
     

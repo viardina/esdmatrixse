@@ -184,18 +184,24 @@ function ShowOffers(IDActivity,search) {
 function OnLoadCategories(e) {
     var view=e.view;
     var title=view.params.title;
-    var IDApplication=view.params.IDApplication;
-    ShowCategories(IDApplication,'');
     $("#navbar").data("kendoMobileNavBar").title(title);
+    var IDApplication=view.params.IDApplication;
+    ShowCategories(IDApplication,'');    
 }
 
 function OnLoadActivities(e) {
-    var IDCategory=e.view.params.IDCategory;
+    var view=e.view;
+    var title=view.params.title;
+    $("#navbar").data("kendoMobileNavBar").title(title);
+    var IDCategory=view.params.IDCategory;
     ShowActivities(IDCategory, '', '', '', '', '', '');
 }
 
 function OnLoadOffers(e) {
-    var IDActivity=e.view.params.IDActivity;
+    var view=e.view;
+    var title=view.params.title;
+    $("#navbar").data("kendoMobileNavBar").title(title);
+    var IDActivity=view.params.IDActivity;
     ShowOffers(IDActivity, '');
 }
 
