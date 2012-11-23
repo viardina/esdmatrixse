@@ -177,7 +177,8 @@ function ShowOffers(IDActivity,search) {
 }
 
 function OnLoadCategories(e) {
-    ShowCategories(1,'');
+    var IDApplication=e.view.params.IDApplication;
+    ShowCategories(IDApplication,'');
 }
 
 
