@@ -12,6 +12,7 @@
     <link href="styles/main.css" rel="stylesheet" />
 </head>
 <body>   
+    <!-- Main layout -->
     <div data-role="layout" data-id="mobile-view" data-show="ToggleBackButton">    
         <header data-role="header">
             <div data-role="navbar">
@@ -24,23 +25,36 @@
         </div>
     </div>
     
-     <!-- Applications -->
+     <!-- View applications -->
      <div data-role="view" id="applications" data-title="What's Up Today" data-layout="mobile-view">
         <ul id="listViewApplications"></ul>         
     </div>
        
     <script id="itemTemplateApplication" type="text/x-kendo-template"> 
-         <a href="\#categories?IDApplication=#: data.ID #">
-         <div class="tweet">
-            <img class="pullImage" src="http://www.whatsuptoday.it/resources/images/#= data.Icon #" />#= data.Title #
-            <div>
-                <div class="sublink"> Categorie(34) | </div><div class="sublink">Ultimo aggiornamento 12.34</div> 
-            </div>
-         </div> 
+        <a href="\#categories?IDApplication=#: data.ID #">
+         
+        <div >
+            <table style="width: 100%; height: 100%;">
+                <tr>
+                    <td style="width: 122px;" rowspan="2">
+                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="pullImage" /></td>
+                    <td style="width: 813px;">
+                        <strong>#=data.Title#</strong></td>
+                    <td >
+                        *****</td>
+                </tr>
+                <tr>
+                    <td style="height: 24px;" colspan="2" class="sublink">
+                        Categorie (#=data.CategoriesCount#) | #=data.TopCategories#
+                    </td>
+                </tr>
+            </table>
+         </div>         
+                
          </a>
     </script>    
     
-     <!-- Categories --> 
+     <!-- View categories --> 
      <div data-role="view" id="categories" data-title="Categorie" data-layout="mobile-view" data-show="OnLoadCategories">
         <ul id="listViewCategories"></ul>         
     </div>
@@ -56,7 +70,7 @@
         </a>    
     </script>    
     
-     <!-- Activities --> 
+     <!-- View activities --> 
      <div data-role="view" id="activities" data-title="Attivita'" data-layout="mobile-view" data-show="OnLoadActivities">
         <ul id="listViewActivities"></ul>         
     </div>
@@ -72,7 +86,7 @@
         </a>    
     </script>    
     
-    <!-- Offers/Events --> 
+    <!-- View offers/events --> 
      <div data-role="view" id="offers" data-title="Offerte-Eventi" data-layout="mobile-view" data-show="OnLoadOffers">
         <ul id="listViewOffers"></ul>         
     </div>

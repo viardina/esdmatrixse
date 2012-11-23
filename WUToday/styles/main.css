@@ -1,37 +1,4 @@
-body
-{
-    font: Arial, sans-serif;
-}
 
-.buttonArea,
-.footerText,
-#geoLocationContainer,
-#helloWorldInput,
-#helloWorldText
-{
-    text-align: center;
-}
-
-#txtName
-{
-    border: 1px solid #AAA;
-    border-radius: 15px;
-    position:static;
-    margin-left: 1em;
-    margin-top: 0.3em;
-    margin-bottom: 0.3em;
-    background:white;
-    color: black;
-    padding: 7px;
-}
-
-
-
-.tweet {
-    font-size: .8em;
-    line-height: 1.4em;
-    vertical-align:center;
-}
 .pullImage {
     width: 32px;
     height: 32px;
@@ -45,10 +12,8 @@ body
     display: inline-block;
     padding: 3px 3px 0 0;
     text-decoration: none;
-    opacity: .2;
+    opacity: .4;
 }
-
-
 
 .km-ios .km-view .km-content {
     background-color: rgb(0, 0, 0);
@@ -74,6 +39,9 @@ body
     color: rgb(255, 255, 255);
 }
 
+.km-ios .km-view .km-navbar .km-button {
+    background-color: rgb(0, 0, 0);
+}
 
 .LogoWut {
     width: 24px;
