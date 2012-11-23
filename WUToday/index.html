@@ -24,7 +24,7 @@
         </div>
     </div>
     
-     <!-- view APPLICATIONS -->
+     <!-- Applications -->
      <div data-role="view" id="applications" data-title="What's Up Today" data-layout="mobile-view">
         <ul id="listViewApplications"></ul>         
     </div>
@@ -38,17 +38,50 @@
             </div>
         </div> 
         </a>
-    </script>      
-     <!-- view Categories --> 
+    </script>    
+    
+     <!-- Categories --> 
      <div data-role="view" id="categories" data-title="Categorie" data-layout="mobile-view" data-show="OnLoadCategories">
         <ul id="listViewCategories"></ul>         
     </div>
     
      <script id="itemTemplateCategory" type="text/x-kendo-template">
+         <a href="\#activities?IDCategory=#: data.ID #">
          <div class="tweet">
             <img class="pullImage" src="http://www.whatsuptoday.it/resources/images/#= data.Icon #" />#= data.Title #
             <div>
-                <div class="sublink"> Attività(34) | </div><div class="sublink">Ultimo aggiornamento 12.34</div> 
+                <div class="sublink"> Attivita'(34) | </div><div class="sublink">Ultimo aggiornamento 12.34</div> 
+            </div>
+        </div> 
+        </a>    
+    </script>    
+    
+     <!-- Activities --> 
+     <div data-role="view" id="activities" data-title="Attivita'" data-layout="mobile-view" data-show="OnLoadActivities">
+        <ul id="listViewActivities"></ul>         
+    </div>
+    
+     <script id="itemTemplateActivity" type="text/x-kendo-template">
+         <a href="\#offers?IDActivity=#: data.ID #">
+         <div class="tweet">
+            <img class="pullImage" src="http://www.whatsuptoday.it/resources/images/#= data.Icon #" />#= data.Title #
+            <div>
+                <div class="sublink"> Offerte(34) | </div><div class="sublink">Ultimo aggiornamento 12.34</div> 
+            </div>
+        </div> 
+        </a>    
+    </script>    
+    
+    <!-- Offers/Events --> 
+     <div data-role="view" id="offers" data-title="Offerte-Eventi" data-layout="mobile-view" data-show="OnLoadOffers">
+        <ul id="listViewOffers"></ul>         
+    </div>
+    
+     <script id="itemTemplateOffer" type="text/x-kendo-template">
+         <div class="tweet">
+            <img class="pullImage" src="http://www.whatsuptoday.it/resources/images/#= data.Icon #" />#= data.Title #
+            <div>
+                <div class="sublink"> Visite(34) | </div><div class="sublink">Ultimo aggiornamento 12.34</div> 
             </div>
         </div> 
     </script>    

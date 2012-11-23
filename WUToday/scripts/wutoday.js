@@ -155,9 +155,9 @@ function ShowCategories(IDApplication, search) {
 // Show activities in listview
 function ShowActivities(IDCategory,search,latitude,longitude,region,country,city) {
     var dataSource = GetActivities(IDCategory,search,latitude,longitude,region,country,city);
-    $("#listViewApplications").kendoMobileListView({
+    $("#listViewActivities").kendoMobileListView({
         dataSource: dataSource,
-        template: $("#itemTemplateApplication").text(),
+        template: $("#itemTemplateActivity").text(),
         pullToRefresh: true,
         endlessScroll: true,
         scrollTreshold: 30
@@ -167,9 +167,9 @@ function ShowActivities(IDCategory,search,latitude,longitude,region,country,city
 // Show events or offers in listview
 function ShowOffers(IDActivity,search) {
     var dataSource = GetOffers(IDActivity,search);
-    $("#listViewApplications").kendoMobileListView({
+    $("#listViewOffers").kendoMobileListView({
         dataSource: dataSource,
-        template: $("#itemTemplateApplication").text(),
+        template: $("#itemTemplateOffer").text(),
         pullToRefresh: true,
         endlessScroll: true,
         scrollTreshold: 30
@@ -181,6 +181,15 @@ function OnLoadCategories(e) {
     ShowCategories(IDApplication,'');
 }
 
+function OnLoadActivities(e) {
+    var IDCategory=e.view.params.IDCategory;
+    ShowActivities(IDCategory, '', '', '', '', '', '');
+}
+
+function OnLoadOffers(e) {
+    var IDActivity=e.view.params.IDActivity;
+    ShowOffers(IDActivity, '');
+}
 
 function ToggleBackButton(e) {
     if (e.view.id == "#applications") {
