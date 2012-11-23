@@ -136,13 +136,13 @@ function ShowApplications() {
         template: $("#itemTemplateApplication").text(),
         pullToRefresh: true,
         endlessScroll: true,
-        scrollTreshold: 30
+        scrollTreshold: 30,
     });
 }
 
 // Show categories in listview
 function ShowCategories(IDApplication, search) {
-    var dataSource = GetCategories(IDApplication, search);
+    var dataSource = GetCategories(IDApplication, search); 
     $("#listViewCategories").kendoMobileListView({
         dataSource: dataSource,
         template: $("#itemTemplateCategory").text(),
@@ -176,6 +176,11 @@ function ShowOffers(IDActivity,search) {
     });
 }
 
+/*function OnLoadWaiting(e) {
+    e.view.element.find("[id=listViewCategories]").css("visibility", "hidden");
+}
+*/
+
 function OnLoadCategories(e) {
     var IDApplication=e.view.params.IDApplication;
     ShowCategories(IDApplication,'');
@@ -192,17 +197,11 @@ function OnLoadOffers(e) {
 }
 
 function ToggleBackButton(e) {
-    if (e.view.id == "#applications") {
-        e.view.element
-                .find("[data-role=backbutton]")
-                .css("visibility", "hidden")
-                .attr("data-target", "_top");
-    } else {
-        e.view.element
-                .find("[data-role=backbutton]")
-                .css("visibility", "visible")
-                .removeAttr("data-target");
-    }
+    var view=e.view;
+    if (view.id == "#applications") 
+        view.element.find("[data-role=backbutton]").css("visibility", "hidden").attr("data-target", "_top");
+    else
+        view.element.find("[data-role=backbutton]").css("visibility", "visible").removeAttr("data-target");
 }
 
 
