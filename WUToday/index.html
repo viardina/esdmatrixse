@@ -14,15 +14,15 @@
 </head>
 <body>   
     <!-- Main layout -->
-    <div data-role="layout" data-id="mobile-view" data-show="ToggleBackButton">    
+    <div data-role="layout" data-id="mobile-view" data-show="ToggleHomeBackButton">    
         <header data-role="header">
             <div data-role="navbar" id="navbar">
-                <a id="back-button" class="nav-button" data-align="left" data-role="backbutton">Back</a>
-                <span data-role="view-title"></span>
-                <img class="LogoWut" src=" http://www.whatsuptoday.it/resources/images/icona_wut.png" alt="" />   
-                
+                <a id="backbutton" class="nav-button" data-align="left" data-role="backbutton">Indietro</a>
+                <a id="home" data-align="right" data-icon="home" data-role="button" class="nav-button"  data-click="GoToHome"></a> 
+                <span id="titleWUT" >What's Up Today</span>
             </div>
-        </header>
+         <span id="titleView" data-role="view-title">The World in Hand...</span>
+         </header>
         <div data-role="footer">
         </div>
     </div>
@@ -140,7 +140,7 @@
                         </div>
                         </a>    
                      </td>
-                     <td>
+                     <td style="width:50px">
                         <a href="\#offers?IDActivity=#:data.ID#&title=#=data.Title#">
                         <div>
                         <table class="ActivityTable">
@@ -188,6 +188,66 @@
          </div>          
          
     </script>    
+    
+    
+    <!-- View activity info --> 
+     <div data-role="view" id="activityinfo" data-title="Info Attività" data-layout="mobile-view" data-show="OnLoadActivityInfo">
+        <div>
+        <table style="width:100%;" class="ActivityDetailsTable">
+            <tr>
+                <td class="ActivityDetailsTitle" colspan="2">
+                    #=data.Title#</td>
+            </tr>
+            <tr>
+                <td class="ActivityDetailsSubTitle" colspan="2">
+                    #=data.Address#</td>
+            </tr>
+            <tr>
+                <td  colspan="2">
+                     <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityDetailsItemIcon" /></td>
+            </tr>
+            <tr>
+                <td >
+                    <img class="InfoIcon" alt="" src="http://www.whatsuptoday.it/resources/images/#=data.InfoIcon#" /></td>
+                <td class="ActivityDetailsSubTitle">
+                    #=data.Email#</td>
+            </tr>
+            <tr>
+                <td >
+                    <img class="InfoIcon" alt="" src="http://www.whatsuptoday.it/resources/images/#=data.InfoIcon#" /></td>
+                <td class="ActivityDetailsSubTitle">
+                    #=data.Phone#</td>
+            </tr>
+            <tr>
+                <td >
+                    <img class="InfoIcon" alt="" src="http://www.whatsuptoday.it/resources/images/#=data.InfoIcon#" /></td>
+                <td class="ActivityDetailsSubTitle">
+                    #=data.Web#</td>
+            </tr>
+            <tr>
+                <td >
+                    <img class="InfoIcon" alt="" src="maps.png" /></td>
+                <td class="ActivityDetailsSubTitle">
+                    Come raggiungerci</td>
+            </tr>
+            <tr>
+                <td class="ActivityDetailsSubTitle" colspan="2">
+                    Chi Siamo</td>
+            </tr>
+            <tr>
+                <td class="ActivityDetailsDescription" colspan="2">
+                    #=data.Info#</td>
+            </tr>
+            <tr>
+                <td class="ActivityDetailsDescription" colspan="2">
+                   #=data.Description#</td>
+            </tr>
+        </table>
+        </div>        
+    </div>
+    
+    
+    <!--> Script start application<-->
     
     <script>
         var app = new kendo.mobile.Application(document.body, { transition: "slide", layout: "mobile-view" });

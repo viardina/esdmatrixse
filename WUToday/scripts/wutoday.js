@@ -17,6 +17,35 @@ function InitWUToday() {
     ShowApplications();
 }
 
+function SetTitle(title){
+    /*var element=document.getElementById('titleView');
+    element.innerText=title;
+    alert(element.innerText);*/
+}
+
+function GoToHome(){
+    app.navigate("#applications");
+    ShowApplications();
+}
+
+function ToggleHomeBackButton(e) {
+    var view=e.view;
+    if (view.id == "#applications"){     
+        view.element.find("[id=backbutton]").css("visibility", "hidden").attr("data-target", "_top");
+        view.element.find("[id=home]").css("visibility", "hidden").attr("data-target", "_top");
+    }else{
+        view.element.find("[id=backbutton]").css("visibility", "visible").removeAttr("data-target");
+        view.element.find("[id=home]").css("visibility", "visible").removeAttr("data-target");
+    }
+}
+
+function GetIconOpacity(value){
+    if(value!=null && value!="")
+        return .5;
+    else
+        return .1;
+}
+
 // Get first level application
 function GetApplications() {
     var dataSource = new kendo.data.DataSource({
@@ -101,6 +130,27 @@ function GetActivities(IDCategory,search,latitude,longitude,region,country,city)
     return dataSource;
 }
 
+function GetActivityInfo(IDActivity) {
+    var dataSource = new kendo.data.DataSource({
+        transport: {
+            read: {
+                url: WCFUrl + "/getactivityinfo",
+                dataType: "json"
+            },
+            parameterMap: function (options) {
+                return {
+                    IDActivity: IDActivity,
+                };
+            }
+        },
+        schema: {
+            data: "",
+        }
+    });
+    return dataSource;
+}
+
+
 // Get fourth level Offers or Events
 function GetOffers(IDActivity,search) {
     var dataSource = new kendo.data.DataSource({
@@ -184,7 +234,7 @@ function ShowOffers(IDActivity,search) {
 function OnLoadCategories(e) {
     var view=e.view;
     var title=view.params.title;
-    $("#navbar").data("kendoMobileNavBar").title(title);
+    SetTitle(title);
     var IDApplication=view.params.IDApplication;
     ShowCategories(IDApplication,'');    
 }
@@ -192,7 +242,7 @@ function OnLoadCategories(e) {
 function OnLoadActivities(e) {
     var view=e.view;
     var title=view.params.title;
-    $("#navbar").data("kendoMobileNavBar").title(title);
+    SetTitle(title);
     var IDCategory=view.params.IDCategory;
     ShowActivities(IDCategory, '', '', '', '', '', '');
 }
@@ -200,22 +250,21 @@ function OnLoadActivities(e) {
 function OnLoadOffers(e) {
     var view=e.view;
     var title=view.params.title;
-    $("#navbar").data("kendoMobileNavBar").title(title);
+    SetTitle(title);
     var IDActivity=view.params.IDActivity;
     ShowOffers(IDActivity, '');
 }
 
-function ToggleBackButton(e) {
+function OnLoadActivityInfo(e) {
     var view=e.view;
-    if (view.id == "#applications") 
-        view.element.find("[data-role=backbutton]").css("visibility", "hidden").attr("data-target", "_top");
-    else
-        view.element.find("[data-role=backbutton]").css("visibility", "visible").removeAttr("data-target");
+    var title=view.params.title;
+    SetTitle(title);
+    var IDActivity=view.params.IDActivity;    
+    var dataSource=GetActivityInfo(IDActivity);
+    dataSource.fetch();
+    alert(IDActivity+" "+dataSource.at(0));
 }
 
-function GetIconOpacity(value){
-    if(value!=null && value!="")
-        return .5;
-    else
-        return .1;
-}
+
+
+
