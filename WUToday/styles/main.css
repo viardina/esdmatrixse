@@ -9,6 +9,43 @@ a
     text-decoration: none;
 }
 
+/* Item style offers */
+.OfferTable
+{
+    width: 100%;
+    height: 69px;
+}
+.OfferTitle
+{
+    height: 5px;
+    width: 100%;
+}
+
+.OfferItemIcon {
+    width: 64px;
+    height: 96px;
+    border-radius:0px;
+    margin-right: 10px;
+}
+.OfferDescription {
+    font-size: .9em;
+    line-height: 1.4em;
+    font-weight: normal;
+    padding: 3px 3px 0 0;
+    text-decoration: none;
+    opacity: .4;
+    width:100%;
+}
+.OfferPeriod {
+    font-size: .9em;
+    font-weight: normal;
+    padding: 3px 3px 0 0;
+    text-decoration: none;
+    opacity: .4;
+    width:80%;
+}
+
+
 /* Item style activities */
 
 .ActivityTable
@@ -94,8 +131,6 @@ a
 
 
 
-
-
 /* ---------------------Layout and styles cross mobile platform--------------------------- */
 
 .km-ios .km-view .km-content {
@@ -135,6 +170,15 @@ a
     text-shadow: none;
 }
 
+.km-ios .km-view .km-content .km-list .km-state-active .km-listview-link {
+    background-color: rgb(127, 127, 127);
+}
+.km-android .km-view .km-content .km-list .km-state-active .km-listview-link {
+    background-color: rgb(127, 127, 127);
+}
+.km-blackberry .km-view .km-content .km-list .km-state-active .km-listview-link {
+    background-color: rgb(102, 102, 102);
+}
 
 
 
