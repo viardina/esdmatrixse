@@ -10,6 +10,7 @@ function onDeviceReady() {
 
 // Settings for WCF server data access in JSON mode
 var WCFUrl = "http://95.110.169.199/wcfmobile/service.svc";
+WCFService=WCFUrl;
 var WCFTakeElements=10;
 
 // Start main module
@@ -130,24 +131,10 @@ function GetActivities(IDCategory,search,latitude,longitude,region,country,city)
     return dataSource;
 }
 
-function GetActivityInfo(IDActivity) {
-    var dataSource = new kendo.data.DataSource({
-        transport: {
-            read: {
-                url: WCFUrl + "/getactivityinfo",
-                dataType: "json"
-            },
-            parameterMap: function (options) {
-                return {
-                    IDActivity: IDActivity,
-                };
-            }
-        },
-        schema: {
-            data: "",
-        }
+function GetActivityInfo(IDActivity,callback) {
+    WCFExecute('GetActivityInfo','?IDActivity='+IDActivity, function(resultObject) {
+        callback(resultObject);       
     });
-    return dataSource;
 }
 
 
@@ -260,9 +247,12 @@ function OnLoadActivityInfo(e) {
     var title=view.params.title;
     SetTitle(title);
     var IDActivity=view.params.IDActivity;    
-    var dataSource=GetActivityInfo(IDActivity);
-    dataSource.fetch();
-    alert(IDActivity+" "+dataSource.at(0));
+    
+    GetActivityInfo(IDActivity, function(resultObject){
+        alert(resultObject.Title);    
+    });
+    
+   
 }
 
 
