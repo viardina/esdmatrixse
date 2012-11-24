@@ -213,4 +213,9 @@ function ToggleBackButton(e) {
         view.element.find("[data-role=backbutton]").css("visibility", "visible").removeAttr("data-target");
 }
 
-
+function GetIconOpacity(value){
+    if(value!=null && value!="")
+        return .5;
+    else
+        return .1;
+}

@@ -37,7 +37,7 @@
         <div>
             <table style="width: 100%; height: 100%;">
                 <tr>
-                    <td style="width: 50px;text-align: center;" " rowspan="2">
+                    <td style="width: 50px;text-align: center;" rowspan="2">
                         <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ItemIcon" />
                     </td>
                     <td style="width: 100%;">
@@ -48,16 +48,17 @@
                         <ul class="star-rating small-star">
                     		<li class="current-rating" style="width:#=data.StatisticsRate#%"></li>                    		
                     	</ul>	
+                        </span>
                     </td>
                 </tr>
                 <tr>
-                    <td style="height: 35px;" colspan="2" class="ItemSubDescription">
+                    <td style="height:30px" colspan="2" class="ItemSubDescription">
                         Categorie (#=data.CategoriesCount#) | #=data.TopCategories#
                     </td>
                 </tr>
             </table> 
-         </div>                   
-         </a>        
+         </div>  
+        </a>        
     </script>    
     
      <!-- View categories --> 
@@ -70,7 +71,7 @@
          <div>
             <table style="width: 100%; height: 100%;">
                 <tr>
-                    <td style="width: 50px;text-align: center;" " rowspan="2">
+                    <td style="width: 50px;text-align: center;" rowspan="2">
                         <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ItemIcon" />
                     </td>
                     <td style="width: 100%;">
@@ -81,15 +82,16 @@
                         <ul class="star-rating small-star">
                     		<li class="current-rating" style="width:#=data.StatisticsRate#%"></li>                    		
                     	</ul>	
+                        </span>
                     </td>
                 </tr>
                 <tr>
-                    <td style="height: 35px;" colspan="2" class="ItemSubDescription">
+                    <td  style="height:30px" colspan="2" class="ItemSubDescription">
                         Attivita' (#=data.ActivitiesCount#) | #=data.TopActivities#
                     </td>
                 </tr>
             </table> 
-         </div>        
+         </div>      
         </a>    
     </script>    
     
@@ -98,40 +100,62 @@
         <ul id="listViewActivities" data-role="listview"></ul>         
     </div>
     
-     <script id="itemTemplateActivity" type="text/x-kendo-template">
-         <a href="\#offers?IDActivity=#:data.ID#&title=#=data.Title#">
-           <div style="height: 69px">
-             <table class="ActivityTable">
+     <script id="itemTemplateActivity" type="text/x-kendo-template">         
+         <div>
+            <table style="width:100%;">
                  <tr>
-                     <td style="width: 10%;text-align: center;" " rowspan="2" rowspan="3">
-                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityItemIcon" />
-                    </td>
-                     <td class="ActivityTitle" colspan="5">
-                        <strong>#=data.Title#</strong>
+                     <td>
+                        <a href="\#activityinfo?IDActivity=#:data.ID#&title=#=data.Title#"> 
+                        <div>
+                        <table class="ActivityTable">
+                            <tr>                     
+                                <td style="width: 10%;text-align: center;"  rowspan="3">
+                                <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityItemIcon" />
+                                </td>
+                                <td class="ActivityTitle" colspan="5">
+                                <strong>#=data.Title#</strong>
+                                </td>                         
+                            </tr>
+                            <tr>
+                                <td class="ActivitySubAddress" colspan="5">
+                                    <strong>#=data.Address#</strong>
+                                </td>
+                            </tr>                     
+                            <tr>
+                                
+                                <td class="ActivityInfo">
+                                    <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.InfoIcon#" class="ActivityIcon" style="opacity: #=GetIconOpacity(data.Info)#" />
+                                </td>
+                                <td class="ActivityInfo">
+                                    <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.EmailIcon#" class="ActivityIcon" style="opacity: #=GetIconOpacity(data.Email)#" />
+                                </td>
+                                <td class="ActivityInfo">
+                                    <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.PhoneIcon#" class="ActivityIcon" style="opacity: #=GetIconOpacity(data.Phone)#" />
+                                </td>
+                                <td class="ActivityInfo">
+                                    <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.WebIcon#" class="ActivityIcon" style="opacity: #=GetIconOpacity(data.Web)#" />
+                                </td>
+                            </tr>
+                         </table>
+                        </div>
+                        </a>    
                      </td>
-                     <td class="rot-neg-90" rowspan="3">
-                         Offerte</td>
+                     <td>
+                        <a href="\#offers?IDActivity=#:data.ID#&title=#=data.Title#">
+                        <div>
+                        <table class="ActivityTable">
+                         <tr>                     
+                             <td class="ActivityOffers"> 
+                                 Offerte
+                             </td>                       
+                         </tr>
+                         </table>
+                        </div>
+                        </a>
+                     </td>
                  </tr>
-                 <tr>
-                     <td class="ActivitySubDescription" colspan="5">
-                          <strong>#=data.Address#</strong></td>
-                 </tr>
-                 <tr>
-                     <td class="ActivitySubDescription">
-                      <strong><span class="style1">#=data.Description#</span></strong>
-                        </td>
-                     <td class="ActivityInfo">
-                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.InfoIcon#" class="ActivityIcon" /></td>
-                     <td class="ActivityMail">
-                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.EmailIcon#" class="ActivityIcon" /></td>
-                     <td class="ActivityContacts">
-                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.PhoneIcon#" class="ActivityIcon" /></td>
-                     <td class="ActivityWeb">
-                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.WebIcon#" class="ActivityIcon" /></td>
-                 </tr>
-                 </table>       
-         </div>      
-        </a>    
+             </table>
+         </div>           
     </script>    
     
     <!-- View offers/events --> 

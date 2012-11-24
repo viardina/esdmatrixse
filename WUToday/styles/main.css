@@ -1,67 +1,78 @@
+.LogoWut {
+    width: 24px;
+    height: 24px;
+    border-radius: 3px;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+/* Item style activities */
+
 .ActivityTable
 {
     width: 100%;
-    height: 69px;
+    height:100%;
 }
+
 .ActivityTitle
 {
     height: 5px;
     width: 100%;
 }
-.rot-neg-90 {
-  /* rotate -90 deg, not sure if a negative number is supported so I used 270 */
-  -moz-transform: rotate(270deg);
-  -moz-transform-origin: 50% 50%;
-  -webkit-transform: rotate(270deg);
-  -webkit-transform-origin: 50% 50%;
-  /* IE support too convoluted for the time I've got on my hands... */
-   width: 10%;
+.ActivityOffers {
+    -moz-transform: rotate(270deg);
+    -moz-transform-origin: 50% 50%;
+    -webkit-transform: rotate(270deg);
+    -webkit-transform-origin: 50% 50%;
+    width: 10%;
+    opacity: .6;
+    text-transform: uppercase;
+    font-size: .9em;
+    font-weight: normal;
 }
 .ActivityItemIcon {
-    width: 40px;
-    height: 40px;
-    border-radius: 3px;
+    width: 64px;
+    height: 64px;
+    float: left;
+    display: inline;
+    border-radius: 0px;
     margin-right: 10px;
 }
 .ActivitySubDescription {
-   font-size: xx-small;
+    font-size: xx-small;
     font-weight: normal;
-    display: inline-block;
     padding: 3px 3px 0 0;
     text-decoration: none;
     opacity: .4;
-    width:80%;
+    width:100%;
 }
+.ActivitySubAddress {
+    font-size: .9em;
+    font-weight: normal;
+    padding: 0px 0px 0 0;
+    text-decoration: none;
+    opacity: .4;
+    line-height: 1.4em;
+    width:100%;
+}
+
 .ActivityInfo
 {
-    height: 5px;
-    width: 5%;
+    height: 16px;
+    width: 20px;
     text-align: center;
+    float: left;
 }
-.ActivityMail
-{
-    height: 5px;
-    width: 5%;
-    text-align: center;
-}
-.ActivityContacts
-{
-    height: 5px;
-    width: 5%;
-    text-align: center;
-}
-.ActivityWeb
-{
-    height: 5px;
-    width: 5%;
-    text-align: center;
-}
+
 .ActivityIcon {
     width: 16px;
-    height: 16px;    
+    height: 16px;  
 }
 
-
+/* Item style applications/categories */
 .ItemIcon {
     width: 40px;
     height: 40px;
@@ -69,14 +80,23 @@
     float: left;
     margin-right: 10px;
 }
+
 .ItemSubDescription {
     font-size: .9em;
     font-weight: normal;
-    display: inline-block;
-    padding: 3px 3px 0 0;
+    padding: 0px 0px 0 0;
     text-decoration: none;
     opacity: .4;
+    line-height: 1.4em;
 }
+
+
+
+
+
+
+
+/* ---------------------Layout and styles cross mobile platform--------------------------- */
 
 .km-ios .km-view .km-content {
     background-color: rgb(0, 0, 0);
@@ -115,12 +135,6 @@
     text-shadow: none;
 }
 
-.LogoWut {
-    width: 24px;
-    height: 24px;
-    border-radius: 3px;
-   
-}
 
 
 
