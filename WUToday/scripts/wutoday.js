@@ -40,7 +40,7 @@ function ToggleHomeBackButton(e) {
     }
 }
 
-function GetIconOpacity(value){
+function GetActivityIconOpacity(value){
     if(value!=null && value!="")
         return .5;
     else
@@ -137,14 +137,25 @@ function FillActivityInfo(IDActivity) {
         var viewModel=kendo.observable({
             title: data.Title,
             address: data.Address,
-            email: data.Email,
-            phone: data.Phone,
-            web: data.Web,
+            email: GetActivityTextInfo(data.Email),
+            phone: GetActivityTextInfo(data.Phone),
+            web: GetActivityTextInfo(data.Web),
             info: data.Info,
-            icon: 'http://www.whatsuptoday.it/resources/images/'+data.Icon
+            icon: 'http://www.whatsuptoday.it/resources/images/'+data.Icon,
+            emailOpacity: GetActivityIconOpacity(data.Email),
+            phoneOpacity: GetActivityIconOpacity(data.Phone),
+            webOpacity: GetActivityIconOpacity(data.Web),
+            mapOpacity: .5
         });
         kendo.bind($("#activityinfo"),viewModel);
     });
+}
+
+function GetActivityTextInfo(value){
+    if(value==null || value=='')
+        return "Non disponibile";
+    else
+        return value;
 }
 
 // Fill offer info

@@ -41,7 +41,7 @@ a
 .ActivityDetailsSubTitle
 {
     font-size: small;
-    font-weight:bold;
+    font-weight:normal;
     height: 5px;
     width: 100%;
     opacity: .4;
@@ -66,32 +66,31 @@ a
     text-align: center;
 }
 .ActivityDetailsInfo {
-    font-size: x-small;
+    font-size: 1.3em;
     font-weight: normal;
     padding: 3px 3px 0 0;
     text-decoration: none;
-    opacity: .4;
-    opacity: .4;
     text-align:left;
-    width:100%;
+
 }
 
 
 .ActivityDetailsInfoIcon 
 {
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
     border-radius: 3px;
     margin-right: 10px;
-    text-align:center;
+    text-align:Center;  
 }
 
 
-.ActivityDetailscenter-justified {
+.ActivityDetailsJustified {
+    font-size: 1.5em;
     margin: 0 auto;
     text-align: justify;
     width: 90%;
-    opacity: .4;
+    opacity: .75;
 }​
 
 
@@ -102,8 +101,8 @@ a
    
 .ActivityDetailsIconContainerInfo
 {
-    width: 40%;
-    text-align: Right;
+    width: 32px;
+    text-align: Center;
 }
 
 /* Item style offer Info */
@@ -232,7 +231,7 @@ a
     width:100%;
 }
 .ActivitySubAddress {
-    font-size: .9em;
+    font-size: 0.9em;
     font-weight: normal;
     padding: 0px 0px 0 0;
     text-decoration: none;

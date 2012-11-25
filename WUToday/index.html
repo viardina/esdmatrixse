@@ -135,16 +135,16 @@
                             <tr>
                                 
                                 <td class="ActivityInfo">
-                                    <img alt="" src="../images/info.png" class="ActivityIcon" style="opacity: #=GetIconOpacity(data.Info)#" />
+                                    <img alt="" src="images/info.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Info)#" />
                                 </td>
                                 <td class="ActivityInfo">
-                                    <img alt="" src="../images/mail.png" class="ActivityIcon" style="opacity: #=GetIconOpacity(data.Email)#" />
+                                    <img alt="" src="images/mail.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Email)#" />
                                 </td>
                                 <td class="ActivityInfo">
-                                    <img alt="" src="../images/phone.png" class="ActivityIcon" style="opacity: #=GetIconOpacity(data.Phone)#" />
+                                    <img alt="" src="images/phone.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Phone)#" />
                                 </td>
                                 <td class="ActivityInfo">
-                                    <img alt="" src="../images/web.png" class="ActivityIcon" style="opacity: #=GetIconOpacity(data.Web)#" />
+                                    <img alt="" src="images/web.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Web)#" />
                                 </td>
                             </tr>
                          </table>
@@ -167,7 +167,7 @@
                  </tr>
              </table>
          </div>           
-    </script>    
+    </script>     
     
     <!-- View offers/events --> 
      <div data-role="view" id="offers" data-title="Offerte-Eventi" data-layout="mobile-view" data-show="OnLoadOffers">
@@ -201,8 +201,8 @@
          </a>
     </script>    
     
-    
- <div data-role="view" id="activityinfo" data-title="Info Attività" data-layout="mobile-view" data-show="OnLoadActivityInfo">
+     <!-- View activity info --> 
+     <div data-role="view" id="activityinfo" data-title="Info Attività" data-layout="mobile-view" data-show="OnLoadActivityInfo">
         <div>
         <table class="ActivityDetailsTable">
             <tr>
@@ -217,38 +217,38 @@
                 <td  colspan="2" style="text-align: center">
                      <img alt="" data-bind="attr: {src: icon}" class="ActivityDetailsItemIcon" /></td>
             </tr>
-            <tr>
+            <tr data-bind="style: {opacity: emailOpacity}">
                 <td class="ActivityDetailsIconContainerInfo" >
-                    <img class="ActivityDetailsInfoIcon" alt="" src="../images/mail.png" /></td>
+                    <img class="ActivityDetailsInfoIcon" alt="" src="images/mail.png"  /></td>
                 <td class="ActivityDetailsInfo" data-bind="text: email">
                     Email</td>
             </tr>
-            <tr>
+            <tr data-bind="style: {opacity: phoneOpacity}">
                 <td class="ActivityDetailsIconContainerInfo" >
-                    <img class="ActivityDetailsInfoIcon" alt="" src="../images/phone.png" /></td>
+                    <img class="ActivityDetailsInfoIcon" alt="" src="images/phone.png" /></td>
                 <td class="ActivityDetailsInfo" data-bind="text: phone">
                     Telefono</td>
             </tr>
-            <tr>
+            <tr data-bind="style: {opacity: webOpacity}">
                 <td class="ActivityDetailsIconContainerInfo" >
-                    <img class="ActivityDetailsInfoIcon" alt="" src="../images/web.png" /></td>
+                    <img class="ActivityDetailsInfoIcon" alt="" src="images/web.png" /></td>
                 <td class="ActivityDetailsInfo" data-bind="text: web">
                     Web</td>
             </tr>
-            <tr>
+            <tr data-bind="style: {opacity: mapOpacity}">
                 <td class="ActivityDetailsIconContainerInfo" >
-                    <img class="ActivityDetailsInfoIcon" alt="" src="../images/maps.png" /></td>
+                    <img class="ActivityDetailsInfoIcon" alt="" src="images/maps.png" /></td>
                 <td class="ActivityDetailsInfo">
                     Come raggiungerci</td>
             </tr>
             <tr>
                 <td class="ActivityDetailsSubTitle" colspan="2" >
-                    Chi Siamo</td>
+                    </td>
             </tr>
             <tr>
             
                <td  class="ActivityDetailsInfoContainer" colspan="2" >
-                  <div class="ActivityDetailscenter-justified" data-bind="text: info">Informazioni</div></td>
+                  <div class="ActivityDetailsJustified" data-bind="text: info">Informazioni</div></td>
             </tr>
         </table>
         </div>        
