@@ -292,6 +292,8 @@ function OnLoadOfferInfo(e) {
     FillOfferInfo(IDOffer);   
 }
 
-
+function CloseSearch(){
+    $("#searchcontroller").kendoMobileModalView("close");
+}
 
 

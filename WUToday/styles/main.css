@@ -74,7 +74,6 @@ a
 
 }
 
-
 .ActivityDetailsInfoIcon 
 {
     width: 24px;
@@ -84,9 +83,8 @@ a
     text-align:Center;  
 }
 
-
 .ActivityDetailsJustified {
-    font-size: 1.5em;
+    font-size: 1.3em;
     margin: 0 auto;
     text-align: justify;
     width: 90%;
@@ -318,6 +316,28 @@ a
 }
 .km-blackberry .km-view .km-content .km-list .km-state-active .km-listview-link {
     background-color: rgb(102, 102, 102);
+}
+
+.km-ios .km-view .km-content .km-button.km-state-active {
+    background-color: rgb(127, 127, 127);;
+}
+.km-ios .km-view .km-content .km-button {
+    background-color: rgb(0, 0, 0);
+}
+.km-android .km-view .km-content .km-button.km-state-active {
+    background-color: rgb(127, 127, 127);;
+}
+.km-android .km-view .km-content .km-button {
+    background-color: rgb(0, 0, 0);
+}
+.km-blackberry .km-view .km-content .km-button.km-state-active {
+    background-color: rgb(102, 102, 102);
+}
+.km-blackberry .km-view .km-content .km-button {
+    background-color: rgb(0, 0, 0);
+}
+.km-blackberry .km-view .km-content .km-button .km-text {
+    color: rgb(255, 255, 255);
 }
 
 
