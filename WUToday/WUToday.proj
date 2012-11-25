@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\web.png" />
-    <Content Include="images\i.png" />
+    <Content Include="images\info.png" />
     <Content Include="images\mail.png" />
     <Content Include="images\phone.png" />
     <Content Include="images\star.png" />

@@ -3,11 +3,26 @@
     height: 24px;
     border-radius: 3px;
 }
-
 a
 {
     text-decoration: none;
 }
+.HeaderLeft
+{
+  alignment-adjust:center; 
+
+}
+.HeaderCenter
+{
+    alignment-adjust:middle; 
+    padding-left: 10px;
+    display:inline;
+}
+.HeaderRight
+{
+    
+}
+
 
 /* Item style activity details */
 .ActivityDetailsTable
@@ -16,7 +31,8 @@ a
     height:100%;
 }
 .ActivityDetailsTitle
-{
+{   
+    font-size: large;
     font-weight:bold;
     height: 5px;
     width: 100%;
@@ -28,14 +44,17 @@ a
     font-weight:bold;
     height: 5px;
     width: 100%;
+    opacity: .4;
     text-align:center;
 }
 .ActivityDetailsItemIcon {
-    width: 256px;
-    height: 256px;
+    width: 70%;
+    height: 70%;
+    max-width:256px;
+    max-height:256px;
     border-radius: 3px;
     margin-right: 10px;
-    text-align:center;
+   
 }
 .ActivityDetailsDescription {
    font-size: x-small;
@@ -43,29 +62,96 @@ a
     padding: 3px 3px 0 0;
     text-decoration: none;
     opacity: .4;
-    width:auto;
-    text-align:justify;
+    margin: 0 auto;
+    text-align: center;
 }
-.ActivityDetailsAdresses {
-    font-size: xx-small;
+.ActivityDetailsInfo {
+    font-size: x-small;
     font-weight: normal;
     padding: 3px 3px 0 0;
     text-decoration: none;
     opacity: .4;
-    width:auto;
-    text-align:center;
+    opacity: .4;
+    text-align:left;
+    width:100%;
 }
 
-.InfoIcon
+
+.ActivityDetailsInfoIcon 
 {
     width: 16px;
     height: 16px;
-    float: center;
     border-radius: 3px;
     margin-right: 10px;
     text-align:center;
 }
 
+
+.ActivityDetailscenter-justified {
+    margin: 0 auto;
+    text-align: justify;
+    width: 90%;
+    opacity: .4;
+}​
+
+
+.ActivityDetailsIconItemInfo
+{ 
+    width:16px;
+}
+   
+.ActivityDetailsIconContainerInfo
+{
+    width: 40%;
+    text-align: Right;
+}
+
+/* Item style offer Info */
+.OfferDetailsTable
+{
+    width: 100%;
+    height: 100%;
+    text-align:center;
+    
+}
+.OfferDetailsTitle
+{
+     font-size: medium;
+    font-weight:bold;
+    height: 5px;
+    width: 100%;
+    text-align:center;
+    
+}
+
+.OfferDetailsItemIcon {
+    width: 100%;
+    height: 100%;
+    max-width:256px;
+    max-height:384px;
+    border-radius:0px;
+    margin-right: 10px;
+    text-align:center;
+    
+}
+.OfferDetailsDescription {
+    font-size: .9em;
+    line-height: 1.4em;
+    font-weight: normal;
+    padding: 3px 3px 0 0;
+    text-decoration: none;
+    opacity: .4;
+    width:100%;
+}
+.OfferDetailsPeriod {
+    font-size: .9em;
+    font-weight: normal;
+    padding: 3px 3px 0 0;
+    text-decoration: none;
+    opacity: .4;
+    width:80%;
+    text-align:center;
+}
 
 
 
@@ -107,13 +193,11 @@ a
 
 
 /* Item style activities */
-
 .ActivityTable
 {
     width: 100%;
     height:100%;
 }
-
 .ActivityTitle
 {
     height: 5px;
@@ -156,7 +240,6 @@ a
     line-height: 1.4em;
     width:100%;
 }
-
 .ActivityInfo
 {
     height: 16px;
@@ -178,7 +261,6 @@ a
     float: left;
     margin-right: 10px;
 }
-
 .ItemSubDescription {
     font-size: .9em;
     font-weight: normal;
@@ -193,22 +275,6 @@ a
 
 
 /* ---------------------Layout and styles cross mobile platform--------------------------- */
-
-.HeaderLeft
-{
-  alignment-adjust:center; 
-
-}
-.HeaderCenter
-{
-    alignment-adjust:middle; 
-    padding-left: 10px;
-    display:inline;
-}
-.HeaderRight
-{
-    
-}
 
 .km-ios .km-view .km-content {
     background-color: rgb(0, 0, 0);
@@ -227,20 +293,16 @@ a
 .km-ios .km-view .km-content .km-list > li {
     background-color: rgba(0, 0, 0, 0);
 }
-
 .km-ios .km-view .km-navbar {
     background-color: rgb(0, 0, 0);
     height:50px;
 }
-
 .km-ios .km-view .km-content .km-listgroupinset .km-group-title .km-text {
     color: rgb(255, 255, 255);
 }
-
 .km-ios .km-view .km-navbar .km-button {
     background-color: rgb(0, 0, 0);
 }
-
 .km-android .km-view .km-content {
     font-family: HelveticaNeue, Roboto, 'Myriad Pro', 'Nokia Pure', Arial, sans-serif;
     font-size: 9px;
@@ -249,7 +311,6 @@ a
     line-height: normal;
     text-shadow: none;
 }
-
 .km-ios .km-view .km-content .km-list .km-state-active .km-listview-link {
     background-color: rgb(127, 127, 127);
 }

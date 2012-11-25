@@ -17,22 +17,22 @@
     <!-- Main layout -->
     <div data-role="layout" data-id="mobile-view" data-show="ToggleHomeBackButton">    
         <header data-role="header">
-        <div data-role="navbar" id="navbar">
-            <table style="width:100%;">
-                <tr>
-                    <td class="HeaderLeft">
-                        <a id="backbutton" class="HeaderLeft" data-align="left" data-role="backbutton">
-                        Indietro</a></td>
-                    <td class="HeaderCenter">
-                        <span id="titleWUT">What's Up Today</span></td>
-                    <td>
-                        <a id="home" class="HeaderRight" data-align="right" data-click="GoToHome" 
-                            data-icon="home" data-role="button"></a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <span id="titleView" data-role="view-title">The World in Hand...</span>
+            <div data-role="navbar" id="navbar">
+                <table style="width:100%;">
+                    <tr>
+                        <td class="HeaderLeft">
+                            <a id="backbutton" class="HeaderLeft" data-align="left" data-role="backbutton">
+                            Indietro</a></td>
+                        <td class="HeaderCenter">
+                            <span id="titleWUT">What's Up Today</span></td>
+                        <td>                            
+                            <a id="home" class="HeaderRight" data-align="right" data-click="GoToHome" data-icon="home" data-role="button"></a>
+                            <a id="search" class="HeaderRight" data-align="right" href="#searchcontroller" data-rel="modalview" data-icon="search" data-role="button"></a>                            
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--<span id="titleView" data-role="view-title">The World in Hand...</span>-->
         </header>
         <div data-role="footer">
         </div>
@@ -202,10 +202,9 @@
     </script>    
     
     
-    <!-- View activity info --> 
-     <div data-role="view" id="activityinfo" data-title="Info Attività" data-layout="mobile-view" data-show="OnLoadActivityInfo">
+ <div data-role="view" id="activityinfo" data-title="Info Attività" data-layout="mobile-view" data-show="OnLoadActivityInfo">
         <div>
-        <table style="width:100%;" class="ActivityDetailsTable">
+        <table class="ActivityDetailsTable">
             <tr>
                 <td class="ActivityDetailsTitle" colspan="2" data-bind="text: title">
                     Titolo</td>
@@ -215,31 +214,31 @@
                     Indirizzo</td>
             </tr>
             <tr>
-                <td  colspan="2">
+                <td  colspan="2" style="text-align: center">
                      <img alt="" data-bind="attr: {src: icon}" class="ActivityDetailsItemIcon" /></td>
             </tr>
             <tr>
-                <td >
-                    <img class="InfoIcon" alt="" src="../images/mail.png" /></td>
-                <td class="ActivityDetailsSubTitle" data-bind="text: email">
+                <td class="ActivityDetailsIconContainerInfo" >
+                    <img class="ActivityDetailsInfoIcon" alt="" src="../images/mail.png" /></td>
+                <td class="ActivityDetailsInfo" data-bind="text: email">
                     Email</td>
             </tr>
             <tr>
-                <td >
-                    <img class="InfoIcon" alt="" src="../images/phone.png" /></td>
-                <td class="ActivityDetailsSubTitle" data-bind="text: phone">
+                <td class="ActivityDetailsIconContainerInfo" >
+                    <img class="ActivityDetailsInfoIcon" alt="" src="../images/phone.png" /></td>
+                <td class="ActivityDetailsInfo" data-bind="text: phone">
                     Telefono</td>
             </tr>
             <tr>
-                <td >
-                    <img class="InfoIcon" alt="" src="../images/web.png" /></td>
-                <td class="ActivityDetailsSubTitle" data-bind="text: web">
+                <td class="ActivityDetailsIconContainerInfo" >
+                    <img class="ActivityDetailsInfoIcon" alt="" src="../images/web.png" /></td>
+                <td class="ActivityDetailsInfo" data-bind="text: web">
                     Web</td>
             </tr>
             <tr>
-                <td >
-                    <img class="InfoIcon" alt="" src="../images/maps.png" /></td>
-                <td class="ActivityDetailsSubTitle">
+                <td class="ActivityDetailsIconContainerInfo" >
+                    <img class="ActivityDetailsInfoIcon" alt="" src="../images/maps.png" /></td>
+                <td class="ActivityDetailsInfo">
                     Come raggiungerci</td>
             </tr>
             <tr>
@@ -247,8 +246,9 @@
                     Chi Siamo</td>
             </tr>
             <tr>
-                <td class="ActivityDetailsDescription" colspan="2" data-bind="text: info">
-                   Informazioni</td>
+            
+               <td  class="ActivityDetailsInfoContainer" colspan="2" >
+                  <div class="ActivityDetailscenter-justified" data-bind="text: info">Informazioni</div></td>
             </tr>
         </table>
         </div>        
@@ -257,30 +257,33 @@
     <!-- View offer info --> 
      <div data-role="view" id="offerinfo" data-title="Info Offerte" data-layout="mobile-view" data-show="OnLoadOfferInfo">
         <div>
-        <table style="width:100%;" class="OfferTable">
+        <table class="OfferDetailsTable">
             <tr>
                 <td>
-                    <img alt="" data-bind="attr: {src: icon}" class="OfferItemIcon" /></td>
+                    <img alt="" data-bind="attr: {src: icon}" class="OfferDetailsItemIcon" /></td>
             </tr>
             <tr>
-                <td class="OfferTitle" data-bind="text: title">
+                <td class="OfferDetailsTitle" data-bind="text: title">
                     Titolo</td>
             </tr>
             <tr>
-                <td class="OfferDescription" data-bind="text: description">
-                    Descrizione</td>
+                <td class="OfferDetailsDescription">
+                     <div class="ActivityDetailscenter-justified" data-bind="text: description">Descrizione</div></td>
             </tr>
             <tr>
-                <td class="OfferPeriod" data-bind="text: period">
+                <td class="OfferDetailsPeriod" data-bind="text: period">
                    Periodo</td>
             </tr>
         </table>
         </div>
+    </div>    
+    
+    <!-- Search modal view -->
+    <div data-role="modalview" id="searchcontroller"  style="width: 90%; height: 75%;">
+        
     </div>
     
-    
-    <!--> Script start application<-->
-    
+    <!--> Script start application<-->    
     <script>
         var app = new kendo.mobile.Application(document.body, { transition: "slide", layout: "mobile-view" });
     </script>
