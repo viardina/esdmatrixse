@@ -42,10 +42,7 @@ function ServiceFailed(result)
 function ServiceSucceeded(result,WCFMethod,WCFCallback) 
 {  
     if (result!=null) 
-    {
-        var resultObject=result[0];
-        WCFCallback(resultObject);
-    }       
+         WCFCallback(result);
 }
 
 

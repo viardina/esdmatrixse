@@ -132,9 +132,15 @@ function GetActivities(IDCategory,search,latitude,longitude,region,country,city)
 }
 
 function FillActivityInfo(IDActivity,view) {
-    WCFExecute('GetActivityInfo','?IDActivity='+IDActivity, function(data) {       
+    WCFExecute('GetActivityInfo','?IDActivity='+IDActivity, function(data) {  
         var viewModel=kendo.observable({
-            title: data.Title
+            title: data.Title,
+            address: data.Address,
+            email: data.Email,
+            phone: data.Phone,
+            web: data.Web,
+            info: data.Info,
+            icon: 'http://www.whatsuptoday.it/resources/images/'+data.Icon
         });
         kendo.bind($("#activityinfo"),viewModel);
     });

@@ -135,16 +135,16 @@
                             <tr>
                                 
                                 <td class="ActivityInfo">
-                                    <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.InfoIcon#" class="ActivityIcon" style="opacity: #=GetIconOpacity(data.Info)#" />
+                                    <img alt="" src="../images/info.png" class="ActivityIcon" style="opacity: #=GetIconOpacity(data.Info)#" />
                                 </td>
                                 <td class="ActivityInfo">
-                                    <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.EmailIcon#" class="ActivityIcon" style="opacity: #=GetIconOpacity(data.Email)#" />
+                                    <img alt="" src="../images/mail.png" class="ActivityIcon" style="opacity: #=GetIconOpacity(data.Email)#" />
                                 </td>
                                 <td class="ActivityInfo">
-                                    <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.PhoneIcon#" class="ActivityIcon" style="opacity: #=GetIconOpacity(data.Phone)#" />
+                                    <img alt="" src="../images/phone.png" class="ActivityIcon" style="opacity: #=GetIconOpacity(data.Phone)#" />
                                 </td>
                                 <td class="ActivityInfo">
-                                    <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.WebIcon#" class="ActivityIcon" style="opacity: #=GetIconOpacity(data.Web)#" />
+                                    <img alt="" src="../images/web.png" class="ActivityIcon" style="opacity: #=GetIconOpacity(data.Web)#" />
                                 </td>
                             </tr>
                          </table>
@@ -206,52 +206,48 @@
         <div>
         <table style="width:100%;" class="ActivityDetailsTable">
             <tr>
-                <td id="activityInfoTitle" class="ActivityDetailsTitle" colspan="2" data-bind="text: title">
+                <td class="ActivityDetailsTitle" colspan="2" data-bind="text: title">
                     Titolo</td>
             </tr>
             <tr>
-                <td class="ActivityDetailsSubTitle" colspan="2">
-                    #=data.Address#</td>
+                <td class="ActivityDetailsSubTitle" colspan="2" data-bind="text: address">
+                    Indirizzo</td>
             </tr>
             <tr>
                 <td  colspan="2">
-                     <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityDetailsItemIcon" /></td>
+                     <img alt="" data-bind="attr: {src: icon}" class="ActivityDetailsItemIcon" /></td>
             </tr>
             <tr>
                 <td >
-                    <img class="InfoIcon" alt="" src="http://www.whatsuptoday.it/resources/images/#=data.InfoIcon#" /></td>
-                <td class="ActivityDetailsSubTitle">
-                    #=data.Email#</td>
+                    <img class="InfoIcon" alt="" src="../images/mail.png" /></td>
+                <td class="ActivityDetailsSubTitle" data-bind="text: email">
+                    Email</td>
             </tr>
             <tr>
                 <td >
-                    <img class="InfoIcon" alt="" src="http://www.whatsuptoday.it/resources/images/#=data.InfoIcon#" /></td>
-                <td class="ActivityDetailsSubTitle">
-                    #=data.Phone#</td>
+                    <img class="InfoIcon" alt="" src="../images/phone.png" /></td>
+                <td class="ActivityDetailsSubTitle" data-bind="text: phone">
+                    Telefono</td>
             </tr>
             <tr>
                 <td >
-                    <img class="InfoIcon" alt="" src="http://www.whatsuptoday.it/resources/images/#=data.InfoIcon#" /></td>
-                <td class="ActivityDetailsSubTitle">
-                    #=data.Web#</td>
+                    <img class="InfoIcon" alt="" src="../images/web.png" /></td>
+                <td class="ActivityDetailsSubTitle" data-bind="text: web">
+                    Web</td>
             </tr>
             <tr>
                 <td >
-                    <img class="InfoIcon" alt="" src="maps.png" /></td>
+                    <img class="InfoIcon" alt="" src="../images/maps.png" /></td>
                 <td class="ActivityDetailsSubTitle">
                     Come raggiungerci</td>
             </tr>
             <tr>
-                <td class="ActivityDetailsSubTitle" colspan="2">
+                <td class="ActivityDetailsSubTitle" colspan="2" >
                     Chi Siamo</td>
             </tr>
             <tr>
-                <td class="ActivityDetailsDescription" colspan="2">
-                    #=data.Info#</td>
-            </tr>
-            <tr>
-                <td class="ActivityDetailsDescription" colspan="2">
-                   #=data.Description#</td>
+                <td class="ActivityDetailsDescription" colspan="2" data-bind="text: info">
+                   Informazioni</td>
             </tr>
         </table>
         </div>        
