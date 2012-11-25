@@ -131,11 +131,34 @@ function GetActivities(IDCategory,search,latitude,longitude,region,country,city)
     return dataSource;
 }
 
-function GetActivityInfo(IDActivity,callback) {
-    WCFExecute('GetActivityInfo','?IDActivity='+IDActivity, function(resultObject) {
-        callback(resultObject);       
+function FillActivityInfo(IDActivity,view) {
+    WCFExecute('GetActivityInfo','?IDActivity='+IDActivity, function(data) {       
+        var viewModel=kendo.observable({
+            title: data.Title
+        });
+        kendo.bind($("#activityinfo"),viewModel);
     });
 }
+
+/*function GetActivityInfo(IDActivity) {
+     var dataSource = new kendo.data.DataSource({
+        transport: {
+            read: {
+                url: WCFUrl + "/getactivityinfo",
+                dataType: "json"
+            },
+            parameterMap: function (options) {
+                return {
+                    IDActivity: IDActivity
+                };
+            }
+        },
+        schema: {
+            data: ""
+        }
+    });
+    return dataSource;
+}*/
 
 
 // Get fourth level Offers or Events
@@ -246,13 +269,8 @@ function OnLoadActivityInfo(e) {
     var view=e.view;
     var title=view.params.title;
     SetTitle(title);
-    var IDActivity=view.params.IDActivity;    
-    
-    GetActivityInfo(IDActivity, function(resultObject){
-        alert(resultObject.Title);    
-    });
-    
-   
+    var IDActivity=view.params.IDActivity;  
+    FillActivityInfo(IDActivity,view);   
 }
 
 
