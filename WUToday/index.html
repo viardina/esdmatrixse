@@ -279,8 +279,8 @@
     </div>    
     
     <!-- Search modal view -->
-    <div data-role="modalview" id="searchController"  style="width: 90%; height: 75%;">
-        <table style="width: 100%;">
+    <div data-role="modalview" id="searchController"  style="width: 100%; height: 100%;">
+        <table style="width: 100%;background-color: rgb(76, 76, 76);">
         <tr>
             <td colspan="2" class="SearchTitleContainer">
             Cosa stai cercando oggi?</td>
@@ -340,10 +340,10 @@
     </ul>
     
     <div id="resultsActivitiesGroup">
-    <ul id="listViewSearchActivities" data-role="listview" data-style="inset" >    
-    </ul>
-        
-    <script id="itemTemplateSearchActivity" type="text/x-kendo-template">         
+        <ul id="listViewSearchActivities" data-role="listview">    
+        </ul>
+            
+        <script id="itemTemplateSearchActivity" type="text/x-kendo-template">         
          <div>
             <table style="width:100%;">
                  <tr>
@@ -402,38 +402,37 @@
     </div>
         
     <div id="resultsOffersGroup">    
-    <ul id="listViewSearchOffers" data-role="listview" data-style="inset"  >       
-    </ul>
-    
-    <script id="itemTemplateSearchOffer" type="text/x-kendo-template">
-         <a href="\#offerInfo?IDOffer=#:data.ID#&title=#=data.Title#">
-         <div>
-            <table class="OfferTable">
-                <tr>
-                    <td style="width: 64px;height:64px;text-align: center;" rowspan="3">
-                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="OfferItemIcon"/>
-                    </td>
-                    <td style="padding-left: 10px;" class="OfferTitle">
-                        <strong>#=data.Title#</strong>
-                     </td>
-                </tr>
-                <tr>
-                    <td style="width: 100%; padding-left: 10px;" class="OfferDescription">
-                        #=data.ShortDescription#
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 100%; padding-left: 10px;" class="OfferPeriod">
-                        #=data.Period#
-                    </td>
-                </tr>
-            </table> 
-         </div>          
-         </a>
-    </script>     
-
-    </div>    
+        <ul id="listViewSearchOffers" data-role="listview">       
+        </ul>
         
+        <script id="itemTemplateSearchOffer" type="text/x-kendo-template">
+             <a href="\#offerInfo?IDOffer=#:data.ID#&title=#=data.Title#">
+             <div>
+                <table class="OfferTable">
+                    <tr>
+                        <td style="width: 64px;height:64px;text-align: center;" rowspan="3">
+                            <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="OfferItemIcon"/>
+                        </td>
+                        <td style="padding-left: 10px;" class="OfferTitle">
+                            <strong>#=data.Title#</strong>
+                         </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100%; padding-left: 10px;" class="OfferDescription">
+                            #=data.ShortDescription#
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100%; padding-left: 10px;" class="OfferPeriod">
+                            #=data.Period#
+                        </td>
+                    </tr>
+                </table> 
+             </div>          
+             </a>
+        </script>         
+    </div>    
+            
     </div>
         
     

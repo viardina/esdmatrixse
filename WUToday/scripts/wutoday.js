@@ -265,7 +265,7 @@ function SearchOffers(IDActivity,search) {
         dataSource: dataSource,
         template: $("#itemTemplateSearchOffer").text(),
         loadMore: true,
-        loadMoreText: "Altr eventi ed offerte..."
+        loadMoreText: "Altri eventi ed offerte..."
     });
 }
 
@@ -328,22 +328,22 @@ function StartSearch(){
 
 function OnSearchSelected() {
     var index=this.current().index();
-    var groupActivities=document.getElementById('resultsActivitiesGroup');
-    var groupOffers=document.getElementById('resultsOffersGroup');
+    var groupActivities=$("#resultsActivitiesGroup"); 
+    var groupOffers=$('#resultsOffersGroup');
     if(index==0)
     {
-        groupActivities.style.visibility='visible';
-        groupOffers.style.visibility='visible';
+        groupActivities.css('display','');
+        groupOffers.css('display','');
     }
     else if(index==1) 
     {
-        groupActivities.style.visibility='visible';
-        groupOffers.style.visibility='hidden';
+        groupActivities.css('display','');
+        groupOffers.css('display','none');
     }
     else if(index==2)
     {
-        groupOffers.style.visibility='visible';
-        groupActivities.style.visibility='hidden';
+        groupActivities.css('display','none');
+        groupOffers.css('display','');
     }
 }
 
