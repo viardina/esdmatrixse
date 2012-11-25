@@ -175,7 +175,8 @@
     </div>
     
      <script id="itemTemplateOffer" type="text/x-kendo-template">
-        <div>
+         <a href="\#offerinfo?IDOffer=#:data.ID#&title=#=data.Title#">
+         <div>
             <table class="OfferTable">
                 <tr>
                     <td style="width: 64px;height:64px;text-align: center;" rowspan="3">
@@ -197,7 +198,7 @@
                 </tr>
             </table> 
          </div>          
-         
+         </a>
     </script>    
     
     
@@ -251,6 +252,30 @@
             </tr>
         </table>
         </div>        
+    </div>
+    
+    <!-- View offer info --> 
+     <div data-role="view" id="offerinfo" data-title="Info Offerte" data-layout="mobile-view" data-show="OnLoadOfferInfo">
+        <div>
+        <table style="width:100%;" class="OfferTable">
+            <tr>
+                <td>
+                    <img alt="" data-bind="attr: {src: icon}" class="OfferItemIcon" /></td>
+            </tr>
+            <tr>
+                <td class="OfferTitle" data-bind="text: title">
+                    Titolo</td>
+            </tr>
+            <tr>
+                <td class="OfferDescription" data-bind="text: description">
+                    Descrizione</td>
+            </tr>
+            <tr>
+                <td class="OfferPeriod" data-bind="text: period">
+                   Periodo</td>
+            </tr>
+        </table>
+        </div>
     </div>
     
     

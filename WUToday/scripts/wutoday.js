@@ -131,7 +131,8 @@ function GetActivities(IDCategory,search,latitude,longitude,region,country,city)
     return dataSource;
 }
 
-function FillActivityInfo(IDActivity,view) {
+// Fill activity info 
+function FillActivityInfo(IDActivity) {
     WCFExecute('GetActivityInfo','?IDActivity='+IDActivity, function(data) {  
         var viewModel=kendo.observable({
             title: data.Title,
@@ -146,25 +147,18 @@ function FillActivityInfo(IDActivity,view) {
     });
 }
 
-/*function GetActivityInfo(IDActivity) {
-     var dataSource = new kendo.data.DataSource({
-        transport: {
-            read: {
-                url: WCFUrl + "/getactivityinfo",
-                dataType: "json"
-            },
-            parameterMap: function (options) {
-                return {
-                    IDActivity: IDActivity
-                };
-            }
-        },
-        schema: {
-            data: ""
-        }
+// Fill offer info
+function FillOfferInfo(IDOffer) {
+    WCFExecute('GetOfferInfo','?IDOffer='+IDOffer, function(data) {  
+        var viewModel=kendo.observable({
+            title: data.Title,
+            period: data.Period,
+            description: data.Description,
+            icon: 'http://www.whatsuptoday.it/resources/images/'+data.Icon
+        });
+        kendo.bind($("#offerinfo"),viewModel);
     });
-    return dataSource;
-}*/
+}
 
 
 // Get fourth level Offers or Events
@@ -276,7 +270,15 @@ function OnLoadActivityInfo(e) {
     var title=view.params.title;
     SetTitle(title);
     var IDActivity=view.params.IDActivity;  
-    FillActivityInfo(IDActivity,view);   
+    FillActivityInfo(IDActivity);   
+}
+
+function OnLoadOfferInfo(e) {
+    var view=e.view;
+    var title=view.params.title;
+    SetTitle(title);
+    var IDOffer=view.params.IDOffer;  
+    FillOfferInfo(IDOffer);   
 }
 
 
