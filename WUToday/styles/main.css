@@ -1,7 +1,9 @@
-.LogoWut {
-    width: 24px;
-    height: 24px;
+/* Header style */
+.ImageHeader{
+    width: 32px;
+    height: 32px;
     border-radius: 3px;
+    vertical-align: top;
 }
 a
 {
@@ -9,20 +11,72 @@ a
 }
 .HeaderLeft
 {
-  alignment-adjust:center; 
+    alignment-adjust:center; 
 
 }
 .HeaderCenter
 {
-    alignment-adjust:middle; 
-    padding-left: 10px;
-    display:inline;
+    alignment-adjust:top;
+    font-size:x-small;
+    vertical-align: bottom;
+    display:inline-block;
+    padding-left: 5px;
+  
 }
 .HeaderRight
 {
     
 }
 
+/* Search Home style */
+.SearchTitleContainer
+{
+    font-size: large;
+    font-weight:bold;
+    text-align:center;
+    opacity:.9; 
+}
+.SearchBoxContainer
+{
+    text-align: center; 
+}
+.SearchSubTitleContainer
+{
+    font-size: small;
+    font-weight:bold;
+    text-align:center;
+    opacity: .8; 
+}
+.SearchSubDescriptionContainer
+{
+  
+}
+.SearchDescription
+{
+    font-size: x-small;
+    opacity:.6;
+    text-align: justify;
+    width: 70%; 
+}
+  
+.EventImageContainer
+{
+    text-align: right; 
+    margin-right:10px;
+    width:30%;    
+}
+.EventImage
+{
+    width:32px;
+    height:32px;
+}
+.SearchFooterButton
+{
+    text-align:center;
+     
+}
+
+/* Item style activity details
 
 /* Item style activity details */
 .ActivityDetailsTable
@@ -89,7 +143,7 @@ a
     text-align: justify;
     width: 90%;
     opacity: .75;
-}​
+}?
 
 
 .ActivityDetailsIconItemInfo
@@ -339,6 +393,4 @@ a
 .km-blackberry .km-view .km-content .km-button .km-text {
     color: rgb(255, 255, 255);
 }
-
-
 

@@ -24,7 +24,7 @@
                             <a id="backButton" class="HeaderLeft" data-align="left" data-role="backbutton">
                             Indietro</a></td>
                         <td class="HeaderCenter">
-                            <span id="titleWUT">What's Up Today</span></td>
+                            <img alt="" src="images/logo.png" class="ImageHeader" /><div class="HeaderCenter" id="titleWUT">What's Up Today</div></td>
                         <td>                            
                             <a id="home" class="HeaderRight" data-align="right" data-click="GoToHome" data-icon="home" data-role="button"></a>
                             <a id="search" class="HeaderRight" data-align="right" href="#searchController" data-rel="modalview" data-icon="search" data-role="button"></a>                            
@@ -280,61 +280,55 @@
     
     <!-- Search modal view -->
     <div data-role="modalview" id="searchController"  style="width: 90%; height: 75%;">
-        <div style="text-align: center">
-            Cosa stai cercando oggi?
-        </div>
-        <div style="text-align: center">
-            <input id="searchKey" type="search" onkeypress="if(event.keyCode==13){StartSearch()}" />
-        </div>
-        <a data-click="StartSearch" data-icon="action" data-role="button" >Ricerca</a> 
-        <div>
-            <table style="width:100%;">
-                <tr>
-                    <td rowspan="2">
-                        <img alt="" src="" /></td>
-                    <td>
-                        <strong>Eventi del giorno</strong></td>
-                </tr>
-                <tr>
-                    <td>
-                        Scopri cosa c'e' oggi, spettacoli, serate, offerte ed eventi programmati per la 
-                        giornata odierna ...</td>
-                </tr>
-            </table>
-        </div>
-        <div>
-            <table style="width:100%;">
-                <tr>
-                    <td rowspan="2">
-                        <img alt="" src="" /></td>
-                    <td>
-                        <strong>Eventi della settimana</strong></td>
-                </tr>
-                <tr>
-                    <td>
-                        Visualizza tutti gli eventi di questa settimana e programma la tua serata 
-                        preferita ...</td>
-                </tr>
-            </table>
-        </div>
-        <div>
-            <table style="width:100%;">
-                <tr>
-                    <td rowspan="2">
-                        <img alt="" src="" /></td>
-                    <td>
-                        <strong>Cerca in 3D</strong></td>
-                </tr>
-                <tr>
-                    <td>
-                        Attiva la realta' aumentata, inquadra una vetrina, un teatro o una discoteca e 
-                        scopri gli eventi e le offerte ...</td>
-                </tr>
-            </table>
-        </div>
-        <div>
-           <a data-click="CloseSearch" data-role="button" >Annulla</a> 
-        </div>
+        <table style="width: 100%;">
+        <tr>
+            <td colspan="2" class="SearchTitleContainer">
+            Cosa stai cercando oggi?</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="SearchBoxContainer">
+            <input id="searchKey" type="search" onkeypress="if(event.keyCode==13){StartSearch()}"/></td>
+        </tr>
+        <tr>
+            <td class="EventImageContainer" rowspan="2">
+                        <img alt="" src="" class="EventImage" /></td>
+            <td>
+                        <strong class="SearchSubTitleContainer">Eventi del giorno</strong></td>
+        </tr>
+        <tr>
+            <td class="SearchSubDescriptionContainer">
+                        <div class="SearchDescription">Scopri cosa c'e' oggi, spettacoli, serate, offerte ed eventi programmati per la 
+                        giornata odierna ...</div></td>
+        </tr>
+        <tr>
+            <td class="EventImageContainer" rowspan="2">
+                        <img alt="" src="" class="EventImage" /></td>
+            <td>
+                        <strong class="SearchSubTitleContainer">Eventi della settimana</strong></td>
+        </tr>
+        <tr>
+            <td class="SearchSubDescriptionContainer">
+                        <div class="SearchDescription">Visualizza tutti gli eventi di questa settimana e programma la tua serata 
+                        preferita ...</div></td>
+        </tr>
+        <tr>
+            <td class="EventImageContainer" rowspan="2">
+                        <img alt="" src="" class="EventImage" /></td>
+            <td>
+                        <strong class="SearchSubTitleContainer">Cerca in 3D</strong></td>
+        </tr>
+        <tr>
+            <td class="SearchSubDescriptionContainer">
+                        <div class="SearchDescription">Attiva la realta' aumentata, inquadra una vetrina, un teatro o una discoteca e 
+                        scopri gli eventi e le offerte ...</div></td>
+        </tr>
+        <tr>
+            <td class="SearchFooterButton" colspan="2">
+            <a data-click="StartSearch" data-icon="action" data-role="button" >Ricerca</a>
+            <a data-click="CloseSearch" data-role="button" data-align="center">Annulla</a> 
+            </td>
+        </tr>
+    </table>
     </div>
     
     <!-- Search results -->
