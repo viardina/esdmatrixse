@@ -21,13 +21,13 @@
                 <table style="width:100%;">
                     <tr>
                         <td class="HeaderLeft">
-                            <a id="backbutton" class="HeaderLeft" data-align="left" data-role="backbutton">
+                            <a id="backButton" class="HeaderLeft" data-align="left" data-role="backbutton">
                             Indietro</a></td>
                         <td class="HeaderCenter">
                             <span id="titleWUT">What's Up Today</span></td>
                         <td>                            
                             <a id="home" class="HeaderRight" data-align="right" data-click="GoToHome" data-icon="home" data-role="button"></a>
-                            <a id="search" class="HeaderRight" data-align="right" href="#searchcontroller" data-rel="modalview" data-icon="search" data-role="button"></a>                            
+                            <a id="search" class="HeaderRight" data-align="right" href="#searchController" data-rel="modalview" data-icon="search" data-role="button"></a>                            
                         </td>
                     </tr>
                 </table>
@@ -116,7 +116,7 @@
             <table style="width:100%;">
                  <tr>
                      <td>
-                        <a href="\#activityinfo?IDActivity=#:data.ID#&title=#=data.Title#"> 
+                        <a href="\#activityInfo?IDActivity=#:data.ID#&title=#=data.Title#"> 
                         <div>
                         <table class="ActivityTable">
                             <tr>                     
@@ -175,7 +175,7 @@
     </div>
     
      <script id="itemTemplateOffer" type="text/x-kendo-template">
-         <a href="\#offerinfo?IDOffer=#:data.ID#&title=#=data.Title#">
+         <a href="\#offerInfo?IDOffer=#:data.ID#&title=#=data.Title#">
          <div>
             <table class="OfferTable">
                 <tr>
@@ -202,7 +202,7 @@
     </script>    
     
      <!-- View activity info --> 
-     <div data-role="view" id="activityinfo" data-title="Info Attività" data-layout="mobile-view" data-show="OnLoadActivityInfo">
+     <div data-role="view" id="activityInfo" data-title="Info Attività" data-layout="mobile-view" data-show="OnLoadActivityInfo">
         <div>
         <table class="ActivityDetailsTable">
             <tr>
@@ -255,7 +255,7 @@
     </div>
     
     <!-- View offer info --> 
-     <div data-role="view" id="offerinfo" data-title="Info Offerte" data-layout="mobile-view" data-show="OnLoadOfferInfo">
+     <div data-role="view" id="offerInfo" data-title="Info Offerte" data-layout="mobile-view" data-show="OnLoadOfferInfo">
         <div>
         <table class="OfferDetailsTable">
             <tr>
@@ -268,7 +268,7 @@
             </tr>
             <tr>
                 <td class="OfferDetailsDescription">
-                     <div class="ActivityDetailscenter-justified" data-bind="text: description">Descrizione</div></td>
+                     <div class="ActivityDetailsJustified" data-bind="text: description">Descrizione</div></td>
             </tr>
             <tr>
                 <td class="OfferDetailsPeriod" data-bind="text: period">
@@ -279,13 +279,14 @@
     </div>    
     
     <!-- Search modal view -->
-    <div data-role="modalview" id="searchcontroller"  style="width: 90%; height: 75%;">
+    <div data-role="modalview" id="searchController"  style="width: 90%; height: 75%;">
         <div style="text-align: center">
             Cosa stai cercando oggi?
         </div>
         <div style="text-align: center">
-            <input id="searchkey" type="text" />
+            <input id="searchKey" type="search" onkeypress="if(event.keyCode==13){StartSearch()}" />
         </div>
+        <a data-click="StartSearch" data-icon="action" data-role="button" >Ricerca</a> 
         <div>
             <table style="width:100%;">
                 <tr>
@@ -296,7 +297,7 @@
                 </tr>
                 <tr>
                     <td>
-                        Scopri cosa c&#39;è oggi, spettacoli, serate, offerte ed eventi programmati per la 
+                        Scopri cosa c'e' oggi, spettacoli, serate, offerte ed eventi programmati per la 
                         giornata odierna ...</td>
                 </tr>
             </table>
@@ -326,15 +327,121 @@
                 </tr>
                 <tr>
                     <td>
-                        Attiva la realtà aumentata, inquadra una vetrina, un teatro o una discoteca e 
+                        Attiva la realta' aumentata, inquadra una vetrina, un teatro o una discoteca e 
                         scopri gli eventi e le offerte ...</td>
                 </tr>
             </table>
         </div>
         <div>
-           <a data-click="CloseSearch" data-role="button" data-align="center">Annulla</a> 
+           <a data-click="CloseSearch" data-role="button" >Annulla</a> 
         </div>
     </div>
+    
+    <!-- Search results -->
+    <div data-role="view" id="searchResults" data-title="Risultati..." >       
+    <ul id="resultsButtonGroup" data-role="buttongroup" data-index="0" data-select="OnSearchSelected">
+        <li>Tutto</li>
+        <li>Attivita'</li>
+        <li>Eventi ed offerte</li>
+    </ul>
+    
+    <div id="resultsActivitiesGroup">
+    <ul id="listViewSearchActivities" data-role="listview" data-style="inset" >    
+    </ul>
+        
+    <script id="itemTemplateSearchActivity" type="text/x-kendo-template">         
+         <div>
+            <table style="width:100%;">
+                 <tr>
+                     <td>
+                        <a href="\#activityInfo?IDActivity=#:data.ID#&title=#=data.Title#"> 
+                        <div>
+                        <table class="ActivityTable">
+                            <tr>                     
+                                <td style="width: 10%;text-align: center;"  rowspan="3">
+                                <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityItemIcon" />
+                                </td>
+                                <td class="ActivityTitle" colspan="5">
+                                <strong>#=data.Title#</strong>
+                                </td>                         
+                            </tr>
+                            <tr>
+                                <td class="ActivitySubAddress" colspan="5">
+                                    <strong>#=data.Address#</strong>
+                                </td>
+                            </tr>                     
+                            <tr>   
+                                <td class="ActivityInfo">
+                                    <img alt="" src="images/info.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Info)#" />
+                                </td>
+                                <td class="ActivityInfo">
+                                    <img alt="" src="images/mail.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Email)#" />
+                                </td>
+                                <td class="ActivityInfo">
+                                    <img alt="" src="images/phone.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Phone)#" />
+                                </td>
+                                <td class="ActivityInfo">
+                                    <img alt="" src="images/web.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Web)#" />
+                                </td>
+                            </tr>
+                         </table>
+                        </div>
+                        </a>    
+                     </td>
+                     <td style="width:50px">
+                        <a href="\#offers?IDActivity=#:data.ID#&title=#=data.Title#">
+                        <div>
+                        <table class="ActivityTable">
+                         <tr>                     
+                             <td class="ActivityOffers"> 
+                                 Offerte
+                             </td>                       
+                         </tr>
+                         </table>
+                        </div>
+                        </a>
+                     </td>
+                 </tr>
+             </table>
+         </div>           
+    </script>       
+    </div>
+        
+    <div id="resultsOffersGroup">    
+    <ul id="listViewSearchOffers" data-role="listview" data-style="inset"  >       
+    </ul>
+    
+    <script id="itemTemplateSearchOffer" type="text/x-kendo-template">
+         <a href="\#offerInfo?IDOffer=#:data.ID#&title=#=data.Title#">
+         <div>
+            <table class="OfferTable">
+                <tr>
+                    <td style="width: 64px;height:64px;text-align: center;" rowspan="3">
+                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="OfferItemIcon"/>
+                    </td>
+                    <td style="padding-left: 10px;" class="OfferTitle">
+                        <strong>#=data.Title#</strong>
+                     </td>
+                </tr>
+                <tr>
+                    <td style="width: 100%; padding-left: 10px;" class="OfferDescription">
+                        #=data.ShortDescription#
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 100%; padding-left: 10px;" class="OfferPeriod">
+                        #=data.Period#
+                    </td>
+                </tr>
+            </table> 
+         </div>          
+         </a>
+    </script>     
+
+    </div>    
+        
+    </div>
+        
     
     <!--> Script start application<-->    
     <script>

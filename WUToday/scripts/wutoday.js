@@ -32,10 +32,10 @@ function GoToHome(){
 function ToggleHomeBackButton(e) {
     var view=e.view;
     if (view.id == "#applications"){     
-        view.element.find("[id=backbutton]").css("visibility", "hidden").attr("data-target", "_top");
+        view.element.find("[id=backButton]").css("visibility", "hidden").attr("data-target", "_top");
         view.element.find("[id=home]").css("visibility", "hidden").attr("data-target", "_top");
     }else{
-        view.element.find("[id=backbutton]").css("visibility", "visible").removeAttr("data-target");
+        view.element.find("[id=backButton]").css("visibility", "visible").removeAttr("data-target");
         view.element.find("[id=home]").css("visibility", "visible").removeAttr("data-target");
     }
 }
@@ -147,7 +147,7 @@ function FillActivityInfo(IDActivity) {
             webOpacity: GetActivityIconOpacity(data.Web),
             mapOpacity: .5
         });
-        kendo.bind($("#activityinfo"),viewModel);
+        kendo.bind($("#activityInfo"),viewModel);
     });
 }
 
@@ -167,7 +167,7 @@ function FillOfferInfo(IDOffer) {
             description: data.Description,
             icon: 'http://www.whatsuptoday.it/resources/images/'+data.Icon
         });
-        kendo.bind($("#offerinfo"),viewModel);
+        kendo.bind($("#offerInfo"),viewModel);
     });
 }
 
@@ -235,6 +235,17 @@ function ShowActivities(IDCategory,search,latitude,longitude,region,country,city
     });
 }
 
+// Search activities 
+function SearchActivities(IDCategory,search,latitude,longitude,region,country,city) {
+    var dataSource = GetActivities(IDCategory,search,latitude,longitude,region,country,city);
+    $("#listViewSearchActivities").kendoMobileListView({
+        dataSource: dataSource,
+        template: $("#itemTemplateSearchActivity").text(),
+        loadMore: true,
+        loadMoreText: "Altre attivita'..."
+    });
+}
+
 // Show events or offers in listview
 function ShowOffers(IDActivity,search) {
     var dataSource = GetOffers(IDActivity,search);
@@ -244,6 +255,17 @@ function ShowOffers(IDActivity,search) {
         pullToRefresh: true,
         endlessScroll: true,
         scrollTreshold: 30
+    });
+}
+
+// Search events or offers 
+function SearchOffers(IDActivity,search) {
+    var dataSource = GetOffers(IDActivity,search);
+    $("#listViewSearchOffers").kendoMobileListView({
+        dataSource: dataSource,
+        template: $("#itemTemplateSearchOffer").text(),
+        loadMore: true,
+        loadMoreText: "Altr eventi ed offerte..."
     });
 }
 
@@ -293,7 +315,37 @@ function OnLoadOfferInfo(e) {
 }
 
 function CloseSearch(){
-    $("#searchcontroller").kendoMobileModalView("close");
+    $("#searchController").kendoMobileModalView("close");
 }
+
+function StartSearch(){
+    var search=document.getElementById('searchKey').value;
+    app.navigate("#searchResults?search="+search);
+    SearchActivities(-1,search, '', '', '', '', '');
+    SearchOffers(-1,search)
+    CloseSearch();
+}
+
+function OnSearchSelected() {
+    var index=this.current().index();
+    var groupActivities=document.getElementById('resultsActivitiesGroup');
+    var groupOffers=document.getElementById('resultsOffersGroup');
+    if(index==0)
+    {
+        groupActivities.style.visibility='visible';
+        groupOffers.style.visibility='visible';
+    }
+    else if(index==1) 
+    {
+        groupActivities.style.visibility='visible';
+        groupOffers.style.visibility='hidden';
+    }
+    else if(index==2)
+    {
+        groupOffers.style.visibility='visible';
+        groupActivities.style.visibility='hidden';
+    }
+}
+
 
 
