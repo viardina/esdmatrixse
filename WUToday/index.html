@@ -198,7 +198,7 @@
                 <td  rowspan="4" style="width:15%">
                     </td>
                 <td class="ActivityDetailsIconContainerInfo" >
-                    <img class="ActivityDetailsInfoIcon" alt="" src="images/mail.png"  /></td>
+                    <img class="ActivityDetailsInfoIcon" alt="" src="images/mail.png" data-bind="click: StartEmail"/></td>
                 <td class="ActivityDetailsInfo" data-bind="text: email">
                     Email</td>
                 <td  rowspan="4" style="width:15%">
@@ -206,13 +206,13 @@
             </tr>
             <tr data-bind="style: {opacity: phoneOpacity}">
                 <td class="ActivityDetailsIconContainerInfo" >
-                    <img class="ActivityDetailsInfoIcon" alt="" src="images/phone.png" /></td>
+                    <img class="ActivityDetailsInfoIcon" alt="" src="images/phone.png" data-bind="click: StartPhone"/></td>
                 <td class="ActivityDetailsInfo" data-bind="text: phone">
                     Telefono</td>
             </tr>
             <tr data-bind="style: {opacity: webOpacity}">
                 <td class="ActivityDetailsIconContainerInfo" >
-                    <img class="ActivityDetailsInfoIcon" alt="" src="images/web.png" /></td>
+                    <img class="ActivityDetailsInfoIcon" alt="" src="images/web.png" data-bind="click: StartWeb"/></td>
                 <td class="ActivityDetailsInfo" data-bind="text: web">
                     Web</td>
             </tr>

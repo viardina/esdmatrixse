@@ -152,7 +152,16 @@ function FillActivityInfo(IDActivity) {
             emailOpacity: GetActivityIconOpacity(data.Email),
             phoneOpacity: GetActivityIconOpacity(data.Phone),
             webOpacity: GetActivityIconOpacity(data.Web),
-            mapOpacity: .5
+            mapOpacity: .5,
+            StartEmail: function(){
+               window.open('mailto:'+data.Email);
+            },
+            StartPhone: function(){
+               window.open('tel:'+data.Phone);
+            },
+            StartWeb: function(){
+               window.open('http://'+data.Web);
+            }
         });
         kendo.bind($("#activityInfo"),viewModel);
     });
