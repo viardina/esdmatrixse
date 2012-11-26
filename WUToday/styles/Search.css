@@ -1,0 +1,49 @@
+﻿/* Search Home style */
+.SearchTitleContainer
+{
+    font-size: large;
+    font-weight:bold;
+    text-align:center;
+    opacity:.9; 
+}
+.SearchBoxContainer
+{
+    text-align: center; 
+}
+.SearchSubTitleContainer
+{
+    font-size: small;
+    font-weight:bold;
+    text-align:center;
+    opacity: .8; 
+}
+.SearchSubDescriptionContainer
+{
+  
+}
+.SearchDescription
+{
+    font-size: x-small;
+    opacity:.6;
+    text-align: justify;
+    width: 70%; 
+}
+  
+.EventImageContainer
+{
+    text-align: right; 
+    margin-right:10px;
+    width:30%;    
+}
+.EventImage
+{
+    width:32px;
+    height:32px;
+}
+.SearchFooterButton
+{
+    text-align:center;
+     
+}
+
+

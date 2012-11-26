@@ -10,8 +10,11 @@
     <script src="scripts/jquerywcf.js"></script>     
     <script src="scripts/wutoday.js"></script>     
     <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
-    <link href="styles/main.css" rel="stylesheet" />
-    <link href="styles/star_rating.css" rel="stylesheet" />
+    <link href="styles/Activities.css" rel="stylesheet" />        
+    <link href="styles/Offers.css" rel="stylesheet" />        
+    <link href="styles/Search.css" rel="stylesheet" />        
+    <link href="styles/Shared.css" rel="stylesheet" />        
+    <link href="styles/Rating.css" rel="stylesheet" />
 </head>
 <body>   
     <!-- Main layout -->
@@ -110,46 +113,38 @@
         <ul id="listViewActivities" data-role="listview"></ul>         
     </div>
     
-     <script id="itemTemplateActivity" type="text/x-kendo-template">         
+    <script id="itemTemplateActivity" type="text/x-kendo-template">         
         <a href="\#activityInfo?IDActivity=#:data.ID#&title=#=data.Title#"> 
-        <div>
-            <table style="width:100%;">
-                 <tr>
-                     <td>                                              
-                        <table class="ActivityTable">
-                            <tr>                     
-                                <td style="width: 10%;text-align: center;"  rowspan="3">
-                                    <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityItemIcon" />
-                                </td>
-                                <td class="ActivityTitle" colspan="2">
-                                    <strong>#=data.Title#</strong>
-                                </td>                         
-                            </tr>
-                            <tr>
-                                <td class="ActivitySubAddress" colspan="5">
-                                    #=data.Address#
-                                </td>
-                            </tr>                     
-                            <tr>                                
-                                <td class="ActivityInfo">
-                                    <img alt="" src="images/info.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Info)#" /></td>
-                                <td class="ActivityInfo">
-                                    <img alt="" src="images/mail.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Email)#" /></td>
-                                <td class="ActivityInfo">
-                                    <img alt="" src="images/phone.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Phone)#" /></td>
-                                <td class="ActivityInfo">
-                                    <img alt="" src="images/web.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Web)#" /></td>
-                                <td class="ActivitySubDescription" style="text-align:right;">
-                                    <a id="offersDetail" href="\#offers?IDActivity=#:data.ID#&title=#=data.Title#" data-role="button"  style="display:#=GetActivityDisplayOffersDetail(data.OffersCount)#;">Offerte (#=data.OffersCount#)</a>
-                                </td>    
-                            </tr>
-                         </table>                           
-                     </td>
-                 </tr>
-             </table>
-         </div>                  
-         </a> 
-    </script>
+            <table class="ActivityTable">
+                <tr>                     
+                    <td style="width: 10%;text-align: center;"  rowspan="3">
+                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityItemIcon" />
+                    </td>
+                    <td class="ActivityTitle" colspan="2">
+                        <strong>#=data.Title#</strong>
+                    </td>                         
+                </tr>
+                <tr>
+                    <td class="ActivitySubAddress" colspan="5">
+                        #=data.Address#
+                    </td>
+                </tr>                     
+                <tr>                                
+                    <td class="ActivityInfo">
+                        <img alt="" src="images/info.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Info)#" /></td>
+                    <td class="ActivityInfo">
+                        <img alt="" src="images/mail.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Email)#" /></td>
+                    <td class="ActivityInfo">
+                        <img alt="" src="images/phone.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Phone)#" /></td>
+                    <td class="ActivityInfo">
+                        <img alt="" src="images/web.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Web)#" /></td>
+                    <td class="ActivitySubDescription" style="text-align:right;">
+                        <a id="offersDetail" href="\#offers?IDActivity=#:data.ID#&title=#=data.Title#" data-role="button"  style="display:#=GetActivityDisplayOffersDetail(data.OffersCount)#;">Offerte (#=data.OffersCount#)</a>
+                    </td>    
+                </tr>
+             </table>                                           
+        </a> 
+    </script>    
     
     <!-- View offers/events --> 
      <div data-role="view" id="offers" data-title="Offerte-Eventi" data-layout="mobile-view" data-show="OnLoadOffers">
@@ -271,16 +266,17 @@
         </div>
     </div>    
     
-    <!-- Search modal view -->
+    <!-- Search view -->
     <div data-role="view" id="searchController"  style="width: 100%; height: 100%;">
-        <table style="width: 100%;">
+        <div>
+            <table style="width: 100%;">
         <tr>
             <td colspan="2" class="SearchTitleContainer">
             Cosa stai cercando oggi?</td>
         </tr>
         <tr>
             <td colspan="2" class="SearchBoxContainer">
-            <input id="searchKey" type="search" onkeypress="if(event.keyCode==13){StartSearch()}"/></td>
+            <input id="searchKey" type="search" onkeypress="if(event.keyCode==13){SearchGlobal()}"/></td>
         </tr>
         <tr>
             <td class="EventImageContainer" rowspan="2">
@@ -315,8 +311,9 @@
                         <div class="SearchDescription">Attiva la realta' aumentata, inquadra una vetrina, un teatro o una discoteca e 
                         scopri gli eventi e le offerte ...</div></td>
         </tr>
-    </table>
-    </div>
+    </table>    
+        </div>    
+        </div>
     
     <!-- Results events and offers-->
     <div data-role="view" id="resultsOffers" data-title="Offerte ed eventi trovati..." >       
@@ -368,47 +365,37 @@
             
         <script id="itemTemplateResultActivity" type="text/x-kendo-template">         
         <a href="\#activityInfo?IDActivity=#:data.ID#&title=#=data.Title#"> 
-        <div>
-            <table style="width:100%;">
-                 <tr>
-                     <td>                                              
-                        <table class="ActivityTable">
-                            <tr>                     
-                                <td style="width: 10%;text-align: center;"  rowspan="3">
-                                <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityItemIcon" />
-                                </td>
-                                <td class="ActivityTitle">
-                                <strong>#=data.Title#</strong>
-                                </td>                         
-                                <td class="ActivityDetailsIconItemInfo">
-                                    <img alt="" src="images/info.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Info)#" /></td>                         
-                                <td class="ActivityDetailsIconItemInfo">
-                                    <img alt="" src="images/mail.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Email)#" /></td>                         
-                                <td class="ActivityDetailsIconItemInfo">
-                                    <img alt="" src="images/phone.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Phone)#" /></td>                         
-                                <td class="ActivityDetailsIconItemInfo">
-                                    <img alt="" src="images/web.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Web)#" /></td>                         
-                            </tr>
-                            <tr>
-                                <td class="ActivitySubAddress" colspan="6">
-                                    #=data.Address#
-                                </td>
-                            </tr>                     
-                            <tr>                                
-                                <td class="ActivityItemSubDescription" colspan="3">
-                                    Offerte (#=data.OffersCount#) | #=data.TopOffers#
-                                </td>
-                                <td class="ItemSubDescription" colspan="3">
-                                    <a id="offersDetail" href="\#offers?IDActivity=#:data.ID#&title=#=data.Title#" data-role="button"  style="display:#=GetActivityDisplayOffersDetail(data.OffersCount)#">Offerte</a>
-                                </td>    
-                            </tr>
-                         </table>                           
-                     </td>
-                 </tr>
-             </table>
-         </div>                  
-         </a>    
-    </script>                                             
+            <table class="ActivityTable">
+                <tr>                     
+                    <td style="width: 10%;text-align: center;"  rowspan="3">
+                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityItemIcon" />
+                    </td>
+                    <td class="ActivityTitle" colspan="2">
+                        <strong>#=data.Title#</strong>
+                    </td>                         
+                </tr>
+                <tr>
+                    <td class="ActivitySubAddress" colspan="5">
+                        #=data.Address#
+                    </td>
+                </tr>                     
+                <tr>                                
+                    <td class="ActivityInfo">
+                        <img alt="" src="images/info.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Info)#" /></td>
+                    <td class="ActivityInfo">
+                        <img alt="" src="images/mail.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Email)#" /></td>
+                    <td class="ActivityInfo">
+                        <img alt="" src="images/phone.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Phone)#" /></td>
+                    <td class="ActivityInfo">
+                        <img alt="" src="images/web.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Web)#" /></td>
+                    <td class="ActivitySubDescription" style="text-align:right;">
+                        <a id="offersDetail" href="\#offers?IDActivity=#:data.ID#&title=#=data.Title#" data-role="button"  style="display:#=GetActivityDisplayOffersDetail(data.OffersCount)#;">Offerte (#=data.OffersCount#)</a>
+                    </td>    
+                </tr>
+             </table>                                           
+        </a> 
+    </script>                                            
+
     </div>
     
     <!-- Script start application-->    

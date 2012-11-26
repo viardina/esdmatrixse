@@ -1,0 +1,89 @@
+﻿/* Item style offer Info */
+.OfferDetailsTable
+{
+    width: 100%;
+    height: 100%;
+    text-align:center;
+    
+}
+.OfferDetailsTitle
+{
+     font-size: medium;
+    font-weight:bold;
+    height: 5px;
+    width: 100%;
+    text-align:center;
+    
+}
+
+.OfferDetailsItemIcon {
+    width: 100%;
+    height: 100%;
+    max-width:256px;
+    max-height:384px;
+    border-radius:0px;
+    margin-right: 10px;
+    text-align:center;
+    
+}
+.OfferDetailsDescription {
+    font-size: .9em;
+    line-height: 1.4em;
+    font-weight: normal;
+    padding: 3px 3px 0 0;
+    text-decoration: none;
+    opacity: .4;
+    width:100%;
+}
+.OfferDetailsPeriod {
+    font-size: .9em;
+    font-weight: normal;
+    padding: 3px 3px 0 0;
+    text-decoration: none;
+    opacity: .4;
+    width:80%;
+    text-align:center;
+}
+
+
+
+/* Item style offers */
+.OfferTable
+{
+    width: 100%;
+    height: 69px;
+}
+.OfferTitle
+{
+    height: 5px;
+    width: 100%;
+}
+
+.OfferItemIcon {
+    width: 64px;
+    height: 96px;
+    border-radius:0px;
+    margin-right: 10px;
+}
+.OfferDescription {
+    font-size: .9em;
+    line-height: 1.4em;
+    font-weight: normal;
+    padding: 3px 3px 0 0;
+    text-decoration: none;
+    opacity: .4;
+    width:100%;
+}
+.OfferPeriod {
+    font-size: .9em;
+    font-weight: normal;
+    padding: 3px 3px 0 0;
+    text-decoration: none;
+    opacity: .4;
+    width:80%;
+}
+
+
+
+
+

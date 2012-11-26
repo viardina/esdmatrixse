@@ -326,7 +326,7 @@ function CloseSearch(){
     $("#searchController").kendoMobileModalView("close");
 }
 
-function StartSearch(){
+function SearchGlobal(){
     var search=document.getElementById('searchKey').value;
     app.navigate("#resultsOffers");
     SearchActivities(-1,search, '', '', '', '', '');
