@@ -253,6 +253,7 @@ a
 {
     height: 5px;
     width: 100%;
+    line-height: 1.2em;
 }
 .ActivityOffers {
     -moz-transform: rotate(270deg);
@@ -373,13 +374,13 @@ a
 }
 
 .km-ios .km-view .km-content .km-button.km-state-active {
-    background-color: rgb(127, 127, 127);;
+    background-color: rgb(127, 127, 127);
 }
 .km-ios .km-view .km-content .km-button {
     background-color: rgb(0, 0, 0);
 }
 .km-android .km-view .km-content .km-button.km-state-active {
-    background-color: rgb(127, 127, 127);;
+    background-color: rgb(127, 127, 127);
 }
 .km-android .km-view .km-content .km-button {
     background-color: rgb(0, 0, 0);

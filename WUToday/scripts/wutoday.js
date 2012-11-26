@@ -238,11 +238,11 @@ function ShowActivities(IDCategory,search,latitude,longitude,region,country,city
 // Search activities 
 function SearchActivities(IDCategory,search,latitude,longitude,region,country,city) {
     var dataSource = GetActivities(IDCategory,search,latitude,longitude,region,country,city);
-    $("#listViewSearchActivities").kendoMobileListView({
+    $("#listViewResultsActivities").kendoMobileListView({
         dataSource: dataSource,
-        template: $("#itemTemplateSearchActivity").text(),
-        loadMore: true,
-        loadMoreText: "Altre attivita'..."
+        template: $("#itemTemplateResultActivity").text(),
+        endlessScroll: true,
+        scrollTreshold: 30
     });
 }
 
@@ -261,11 +261,11 @@ function ShowOffers(IDActivity,search) {
 // Search events or offers 
 function SearchOffers(IDActivity,search) {
     var dataSource = GetOffers(IDActivity,search);
-    $("#listViewSearchOffers").kendoMobileListView({
+    $("#listViewResultsOffers").kendoMobileListView({
         dataSource: dataSource,
-        template: $("#itemTemplateSearchOffer").text(),
-        loadMore: true,
-        loadMoreText: "Altri eventi ed offerte..."
+        template: $("#itemTemplateResultOffer").text(),
+        endlessScroll: true,
+        scrollTreshold: 30
     });
 }
 
@@ -314,38 +314,30 @@ function OnLoadOfferInfo(e) {
     FillOfferInfo(IDOffer);   
 }
 
-function CloseSearch(){
+function CloseSearch(){   
     $("#searchController").kendoMobileModalView("close");
 }
 
 function StartSearch(){
     var search=document.getElementById('searchKey').value;
-    app.navigate("#searchResults?search="+search);
+    app.navigate("#resultsOffers");
     SearchActivities(-1,search, '', '', '', '', '');
     SearchOffers(-1,search)
     CloseSearch();
 }
 
-function OnSearchSelected() {
-    var index=this.current().index();
-    var groupActivities=$("#resultsActivitiesGroup"); 
-    var groupOffers=$('#resultsOffersGroup');
-    if(index==0)
-    {
-        groupActivities.css('display','');
-        groupOffers.css('display','');
-    }
-    else if(index==1) 
-    {
-        groupActivities.css('display','');
-        groupOffers.css('display','none');
-    }
-    else if(index==2)
-    {
-        groupActivities.css('display','none');
-        groupOffers.css('display','');
-    }
+function OnResultsOffersSelected() {
+    var buttonGroup = $("#resultsOffersGroup").data("kendoMobileButtonGroup");
+    buttonGroup.select(0);
+    app.navigate("#resultsActivities");
 }
+
+function OnResultsActivitiesSelected() {
+    var buttonGroup = $("#resultsActivitiesGroup").data("kendoMobileButtonGroup");
+    buttonGroup.select(1);
+    app.navigate("#resultsOffers");
+}
+
 
 
 
