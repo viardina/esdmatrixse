@@ -287,19 +287,20 @@ a
 .ActivitySubDescription {
     font-size: xx-small;
     font-weight: normal;
-    padding: 3px 3px 0 0;
+    padding-right: 10%;
     text-decoration: none;
     opacity: .4;
-    width:100%;
+    width:60%;
+    text-align:right;
 }
 .ActivitySubAddress {
     font-size: 0.9em;
     font-weight: normal;
-    padding: 0px 0px 0 0;
+    padding-right: 10%;
     text-decoration: none;
     opacity: .4;
     line-height: 1.4em;
-    width:100%;
+    text-align:justify;
 }
 .ActivityInfo
 {
@@ -311,7 +312,8 @@ a
 
 .ActivityIcon {
     width: 16px;
-    height: 16px;  
+    height: 16px; 
+    display:inline;
 }
 
 /* Item style applications/categories */
@@ -330,7 +332,6 @@ a
     opacity: .4;
     line-height: 1.4em;
 }
-
 
 
 

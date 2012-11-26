@@ -169,6 +169,7 @@ function GetActivityTextInfo(value){
 function FillOfferInfo(IDOffer) {
     WCFExecute('GetOfferInfo','?IDOffer='+IDOffer, function(data) {  
         var viewModel=kendo.observable({
+            activityTitle: data.ActivityTitle,
             title: data.Title,
             period: data.Period,
             description: data.Description,

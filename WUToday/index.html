@@ -119,31 +119,28 @@
                         <table class="ActivityTable">
                             <tr>                     
                                 <td style="width: 10%;text-align: center;"  rowspan="3">
-                                <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityItemIcon" />
+                                    <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityItemIcon" />
                                 </td>
-                                <td class="ActivityTitle">
-                                <strong>#=data.Title#</strong>
+                                <td class="ActivityTitle" colspan="2">
+                                    <strong>#=data.Title#</strong>
                                 </td>                         
-                                <td class="ActivityDetailsIconItemInfo">
-                                    <img alt="" src="images/info.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Info)#" /></td>                         
-                                <td class="ActivityDetailsIconItemInfo">
-                                    <img alt="" src="images/mail.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Email)#" /></td>                         
-                                <td class="ActivityDetailsIconItemInfo">
-                                    <img alt="" src="images/phone.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Phone)#" /></td>                         
-                                <td class="ActivityDetailsIconItemInfo">
-                                    <img alt="" src="images/web.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Web)#" /></td>                         
                             </tr>
                             <tr>
-                                <td class="ActivitySubAddress" colspan="6">
+                                <td class="ActivitySubAddress" colspan="5">
                                     #=data.Address#
                                 </td>
                             </tr>                     
                             <tr>                                
-                                <td class="ActivityItemSubDescription" colspan="3">
-                                    Offerte (#=data.OffersCount#) | #=data.TopOffers#
-                                </td>
-                                <td class="ItemSubDescription" colspan="3">
-                                    <a id="offersDetail" href="\#offers?IDActivity=#:data.ID#&title=#=data.Title#" data-role="button"  style="display:#=GetActivityDisplayOffersDetail(data.OffersCount)#">Offerte</a>
+                                <td class="ActivityInfo">
+                                    <img alt="" src="images/info.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Info)#" /></td>
+                                <td class="ActivityInfo">
+                                    <img alt="" src="images/mail.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Email)#" /></td>
+                                <td class="ActivityInfo">
+                                    <img alt="" src="images/phone.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Phone)#" /></td>
+                                <td class="ActivityInfo">
+                                    <img alt="" src="images/web.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Web)#" /></td>
+                                <td class="ActivitySubDescription" style="text-align:right;">
+                                    <a id="offersDetail" href="\#offers?IDActivity=#:data.ID#&title=#=data.Title#" data-role="button"  style="display:#=GetActivityDisplayOffersDetail(data.OffersCount)#;">Offerte (#=data.OffersCount#)</a>
                                 </td>    
                             </tr>
                          </table>                           
@@ -151,8 +148,8 @@
                  </tr>
              </table>
          </div>                  
-         </a>    
-    </script>     
+         </a> 
+    </script>
     
     <!-- View offers/events --> 
      <div data-role="view" id="offers" data-title="Offerte-Eventi" data-layout="mobile-view" data-show="OnLoadOffers">
@@ -247,11 +244,20 @@
     <!-- View offer info --> 
      <div data-role="view" id="offerInfo" data-title="Info Offerte" data-layout="mobile-view" data-show="OnLoadOfferInfo">
         <div>
-        <table class="OfferDetailsTable">
+        <table class="OfferDetailsTable">                                    
+            <tr>
+                <td class="OfferDetailsTitle" data-bind="text: activityTitle">
+                    Attivita'</td>
+            </tr>
+            <tr>
+                <td class="OfferDetailsPeriod" data-bind="text: period">
+                   Periodo</td>
+            </tr>
             <tr>
                 <td>
                     <img alt="" data-bind="attr: {src: icon}" class="OfferDetailsItemIcon" /></td>
             </tr>
+            <tr><td><br></td></tr>
             <tr>
                 <td class="OfferDetailsTitle" data-bind="text: title">
                     Titolo</td>
@@ -260,10 +266,7 @@
                 <td class="OfferDetailsDescription">
                      <div class="ActivityDetailsJustified" data-bind="text: description">Descrizione</div></td>
             </tr>
-            <tr>
-                <td class="OfferDetailsPeriod" data-bind="text: period">
-                   Periodo</td>
-            </tr>
+            
         </table>
         </div>
     </div>    
