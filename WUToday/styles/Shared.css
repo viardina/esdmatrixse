@@ -1,4 +1,4 @@
-﻿/* Header style */
+/* Header style */
 .ImageHeader{
     width: 32px;
     height: 32px;
@@ -118,3 +118,12 @@ a
     color: rgb(255, 255, 255);
 }
 
+.km-android .km-view .km-content .km-button {
+    background-color: rgb(51, 51, 51);
+}
+.km-android .km-view .km-content .km-button.km-state-active {
+    background-color: rgb(127, 127, 127);
+}
+.km-android .km-view .km-navbar .km-button.km-state-active {
+    background-color: rgb(127, 127, 127);
+}

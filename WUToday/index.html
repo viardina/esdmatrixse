@@ -269,20 +269,23 @@
     <!-- Search view -->
     <div data-role="view" id="searchController"  style="width: 100%; height: 100%;">
         <div>
-            <table style="width: 100%;">
+        <br><br>
+        <table style="width: 100%;">
         <tr>
             <td colspan="2" class="SearchTitleContainer">
-            Cosa stai cercando oggi?</td>
+                Cosa stai cercando oggi?                 
+            </td>
         </tr>
+           
         <tr>
             <td colspan="2" class="SearchBoxContainer">
-            <input id="searchKey" type="search" onkeypress="if(event.keyCode==13){SearchGlobal()}"/></td>
+            <input id="searchKey" type="text" onkeypress="if(event.keyCode==13){SearchGlobal()}"/></td>
         </tr>
         <tr>
             <td class="EventImageContainer" rowspan="2">
-                        <img alt="" src="" class="EventImage" /></td>
+               <img alt="" src="" class="EventImage" /></td>
             <td>
-                        <strong class="SearchSubTitleContainer">Eventi del giorno</strong></td>
+            <strong class="SearchSubTitleContainer">Eventi del giorno</strong></td>
         </tr>
         <tr>
             <td class="SearchSubDescriptionContainer">
@@ -317,11 +320,12 @@
     
     <!-- Results events and offers-->
     <div data-role="view" id="resultsOffers" data-title="Offerte ed eventi trovati..." >       
+        <div style="width:150px; margin:auto;">
         <ul id="resultsOffersGroup" data-role="buttongroup" data-index="0" data-select="OnResultsOffersSelected">
             <li>Eventi ed offerte</li>
             <li>Attivita'</li>
         </ul>        
-             
+        </div>             
         <ul id="listViewResultsOffers" data-role="listview">       
         </ul>
         
@@ -355,10 +359,14 @@
         
     <!-- Results activities -->
     <div data-role="view" id="resultsActivities" data-title="Attivita' trovate..." >       
+        <div style="width:150px; margin:auto;">
         <ul id="resultsActivitiesGroup" data-role="buttongroup" data-index="1" data-select="OnResultsActivitiesSelected">
             <li>Eventi ed offerte</li>
             <li>Attivita'</li>
-        </ul>
+        </ul>       
+        </div>
+        
+        
         
         <ul id="listViewResultsActivities" data-role="listview">    
         </ul>
