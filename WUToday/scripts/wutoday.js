@@ -161,6 +161,9 @@ function FillActivityInfo(IDActivity) {
             },
             StartWeb: function(){
                window.open('http://'+data.Web);
+            },
+            StartMap: function(){
+               app.navigate("#geocodesMap?latitude="+data.Latitude+"&longitude="+data.Longitude);
             }
         });
         kendo.bind($("#activityInfo"),viewModel);
@@ -407,6 +410,56 @@ function OnResultsActivitiesSelected() {
     buttonGroup.select(1);
     app.navigate("#resultsOffers");
 }
+
+function OnLoadGeocodesMap(e) {
+    var view=e.view;
+    var title=view.params.title;
+    SetTitle(title);
+    var latitudeDestination=view.params.latitude;  
+    var longitudeDestination=view.params.longitude;
+    var latitudeOrigin="39.31";
+    var longitudeOrigin="16.24";
+    ShowGeocodesMap(latitudeOrigin, longitudeOrigin, latitudeDestination, longitudeDestination);
+}
+
+function ShowGeocodesMap(latitudeOrigin, longitudeOrigin, latitudeDestination, longitudeDestination){
+    var directionsService = new google.maps.DirectionsService();
+    var directionsDisplay = new google.maps.DirectionsRenderer();
+    var localPosition = new google.maps.LatLng(latitudeOrigin, longitudeOrigin);
+    var mapOptions = {
+        zoom: 12,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: localPosition
+    }
+    var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    directionsDisplay.setMap(map);
+
+    var start = new google.maps.LatLng(latitudeOrigin, longitudeOrigin);
+    var end = new google.maps.LatLng(latitudeDestination, longitudeDestination);
+    var request = {
+        origin: start,
+        destination: end,
+        travelMode: google.maps.DirectionsTravelMode.DRIVING
+    };
+    directionsService.route(request, function (response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng($latitudeDestination$, $longitudeDestination$),
+                map: map,
+                title: '$description$'
+            });
+        }
+    });
+
+//            var infowindow = new google.maps.InfoWindow();
+//            var marker = new google.maps.Marker({position: end,map: map});
+//            google.maps.event.addListener(marker, 'click', function () {
+//                  infowindow.setContent('$description$');
+//                  infowindow.open(map, marker);
+//              });
+}
+
 
 
 

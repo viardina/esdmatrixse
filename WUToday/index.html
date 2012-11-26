@@ -7,6 +7,7 @@
     <script src="kendo/js/jquery.min.js"></script>
     <script src="kendo/js/kendo.mobile.min.js"></script>
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
     <script src="scripts/jquerywcf.js"></script>     
     <script src="scripts/wutoday.js"></script>     
     <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
@@ -199,28 +200,28 @@
                     </td>
                 <td class="ActivityDetailsIconContainerInfo" >
                     <img class="ActivityDetailsInfoIcon" alt="" src="images/mail.png" data-bind="click: StartEmail"/></td>
-                <td class="ActivityDetailsInfo" data-bind="text: email">
-                    Email</td>
+                <td class="ActivityDetailsInfo" >
+                    <div data-bind="text: email, click: StartEmail">Email</div></td>
                 <td  rowspan="4" style="width:15%">
                     &nbsp;</td>
             </tr>
             <tr data-bind="style: {opacity: phoneOpacity}">
                 <td class="ActivityDetailsIconContainerInfo" >
                     <img class="ActivityDetailsInfoIcon" alt="" src="images/phone.png" data-bind="click: StartPhone"/></td>
-                <td class="ActivityDetailsInfo" data-bind="text: phone">
-                    Telefono</td>
+                <td class="ActivityDetailsInfo">
+                   <div data-bind="text: phone, click: StartPhone"> Telefono</div></td>
             </tr>
             <tr data-bind="style: {opacity: webOpacity}">
                 <td class="ActivityDetailsIconContainerInfo" >
                     <img class="ActivityDetailsInfoIcon" alt="" src="images/web.png" data-bind="click: StartWeb"/></td>
-                <td class="ActivityDetailsInfo" data-bind="text: web">
-                    Web</td>
+                <td class="ActivityDetailsInfo">
+                    <div data-bind="text: web, click: StartWeb">Web</div></td>
             </tr>
             <tr data-bind="style: {opacity: mapOpacity}">
                 <td class="ActivityDetailsIconContainerInfo" >
-                    <img class="ActivityDetailsInfoIcon" alt="" src="images/maps.png" /></td>
+                    <img class="ActivityDetailsInfoIcon" alt="" src="images/maps.png" data-bind="click: StartMap" /></td>
                 <td class="ActivityDetailsInfo">
-                    Come raggiungerci</td>
+                    <div data-bind="click: StartMap">Come raggiungerci</div></td>
             </tr>
             <tr>
                 <td class="ActivityDetailsSubTitle" colspan="4" >
@@ -405,6 +406,15 @@
         </a> 
     </script>                                            
 
+    </div>
+            
+            
+            
+    <!-- Geocodes map -->        
+    <div data-role="view" id="geocodesMap" data-title="Come raggiungerci..." data-show="OnLoadGeocodesMap" >
+         <div id="map_canvas" style="width:100%; height:360px">
+             
+         </div>                
     </div>
     
     <!-- Script start application-->    
