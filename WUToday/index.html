@@ -268,7 +268,7 @@
     </div>    
     
     <!-- Search view -->
-    <div data-role="view" id="searchController"  style="width: 100%; height: 100%;">
+    <div data-role="view" id="searchController" data-layout="mobile-view" style="width: 100%; height: 100%;">
         <div>
         <br><br>
         <table style="width: 100%;">
@@ -323,7 +323,7 @@
 
     
     <!-- Results events and offers-->
-    <div data-role="view" id="resultsOffers" data-title="Offerte ed eventi trovati..." >       
+    <div data-role="view" id="resultsOffers" data-title="Offerte ed eventi trovati..." data-layout="mobile-view" >       
         <div style="width:150px; margin:auto;">
         <ul id="resultsOffersGroup" data-role="buttongroup" data-index="0" data-select="OnResultsOffersSelected">
             <li>Eventi ed offerte</li>
@@ -362,7 +362,7 @@
     </div>
         
     <!-- Results activities -->
-    <div data-role="view" id="resultsActivities" data-title="Attivita' trovate..." >       
+    <div data-role="view" id="resultsActivities" data-title="Attivita' trovate..." data-layout="mobile-view">       
         <div style="width:150px; margin:auto;">
         <ul id="resultsActivitiesGroup" data-role="buttongroup" data-index="1" data-select="OnResultsActivitiesSelected">
             <li>Eventi ed offerte</li>
@@ -407,14 +407,21 @@
     </script>                                            
 
     </div>
-            
-            
+                     
             
     <!-- Geocodes map -->        
-    <div data-role="view" id="geocodesMap" data-title="Come raggiungerci..." data-show="OnLoadGeocodesMap" >
-         <div id="map_canvas" style="width:100%; height:360px">
+    <div data-role="view" id="geocodesMap" data-title="Come raggiungerci..." data-show="OnLoadGeocodesMap" data-layout="mobile-view">
+         <a id="streetView3D" class="HeaderRight" data-icon="camera" data-role="button" data-bind="click: StartStreetView">Visualizza Mappa 3D</a>
+         <div id="map_canvas" style="width:100%; height:1000px">
              
-         </div>                
+         </div>
+    </div>
+            
+    <!-- StreetView map -->        
+    <div data-role="view" id="streetViewMap" data-title="Mappa 3D" data-show="OnLoadStreetViewMap" data-layout="mobile-view" >
+         <div id="pano" style="width:100%; height:1000px">
+             
+         </div>
     </div>
     
     <!-- Script start application-->    

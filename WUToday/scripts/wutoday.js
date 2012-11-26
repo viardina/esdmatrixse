@@ -163,7 +163,8 @@ function FillActivityInfo(IDActivity) {
                window.open('http://'+data.Web);
             },
             StartMap: function(){
-               app.navigate("#geocodesMap?latitude="+data.Latitude+"&longitude="+data.Longitude);
+               var address=data.Title+" "+data.Address; 
+               app.navigate("#geocodesMap?latitude="+data.Latitude+"&longitude="+data.Longitude+"&address="+address);
             }
         });
         kendo.bind($("#activityInfo"),viewModel);
@@ -415,14 +416,23 @@ function OnLoadGeocodesMap(e) {
     var view=e.view;
     var title=view.params.title;
     SetTitle(title);
+    var addressDestination=view.params.address;
     var latitudeDestination=view.params.latitude;  
     var longitudeDestination=view.params.longitude;
     var latitudeOrigin="39.31";
     var longitudeOrigin="16.24";
-    ShowGeocodesMap(latitudeOrigin, longitudeOrigin, latitudeDestination, longitudeDestination);
+    ShowGeocodesMap(latitudeOrigin, longitudeOrigin, latitudeDestination, longitudeDestination,addressDestination);
+    var viewModel=kendo.observable({
+            latitude: latitudeDestination,
+            longitude: longitudeDestination,
+            StartStreetView: function(){               
+                app.navigate("#streetViewMap?latitude="+latitudeDestination+"&longitude="+longitudeDestination);
+            }
+        });
+    kendo.bind($("#geocodesMap"),viewModel);
 }
 
-function ShowGeocodesMap(latitudeOrigin, longitudeOrigin, latitudeDestination, longitudeDestination){
+function ShowGeocodesMap(latitudeOrigin, longitudeOrigin, latitudeDestination, longitudeDestination, addressDestination){
     var directionsService = new google.maps.DirectionsService();
     var directionsDisplay = new google.maps.DirectionsRenderer();
     var localPosition = new google.maps.LatLng(latitudeOrigin, longitudeOrigin);
@@ -445,19 +455,35 @@ function ShowGeocodesMap(latitudeOrigin, longitudeOrigin, latitudeDestination, l
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
             var marker = new google.maps.Marker({
-                position: new google.maps.LatLng($latitudeDestination$, $longitudeDestination$),
+                position: new google.maps.LatLng(latitudeDestination, longitudeDestination),
                 map: map,
-                title: '$description$'
+                title: addressDestination
             });
         }
     });
+}
 
-//            var infowindow = new google.maps.InfoWindow();
-//            var marker = new google.maps.Marker({position: end,map: map});
-//            google.maps.event.addListener(marker, 'click', function () {
-//                  infowindow.setContent('$description$');
-//                  infowindow.open(map, marker);
-//              });
+function OnLoadStreetViewMap(e) {
+    var view=e.view;
+    var title=view.params.title;
+    SetTitle(title);
+    var latitude=view.params.latitude;  
+    var longitude=view.params.longitude;
+    ShowStreetViewMap(latitude, longitude);
+}
+
+function ShowStreetViewMap(latitude,longitude) {
+    var target = new google.maps.LatLng(latitude, longitude);
+    var panoramaOptions = {
+        position: target,
+        pov: {
+            heading: 0,
+            pitch: 0,
+            zoom: 1
+        }
+    };
+    var panoramaView = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
+    panoramaView.setVisible(true);
 }
 
 
