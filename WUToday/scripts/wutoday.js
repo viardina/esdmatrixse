@@ -29,14 +29,20 @@ function GoToHome(){
     ShowApplications();
 }
 
-function ToggleHomeBackButton(e) {
+function ToggleNavBarButtons(e) {
     var view=e.view;
     if (view.id == "#applications"){     
-        view.element.find("[id=backButton]").css("visibility", "hidden").attr("data-target", "_top");
-        view.element.find("[id=home]").css("visibility", "hidden").attr("data-target", "_top");
+        view.element.find("[id=backButton]").css("visibility", "hidden");
+        view.element.find("[id=home]").css("visibility", "hidden");
     }else{
-        view.element.find("[id=backButton]").css("visibility", "visible").removeAttr("data-target");
-        view.element.find("[id=home]").css("visibility", "visible").removeAttr("data-target");
+        view.element.find("[id=backButton]").css("visibility", "visible");
+        view.element.find("[id=home]").css("visibility", "visible");
+    }
+    if(view.id=="#activities"){
+        view.element.find("[id=mapActivities]").css("visibility", "visible");   
+    }
+    else{
+        view.element.find("[id=mapActivities]").css("visibility", "hidden");     
     }
 }
 
@@ -484,6 +490,12 @@ function ShowStreetViewMap(latitude,longitude) {
     };
     var panoramaView = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
     panoramaView.setVisible(true);
+}
+
+function ShowMapActivities(){
+    $("#listViewActivities").children().each(function(index){
+        alert($(this).html());
+    });
 }
 
 

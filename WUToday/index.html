@@ -19,7 +19,7 @@
 </head>
 <body>   
     <!-- Main layout -->
-    <div data-role="layout" data-id="mobile-view" data-show="ToggleHomeBackButton">    
+    <div data-role="layout" data-id="mobile-view" data-show="ToggleNavBarButtons">    
         <header data-role="header">
             <div data-role="navbar" id="navbar">
                 <table style="width:100%;">
@@ -29,6 +29,7 @@
                         <td class="HeaderCenter">
                             <img alt="" src="images/logo.png" class="ImageHeader" /></td>
                         <td>                            
+                            <a id="mapActivities" class="HeaderRight" data-align="right" data-click="ShowMapActivities" data-icon="globe" data-role="button"></a>
                             <a id="home" class="HeaderRight" data-align="right" data-click="GoToHome" data-icon="home" data-role="button"></a>
                             <a id="search" class="HeaderRight" data-align="right" href="#searchController" data-icon="search" data-role="button"></a>                            
                         </td>
@@ -412,14 +413,14 @@
     <!-- Geocodes map -->        
     <div data-role="view" id="geocodesMap" data-title="Come raggiungerci..." data-show="OnLoadGeocodesMap" data-layout="mobile-view">
          <a id="streetView3D" class="HeaderRight" data-icon="camera" data-role="button" data-bind="click: StartStreetView">Visualizza Mappa 3D</a>
-         <div id="map_canvas" style="width:100%; height:1000px">
+         <div id="map_canvas" style="width:100%; height:360px">
              
          </div>
     </div>
             
     <!-- StreetView map -->        
     <div data-role="view" id="streetViewMap" data-title="Mappa 3D" data-show="OnLoadStreetViewMap" data-layout="mobile-view" >
-         <div id="pano" style="width:100%; height:1000px">
+         <div id="pano" style="width:100%; height:360px">
              
          </div>
     </div>
