@@ -52,6 +52,9 @@
     <Resource Include="App_Resources\Android\drawable-ldpi\icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\ar.png" />
+    <Content Include="images\eventDay.png" />
+    <Content Include="images\eventWeek.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\web.png" />
     <Content Include="images\info.png" />

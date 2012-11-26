@@ -271,52 +271,55 @@
         <div>
         <br><br>
         <table style="width: 100%;">
-        <tr>
-            <td colspan="2" class="SearchTitleContainer">
-                Cosa stai cercando oggi?                 
-            </td>
-        </tr>
-           
-        <tr>
-            <td colspan="2" class="SearchBoxContainer">
-            <input id="searchKey" type="text" onkeypress="if(event.keyCode==13){SearchGlobal()}"/></td>
-        </tr>
-        <tr>
-            <td class="EventImageContainer" rowspan="2">
-               <img alt="" src="" class="EventImage" /></td>
-            <td>
-            <strong class="SearchSubTitleContainer">Eventi del giorno</strong></td>
-        </tr>
-        <tr>
-            <td class="SearchSubDescriptionContainer">
-                        <div class="SearchDescription">Scopri cosa c'e' oggi, spettacoli, serate, offerte ed eventi programmati per la 
-                        giornata odierna ...</div></td>
-        </tr>
-        <tr>
-            <td class="EventImageContainer" rowspan="2">
-                        <img alt="" src="" class="EventImage" /></td>
-            <td>
-                        <strong class="SearchSubTitleContainer">Eventi della settimana</strong></td>
-        </tr>
-        <tr>
-            <td class="SearchSubDescriptionContainer">
-                        <div class="SearchDescription">Visualizza tutti gli eventi di questa settimana e programma la tua serata 
-                        preferita ...</div></td>
-        </tr>
-        <tr>
-            <td class="EventImageContainer" rowspan="2">
-                        <img alt="" src="" class="EventImage" /></td>
-            <td>
-                        <strong class="SearchSubTitleContainer">Cerca in 3D</strong></td>
-        </tr>
-        <tr>
-            <td class="SearchSubDescriptionContainer">
-                        <div class="SearchDescription">Attiva la realta' aumentata, inquadra una vetrina, un teatro o una discoteca e 
-                        scopri gli eventi e le offerte ...</div></td>
-        </tr>
-    </table>    
-        </div>    
-        </div>
+            <tr>
+                <td colspan="2" class="SearchTitleContainer">
+                    Cosa stai cercando oggi?                 
+                </td>
+            </tr>
+               
+            <tr>
+                <td colspan="2" class="SearchBoxContainer">
+                <input id="searchKey" type="text" onkeypress="if(event.keyCode==13){SearchGlobal()}"/><br /><br /></td>
+            </tr>
+            
+            <tr>
+                <td class="EventImageContainer" rowspan="2">
+                   <div onclick="SearchToday()"><img alt="" src="images/eventDay.png" class="EventImage" /></div> </td>
+                <td>
+                <div onclick="SearchToday()"><strong class="SearchSubTitleContainer">Eventi del giorno</strong></div></td>
+            </tr>
+            <tr>
+                <td class="SearchSubDescriptionContainer">
+                            <div onclick="SearchToday()" class="SearchDescription">Scopri cosa c'e' oggi, spettacoli, serate, offerte ed eventi programmati per la 
+                            giornata odierna ...<br /><br /></div></td>
+            </tr>
+              
+            <tr>
+                <td class="EventImageContainer" rowspan="2">
+                   <div onclick="SearchWeekly()"><img alt="" src="images/eventWeek.png" class="EventImage" /></div></td>
+                <td>
+                   <div onclick="SearchWeekly()"><strong class="SearchSubTitleContainer">Eventi della settimana</strong></div></td>
+            </tr>
+            <tr>
+                <td class="SearchSubDescriptionContainer">
+                            <div onclick="SearchWeekly()" class="SearchDescription">Visualizza tutti gli eventi di questa settimana e programma la tua serata 
+                            preferita ...<br /><br /></div></td>
+            </tr>
+            <tr>
+                <td class="EventImageContainer" rowspan="2">
+                            <img alt="" src="images/ar.png" class="EventImage" /></td>
+                <td>
+                            <strong class="SearchSubTitleContainer">Cerca in 3D</strong></td>
+            </tr>
+            <tr>
+                <td class="SearchSubDescriptionContainer">
+                            <div class="SearchDescription">Attiva la realta' aumentata, inquadra una vetrina, un teatro o una discoteca e 
+                            scopri gli eventi e le offerte ...<br /><br /></div></td>
+            </tr>
+        </table>    
+      </div>    
+    </div>   
+
     
     <!-- Results events and offers-->
     <div data-role="view" id="resultsOffers" data-title="Offerte ed eventi trovati..." >       
@@ -365,9 +368,7 @@
             <li>Attivita'</li>
         </ul>       
         </div>
-        
-        
-        
+                        
         <ul id="listViewResultsActivities" data-role="listview">    
         </ul>
             

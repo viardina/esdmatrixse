@@ -207,6 +207,34 @@ function GetOffers(IDActivity,search) {
     return dataSource;
 }
 
+// Get fourth level today events
+function GetOffersToday(IDActivity,search,days) {
+    var dataSource = new kendo.data.DataSource({
+        pageSize: WCFTakeElements,
+        serverPaging: true,
+        transport: {
+            read: {
+                url: WCFUrl + "/getofferstoday",
+                dataType: "json"
+            },
+            parameterMap: function (options) {
+                return {
+                    IDActivity: IDActivity,
+                    search: search,
+                    days: days,
+                    skip: (options.page - 1) * options.pageSize,
+                    take: options.pageSize,
+                };
+            }
+        },
+        schema: {
+            data: "",
+            total: "pageSize"
+        }
+    });
+    return dataSource;
+}
+
 // Show applications in listview
 function ShowApplications() {
     var dataSource = GetApplications();
@@ -277,6 +305,17 @@ function SearchOffers(IDActivity,search) {
     });
 }
 
+// Search today events
+function SearchOffersToday(IDActivity,search,today) {
+    var dataSource = GetOffersToday(IDActivity,search,today);
+    $("#listViewResultsOffers").kendoMobileListView({
+        dataSource: dataSource,
+        template: $("#itemTemplateResultOffer").text(),
+        endlessScroll: true,
+        scrollTreshold: 30
+    });
+}
+
 /*function OnLoadWaiting(e) {
     e.view.element.find("[id=listViewCategories]").css("visibility", "hidden");
 }
@@ -331,6 +370,20 @@ function SearchGlobal(){
     app.navigate("#resultsOffers");
     SearchActivities(-1,search, '', '', '', '', '');
     SearchOffers(-1,search)
+    CloseSearch();
+}
+
+function SearchToday(){
+    var search=document.getElementById('searchKey').value;
+    app.navigate("#resultsOffers");
+    SearchOffersToday(-1,search,0)
+    CloseSearch();
+}
+
+function SearchWeekly(){
+    var search=document.getElementById('searchKey').value;
+    app.navigate("#resultsOffers");
+    SearchOffersToday(-1,search,7)
     CloseSearch();
 }
 
