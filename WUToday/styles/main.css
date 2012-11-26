@@ -145,10 +145,19 @@ a
     opacity: .75;
 }
 
+.ActivityItemSubDescription {
+    font-size: .8em;
+    font-weight: normal;
+    padding: 0px 0px 0 0;
+    text-decoration: none;
+    opacity: .6;
+    line-height: 1.4em;
+}
 
 .ActivityDetailsIconItemInfo
 { 
     width:16px;
+    text-align: right;
 }
    
 .ActivityDetailsIconContainerInfo

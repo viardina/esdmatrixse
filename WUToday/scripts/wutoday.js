@@ -47,6 +47,13 @@ function GetActivityIconOpacity(value){
         return .1;
 }
 
+function GetActivityDisplayOffersDetail(count){
+    if(count>0)
+        return '';
+    else
+        return 'none';
+}
+
 // Get first level application
 function GetApplications() {
     var dataSource = new kendo.data.DataSource({
