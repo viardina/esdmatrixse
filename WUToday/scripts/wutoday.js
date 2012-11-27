@@ -598,12 +598,11 @@ function OnLoadSettings(){
 }
 
 function GetPreference(IDCategory){
-    var value=window.localStorage.getItem('pushnotify'+IDCategory);
-    if(value==null)
-    {
+    var localValue=window.localStorage.getItem('pushnotify'+IDCategory);
+    if(localValue==null)
         value=true;
-        window.localStorage.setItem('pushnotify'+IDCategory,value); 
-    }
+    else
+        value=(localValue=="true");
     return value;
 }
 
