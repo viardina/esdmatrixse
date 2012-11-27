@@ -358,15 +358,19 @@
 					</tr>
 					<tr>
 						<td class="EventImageContainer" rowspan="2">
-							<img alt="" src="images/ar.png" class="EventImage" />
+                            <div onclick="SearchAR()">
+							    <img alt="" src="images/ar.png" class="EventImage" />
+                            </div>    
 						</td>
 						<td>
-							<strong class="SearchSubTitleContainer">Cerca in 3D</strong>
+                            <div onclick="SearchAR()">
+							    <strong class="SearchSubTitleContainer">Cerca in 3D</strong>
+                            </div>    
 						</td>
 					</tr>
 					<tr>
 						<td class="SearchSubDescriptionContainer">
-							<div class="SearchDescription">
+							<div onclick="SearchAR()" class="SearchDescription">
 								Attiva la realta' aumentata, inquadra una vetrina, un teatro o una discoteca e
 								scopri gli eventi e le offerte ...<br /><br />
 							</div>
@@ -496,6 +500,14 @@
                 </label>             
 			</script>
 		</div>
+                    
+                    
+        <!-- Google StreetView AR 3D -->
+		<div data-role="view" id="googleAR3D" data-title="Cerca in 3D" data-show="OnLoadGoogleAR3D" data-layout="mobile-view">
+			<div id="panoAR" style="width:100%; height:360px">
+		
+			</div>
+		</div>                   
 		
 		<!-- Script start application-->
 		<script>

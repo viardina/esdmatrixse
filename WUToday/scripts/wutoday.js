@@ -446,6 +446,7 @@ function SearchWeekly(){
     CloseSearch();
 }
 
+
 function OnResultsOffersSelected() {
     var buttonGroup = $("#resultsOffersGroup").data("kendoMobileButtonGroup");
     buttonGroup.select(0);
@@ -626,6 +627,61 @@ function SetPreference(IDCategory){
     window.localStorage.setItem('pushnotify'+IDCategory,value); 
 }
 
+
+function SearchAR(){
+    app.navigate("#googleAR3D");
+}
+
+var panorama;
+function OnLoadGoogleAR3D(e){
+    var latitude;
+    var longitude;
+    navigator.geolocation.watchPosition(function (position) {
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+        SetPositionMap3D(latitude, longitude);
+    }, function () {}, { frequency: 5000 });
+
+    navigator.geolocation.getCurrentPosition(function (position) {
+        latitude = position.coords.latitude;  
+        longitude = position.coords.longitude; 
+        ShowPositionMap3D(latitude, longitude);
+    }, function () { });
+
+    navigator.compass.watchHeading(function (heading) {
+        var compass = heading.magneticHeading;
+        SetHeadingMap3D(compass);
+    }, function () { }, { frequency: 5000 });
+
+
+}
+
+function SetHeadingMap3D(heading) {
+    panorama.setHeading(heading);
+}
+
+function SetPositionMap3D(latitude, longitude,compass) {
+    var target = new google.maps.LatLng(latitude, longitude);
+    panorama.setPosition(target);
+}
+
+function ShowPositionMap3D(latitude, longitude) {
+    var target = new google.maps.LatLng(latitude, longitude);
+    var panoramaOptions = {
+        position: target,
+        pov: {
+            heading: 0,
+            pitch: 0,
+            zoom: 1
+        }
+    };
+    panorama = new google.maps.StreetViewPanorama(document.getElementById("panoAR"), panoramaOptions);
+    panorama.setVisible(true);
+
+    /*google.maps.event.addListener(panorama, 'pov_changed', function () {
+         heading = panorama.getPov().heading;
+    });*/
+}
 
 
 
