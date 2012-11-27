@@ -32,17 +32,19 @@ function GoToHome(){
 function ToggleNavBarButtons(e) {
     var view=e.view;
     if (view.id == "#applications"){     
-        view.element.find("[id=backButton]").css("visibility", "hidden");
-        view.element.find("[id=home]").css("visibility", "hidden");
+        view.element.find("[id=backButton]").css("display", "none");
+        view.element.find("[id=homeButton]").css("display", "none");
+        view.element.find("[id=settingsButton]").css("display", "");
     }else{
-        view.element.find("[id=backButton]").css("visibility", "visible");
-        view.element.find("[id=home]").css("visibility", "visible");
+        view.element.find("[id=backButton]").css("display", "");
+        view.element.find("[id=homeButton]").css("display", "");
+        view.element.find("[id=settingsButton]").css("display", "none");
     }
     if(view.id=="#activities"){
-        view.element.find("[id=mapActivities]").css("visibility", "visible");   
+        view.element.find("[id=mapButton]").css("display", "");   
     }
     else{
-        view.element.find("[id=mapActivities]").css("visibility", "hidden");     
+        view.element.find("[id=mapButton]").css("display", "none");     
     }
 }
 
@@ -108,6 +110,27 @@ function GetCategories(IDApplication,search) {
             data: "",
             total: "pageSize"
         }
+    });
+    return dataSource;
+}
+
+// Get settings
+function GetSettings() {
+    var dataSource = new kendo.data.DataSource({
+        transport: {
+            read: {
+                url: WCFUrl + "/getsettings",
+                dataType: "json"
+            },
+            parameterMap: function (options) {
+                return {
+                };
+            }
+        },
+        schema: {
+            data: ""  
+        },
+        group: {field: "Application"}
     });
     return dataSource;
 }
@@ -275,6 +298,16 @@ function ShowCategories(IDApplication, search) {
         pullToRefresh: true,
         endlessScroll: true,
         scrollTreshold: 30
+    });
+}
+
+// Show categories in settings
+function ShowSettings() {
+    var dataSource = GetSettings(); 
+    $("#listViewSettings").kendoMobileListView({
+        dataSource: dataSource,
+        template: $("#itemTemplateSetting").text(),
+        headerTemplate: "<label>#:value#</label>"
     });
 }
 
@@ -526,42 +559,37 @@ function ShowGoogleMap(locations,latitude,longitude){
           center: new google.maps.LatLng(latitude, longitude),
           mapTypeId: google.maps.MapTypeId.ROADMAP
       });
-      var infowindow = new google.maps.InfoWindow();
-      var marker;
-      
-
       $.each(locations, function(index,location) {
           var latitude=location.latitude;
           var longitude=location.longitude;
           var title=location.title;
-          marker = new google.maps.Marker({
+          var marker = new google.maps.Marker({
               position: new google.maps.LatLng(latitude,longitude),
               map: map,
               title: title
           });
-
           google.maps.event.addListener(marker, 'click', function (marker) {
-              return function () {
-                  infowindow.setContent(title);
-                  infowindow.open(map, marker);
-              }
+              var infowindow = new google.maps.InfoWindow(); 
+              infowindow.setContent(title);
+              infowindow.open(map, marker);          
           });
       });
-
       var myMarker = new google.maps.Marker({
           position: new google.maps.LatLng(latitude,longitude),
           map: map,
           title: 'La tua posizione',
           icon: 'images/iphonegps.png'
       });
-
       google.maps.event.addListener(myMarker, 'click', function () {
+          var infowindow = new google.maps.InfoWindow();     
           infowindow.setContent('La tua posizione');
           infowindow.open(map, myMarker);
       });
 }
 
-
+function OnLoadSettings(){
+    ShowSettings();
+}
 
 
 

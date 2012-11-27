@@ -25,13 +25,16 @@
                 <table style="width:100%;">
                     <tr>
                         <td class="HeaderLeft">
-                            <a id="backButton" class="HeaderLeft" data-align="left" data-role="backbutton" data-icon="reply"></a></td>
+                            <a id="backButton" class="HeaderLeft" data-align="left" data-role="backbutton" data-icon="reply"></a>
+                            <a id="settingsButton" class="HeaderLeft" href="#settings" data-align="left" data-role="button" data-icon="settings"></a>
+                            
+                        </td>
                         <td class="HeaderCenter">
                             <img alt="" src="images/logo.png" class="ImageHeader" /></td>
                         <td>                            
-                            <a id="mapActivities" class="HeaderRight" data-align="right" data-click="ShowMapActivities" data-icon="globe" data-role="button"></a>
-                            <a id="home" class="HeaderRight" data-align="right" data-click="GoToHome" data-icon="home" data-role="button"></a>
-                            <a id="search" class="HeaderRight" data-align="right" href="#searchController" data-icon="search" data-role="button"></a>                            
+                            <a id="mapButton" class="HeaderRight" data-align="right" data-click="ShowMapActivities" data-icon="globe" data-role="button"></a>
+                            <a id="homeButton" class="HeaderRight" data-align="right" data-click="GoToHome" data-icon="home" data-role="button"></a>
+                            <a id="searchButton" class="HeaderRight" data-align="right" href="#searchController" data-icon="search" data-role="button"></a>                            
                         </td>
                     </tr>
                 </table>
@@ -432,6 +435,19 @@
              
          </div>
     </div>
+             
+            
+     <!-- Settings -->        
+    <div data-role="view" id="settings" data-title="Impostazioni" data-show="OnLoadSettings" data-layout="mobile-view" >
+         <ul id="listViewSettings" data-role="listview" data-type="group" data-style="inset"></ul>
+        
+        <script type="text/x-kendo-template" id="itemTemplateSetting">   
+            <label>
+                <input type="checkbox" checked="checked" ></input>
+                #=data.Title#
+            </label>                     
+        </script>
+    </div>            
     
     <!-- Script start application-->    
     <script>
