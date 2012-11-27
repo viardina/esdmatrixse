@@ -486,14 +486,14 @@
 		</div>
 		
 		<!-- Settings -->
-		<div data-role="view" id="settings" data-title="Impostazioni" data-show="OnLoadSettings" data-layout="mobile-view" >
+		<div data-role="view" id="settings" data-title="Impostazioni" data-show="OnLoadSettings" data-layout="mobile-view" data-init="mobileSwitchEventsInit">
 			<ul id="listViewSettings" data-role="listview" data-type="group" data-style="inset"></ul>
 				
 			<script type="text/x-kendo-template" id="itemTemplateSetting">   
-				<label>
-				<input id="check#=data.ID#" data-role="switch" #=GetPreference(data.ID)?"checked":""# onclick="SetPreference(#=data.ID#)" ></input>
-				#=data.Title#  
-				</label>                     
+				<label>  
+				<input id="check#=data.ID#" type="checkbox" data-role="switch" #=GetPreference(data.ID)?"checked":""# onclick="SetPreference(#=data.ID#)" ></input>
+				
+				      #=data.Title#  </label>             
 			</script>
 		</div>
 		

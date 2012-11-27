@@ -609,10 +609,9 @@ function GetPreference(IDCategory){
 
 function SetPreference(IDCategory){
     var checkId="check"+IDCategory;
-    var checked=document.getElementById(checkId).getAttribute("value");
-    var value=(checked!=null?true:false);
-    //window.localStorage.setItem('pushnotify'+IDCategory,value); 
-    alert(IDCategory);
+    var obj=document.getElementById(checkId);
+    var value=obj.checked;
+    window.localStorage.setItem('pushnotify'+IDCategory,value); 
 }
 
 
