@@ -425,7 +425,7 @@ function OnLoadGeocodesMap(e) {
     var addressDestination=view.params.address;
     var latitudeDestination=view.params.latitude;  
     var longitudeDestination=view.params.longitude;
-    var latitudeOrigin="39.31";
+    var latitudeOrigin="39.31"; // da sostituire con il navigator.position
     var longitudeOrigin="16.24";
     ShowGeocodesMap(latitudeOrigin, longitudeOrigin, latitudeDestination, longitudeDestination,addressDestination);
     var viewModel=kendo.observable({
@@ -492,10 +492,73 @@ function ShowStreetViewMap(latitude,longitude) {
     panoramaView.setVisible(true);
 }
 
+var locations;
 function ShowMapActivities(){
+    locations=new Array();
     $("#listViewActivities").children().each(function(index){
-        alert($(this).find("a").attr('id'));
+        var title=($(this).find("a").attr('title'));
+        var latitude=($(this).find("a").attr('latitude'));
+        var longitude=($(this).find("a").attr('longitude'));        
+        var location=new Location(title,latitude,longitude);
+        locations.push(location);
     });
+    app.navigate("#googleMap?locations="+locations);
+}
+
+var Location=function(title,latitude,longitude){
+    this.title=title;
+    this.latitude=latitude;
+    this.longitude=longitude;    
+}
+
+
+function OnLoadGoogleMap(e){
+    //var view=e.view;
+    //var locations=view.params.locations;
+    var latitude="39.31";
+    var longitude="16.24";
+    ShowGoogleMap(locations,latitude,longitude);
+}
+
+function ShowGoogleMap(locations,latitude,longitude){
+      var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: new google.maps.LatLng(latitude, longitude),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+      var infowindow = new google.maps.InfoWindow();
+      var marker;
+      
+
+      $.each(locations, function(index,location) {
+          var latitude=location.latitude;
+          var longitude=location.longitude;
+          var title=location.title;
+          marker = new google.maps.Marker({
+              position: new google.maps.LatLng(latitude,longitude),
+              map: map,
+              title: title
+          });
+
+          google.maps.event.addListener(marker, 'click', function (marker) {
+              return function () {
+                  infowindow.setContent(title);
+                  infowindow.open(map, marker);
+              }
+          });
+      });
+
+      var myMarker = new google.maps.Marker({
+          position: new google.maps.LatLng(latitude,longitude),
+          map: map,
+          title: 'La tua posizione',
+          icon: 'images/iphonegps.png'
+      });
+
+      google.maps.event.addListener(myMarker, 'click', function () {
+          infowindow.setContent('La tua posizione');
+          infowindow.open(map, myMarker);
+      });
 }
 
 

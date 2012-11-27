@@ -116,7 +116,8 @@
     </div>
     
     <script id="itemTemplateActivity" type="text/x-kendo-template">         
-        <a id="#=data.ID#" href="\#activityInfo?IDActivity=#:data.ID#&title=#=data.Title#"> 
+        <a id="#=data.ID#" latitude="#=data.Latitude#" longitude="#=data.Longitude#" title="#=data.Title#" address="#=data.Address#"
+            href="\#activityInfo?IDActivity=#:data.ID#&title=#=data.Title#"> 
             <table class="ActivityTable">
                 <tr>                     
                     <td style="width: 10%;text-align: center;"  rowspan="3">
@@ -419,8 +420,15 @@
     </div>
             
     <!-- StreetView map -->        
-    <div data-role="view" id="streetViewMap" data-title="Mappa 3D" data-show="OnLoadStreetViewMap" data-layout="mobile-view" >
+    <div data-role="view" id="streetViewMap" data-title="Mappa attivita' 3D" data-show="OnLoadStreetViewMap" data-layout="mobile-view" >
          <div id="pano" style="width:100%; height:360px">
+             
+         </div>
+    </div>
+            
+     <!-- Google map -->        
+    <div data-role="view" id="googleMap" data-title="Mappa attivita'" data-show="OnLoadGoogleMap" data-layout="mobile-view" >
+         <div id="map" style="width:100%; height:360px">
              
          </div>
     </div>
