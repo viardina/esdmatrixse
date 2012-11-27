@@ -607,12 +607,12 @@ function GetPreference(IDCategory){
     return value;
 }
 
-function SetPreference(e){
+function SetPreference(IDCategory){
     var checkId="check"+IDCategory;
     var checked=document.getElementById(checkId).getAttribute("value");
     var value=(checked!=null?true:false);
     //window.localStorage.setItem('pushnotify'+IDCategory,value); 
-    alert(e.checked);
+    alert(IDCategory);
 }
 
 

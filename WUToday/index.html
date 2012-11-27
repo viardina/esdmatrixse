@@ -491,7 +491,7 @@
 				
 			<script type="text/x-kendo-template" id="itemTemplateSetting">   
 				<label>
-				<input id="check#=data.ID#" data-role="switch" #=GetPreference(data.ID)?"checked":""# onclick="alert('ok')" ></input>
+				<input id="check#=data.ID#" data-role="switch" #=GetPreference(data.ID)?"checked":""# onclick="SetPreference(#=data.ID#)" ></input>
 				#=data.Title#  
 				</label>                     
 			</script>
