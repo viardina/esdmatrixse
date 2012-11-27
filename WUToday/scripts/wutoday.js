@@ -302,16 +302,6 @@ function ShowCategories(IDApplication, search) {
     });
 }
 
-// Show categories in settings
-function ShowSettings() {
-    var dataSource = GetSettings(); 
-    $("#listViewSettings").kendoMobileListView({
-        dataSource: dataSource,
-        template: $("#itemTemplateSetting").text(),
-        headerTemplate: "<label>#:value#</label>"
-    });
-}
-
 // Show activities in listview
 function ShowActivities(IDCategory,search,latitude,longitude,region,country,city) {
     var dataSource = GetActivities(IDCategory,search,latitude,longitude,region,country,city);
@@ -369,10 +359,6 @@ function SearchOffersToday(IDActivity,search,today) {
     });
 }
 
-/*function OnLoadWaiting(e) {
-    e.view.element.find("[id=listViewCategories]").css("visibility", "hidden");
-}
-*/
 
 function OnLoadCategories(e) {
     var view=e.view;
@@ -387,7 +373,18 @@ function OnLoadActivities(e) {
     var title=view.params.title;
     SetTitle(title);
     var IDCategory=view.params.IDCategory;
-    ShowActivities(IDCategory, '', '', '', '', '', '');
+    var search='';
+    var region='';
+    var country='';
+    var city='';
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var latitude = position.coords.latitude;  
+        var longitude = position.coords.longitude; 
+        ShowActivities(IDCategory, search, latitude, longitude, region, country, city);
+    }, function (){
+        ShowActivities(IDCategory, search, latitude, longitude, region, country, city);
+    }); 
+    
 }
 
 function OnLoadOffers(e) {
@@ -421,7 +418,16 @@ function CloseSearch(){
 function SearchGlobal(){
     var search=document.getElementById('searchKey').value;
     app.navigate("#resultsOffers");
-    SearchActivities(-1,search, '', '', '', '', '');
+    var region='';
+    var country='';
+    var city='';
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var latitude = position.coords.latitude;  
+        var longitude = position.coords.longitude; 
+        SearchActivities(-1,search, latitude, longitude, region, country, city);
+    }, function (){
+        SearchActivities(-1,search, latitude, longitude, region, country, city);
+    }); 
     SearchOffers(-1,search)
     CloseSearch();
 }
@@ -459,17 +465,21 @@ function OnLoadGeocodesMap(e) {
     var addressDestination=view.params.address;
     var latitudeDestination=view.params.latitude;  
     var longitudeDestination=view.params.longitude;
-    var latitudeOrigin="39.31"; // da sostituire con il navigator.position
-    var longitudeOrigin="16.24";
-    ShowGeocodesMap(latitudeOrigin, longitudeOrigin, latitudeDestination, longitudeDestination,addressDestination);
-    var viewModel=kendo.observable({
-            latitude: latitudeDestination,
-            longitude: longitudeDestination,
-            StartStreetView: function(){               
-                app.navigate("#streetViewMap?latitude="+latitudeDestination+"&longitude="+longitudeDestination);
-            }
-        });
-    kendo.bind($("#geocodesMap"),viewModel);
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var latitudeOrigin = position.coords.latitude;  
+        var longitudeOrigin = position.coords.longitude; 
+        ShowGeocodesMap(latitudeOrigin, longitudeOrigin, latitudeDestination, longitudeDestination,addressDestination);
+        var viewModel=kendo.observable({
+                latitude: latitudeDestination,
+                longitude: longitudeDestination,
+                StartStreetView: function(){               
+                    app.navigate("#streetViewMap?latitude="+latitudeDestination+"&longitude="+longitudeDestination);
+                }
+            });
+        kendo.bind($("#geocodesMap"),viewModel);    
+    }, function (){
+
+    }); 
 }
 
 function ShowGeocodesMap(latitudeOrigin, longitudeOrigin, latitudeDestination, longitudeDestination, addressDestination){
@@ -547,11 +557,14 @@ var Location=function(title,latitude,longitude){
 
 
 function OnLoadGoogleMap(e){
-    //var view=e.view;
-    //var locations=view.params.locations;
-    var latitude="39.31";
-    var longitude="16.24";
-    ShowGoogleMap(locations,latitude,longitude);
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var latitude = position.coords.latitude;  
+        var longitude = position.coords.longitude; 
+        ShowGoogleMap(locations,latitude,longitude);
+    }, function (){
+
+    }); 
+   
 }
 
 function ShowGoogleMap(locations,latitude,longitude){
