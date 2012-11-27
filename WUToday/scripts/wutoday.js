@@ -130,7 +130,8 @@ function GetSettings() {
         schema: {
             data: ""  
         },
-        group: {field: "Application"}
+        group: {field: "Application"},
+        sort: {field: "Title", dir: "asc"}
     });
     return dataSource;
 }
@@ -529,9 +530,9 @@ var locations;
 function ShowMapActivities(){
     locations=new Array();
     $("#listViewActivities").children().each(function(index){
-        var title=($(this).find("a").attr('title'));
-        var latitude=($(this).find("a").attr('latitude'));
-        var longitude=($(this).find("a").attr('longitude'));        
+        var title=$(this).find("a").attr('title');
+        var latitude=$(this).find("a").attr('latitude');
+        var longitude=$(this).find("a").attr('longitude');        
         var location=new Location(title,latitude,longitude);
         locations.push(location);
     });
@@ -588,8 +589,32 @@ function ShowGoogleMap(locations,latitude,longitude){
 }
 
 function OnLoadSettings(){
-    ShowSettings();
+    var dataSource = GetSettings(); 
+    $("#listViewSettings").kendoMobileListView({
+        dataSource: dataSource,
+        template: $("#itemTemplateSetting").text(),
+        headerTemplate: "<label>#:value#</label>"
+    });
 }
+
+function GetPreference(IDCategory){
+    var value=window.localStorage.getItem('pushnotify'+IDCategory);
+    if(value==null)
+    {
+        value=true;
+        window.localStorage.setItem('pushnotify'+IDCategory,value); 
+    }
+    return value;
+}
+
+function SetPreference(e){
+    var checkId="check"+IDCategory;
+    var checked=document.getElementById(checkId).getAttribute("value");
+    var value=(checked!=null?true:false);
+    //window.localStorage.setItem('pushnotify'+IDCategory,value); 
+    alert(e.checked);
+}
+
 
 
 

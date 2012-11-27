@@ -1,458 +1,506 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>What's Up Today</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-    <script src="cordova.js"></script>
-    <script src="kendo/js/jquery.min.js"></script>
-    <script src="kendo/js/kendo.mobile.min.js"></script>
-    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
-    <script src="scripts/jquerywcf.js"></script>     
-    <script src="scripts/wutoday.js"></script>     
-    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
-    <link href="styles/Activities.css" rel="stylesheet" />        
-    <link href="styles/Offers.css" rel="stylesheet" />        
-    <link href="styles/Search.css" rel="stylesheet" />        
-    <link href="styles/Shared.css" rel="stylesheet" />        
-    <link href="styles/Rating.css" rel="stylesheet" />
-</head>
-<body>   
-    <!-- Main layout -->
-    <div data-role="layout" data-id="mobile-view" data-show="ToggleNavBarButtons">    
-        <header data-role="header">
-            <div data-role="navbar" id="navbar">
-                <table style="width:100%;">
-                    <tr>
-                        <td class="HeaderLeft">
-                            <a id="backButton" class="HeaderLeft" data-align="left" data-role="backbutton" data-icon="reply"></a>
-                            <a id="settingsButton" class="HeaderLeft" href="#settings" data-align="left" data-role="button" data-icon="settings"></a>
-                            
-                        </td>
-                        <td class="HeaderCenter">
-                            <img alt="" src="images/logo.png" class="ImageHeader" /></td>
-                        <td>                            
-                            <a id="mapButton" class="HeaderRight" data-align="right" data-click="ShowMapActivities" data-icon="globe" data-role="button"></a>
-                            <a id="homeButton" class="HeaderRight" data-align="right" data-click="GoToHome" data-icon="home" data-role="button"></a>
-                            <a id="searchButton" class="HeaderRight" data-align="right" href="#searchController" data-icon="search" data-role="button"></a>                            
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <!--<span id="titleView" data-role="view-title">The World in Hand...</span>-->
-        </header>
-        <div data-role="footer">
-        </div>
-    </div>
-    
-     <!-- View applications -->
-     <div data-role="view" id="applications" data-title="What's Up Today" data-layout="mobile-view">
-        <ul id="listViewApplications" data-role="listview"></ul>         
-    </div>
-       
-    <script id="itemTemplateApplication" type="text/x-kendo-template"> 
-        <a href="\#categories?IDApplication=#:data.ID#&title=#=data.Title#"> 
-        <div>
-            <table style="width: 100%; height: 100%;">
-                <tr>
-                    <td style="width: 50px;text-align: center;" rowspan="2">
-                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ItemIcon" />
-                    </td>
-                    <td style="width: 100%;">
-                        <strong>#=data.Title#</strong>
-                    </td>
-                    <td style="width: 20px;">
-                        <span class="inline-rating">
-                        <ul class="star-rating small-star">
-                    		<li class="current-rating" style="width:#=data.StatisticsRate#%"></li>                    		
-                    	</ul>	
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="height:30px" colspan="2" class="ItemSubDescription">
-                        Categorie (#=data.CategoriesCount#) | #=data.TopCategories#
-                    </td>
-                </tr>
-            </table> 
-         </div>  
-        </a>        
-    </script>    
-    
-     <!-- View categories --> 
-     <div data-role="view" id="categories" data-title="Categorie" data-layout="mobile-view" data-show="OnLoadCategories">
-        <ul id="listViewCategories" data-role="listview"></ul>         
-    </div>
-    
-     <script id="itemTemplateCategory" type="text/x-kendo-template">
-         <a href="\#activities?IDCategory=#:data.ID#&title=#=data.Title#"">
-         <div>
-            <table style="width: 100%; height: 100%;">
-                <tr>
-                    <td style="width: 50px;text-align: center;" rowspan="2">
-                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ItemIcon" />
-                    </td>
-                    <td style="width: 100%;">
-                        <strong>#=data.Title#</strong>
-                    </td>
-                    <td style="width: 20px;">
-                        <span class="inline-rating">
-                        <ul class="star-rating small-star">
-                    		<li class="current-rating" style="width:#=data.StatisticsRate#%"></li>                    		
-                    	</ul>	
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td  style="height:30px" colspan="2" class="ItemSubDescription">
-                        Attivita' (#=data.ActivitiesCount#) | #=data.TopActivities#
-                    </td>
-                </tr>
-            </table> 
-         </div>      
-        </a>    
-    </script>    
-    
-     <!-- View activities --> 
-     <div data-role="view" id="activities" data-title="Attivita'" data-layout="mobile-view" data-show="OnLoadActivities">
-        <ul id="listViewActivities" data-role="listview"></ul>         
-    </div>
-    
-    <script id="itemTemplateActivity" type="text/x-kendo-template">         
-        <a id="#=data.ID#" latitude="#=data.Latitude#" longitude="#=data.Longitude#" title="#=data.Title#" address="#=data.Address#"
-            href="\#activityInfo?IDActivity=#:data.ID#&title=#=data.Title#"> 
-            <table class="ActivityTable">
-                <tr>                     
-                    <td style="width: 10%;text-align: center;"  rowspan="3">
-                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityItemIcon" />
-                    </td>
-                    <td class="ActivityTitle" colspan="2">
-                        <strong>#=data.Title#</strong>
-                    </td>                         
-                </tr>
-                <tr>
-                    <td class="ActivitySubAddress" colspan="5">
-                        #=data.Address#
-                    </td>
-                </tr>                     
-                <tr>                                
-                    <td class="ActivityInfo">
-                        <img alt="" src="images/info.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Info)#" /></td>
-                    <td class="ActivityInfo">
-                        <img alt="" src="images/mail.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Email)#" /></td>
-                    <td class="ActivityInfo">
-                        <img alt="" src="images/phone.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Phone)#" /></td>
-                    <td class="ActivityInfo">
-                        <img alt="" src="images/web.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Web)#" /></td>
-                    <td class="ActivitySubDescription" style="text-align:right;">
-                        <a id="offersDetail" href="\#offers?IDActivity=#:data.ID#&title=#=data.Title#" data-role="button"  style="display:#=GetActivityDisplayOffersDetail(data.OffersCount)#;">Offerte (#=data.OffersCount#)</a>
-                    </td>    
-                </tr>
-             </table>                                           
-        </a> 
-    </script>    
-    
-    <!-- View offers/events --> 
-     <div data-role="view" id="offers" data-title="Offerte-Eventi" data-layout="mobile-view" data-show="OnLoadOffers">
-        <ul id="listViewOffers" data-role="listview"></ul>         
-    </div>
-    
-     <script id="itemTemplateOffer" type="text/x-kendo-template">
-         <a href="\#offerInfo?IDOffer=#:data.ID#&title=#=data.Title#">
-         <div>
-            <table class="OfferTable">
-                <tr>
-                    <td style="width: 64px;height:64px;text-align: center;" rowspan="3">
-                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="OfferItemIcon"/>
-                    </td>
-                    <td style="padding-left: 10px;" class="OfferTitle">
-                        <strong>#=data.Title#</strong>
-                     </td>
-                </tr>
-                <tr>
-                    <td style="width: 100%; padding-left: 10px;" class="OfferDescription">
-                        #=data.ShortDescription#
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 100%; padding-left: 10px;" class="OfferPeriod">
-                        #=data.Period#
-                    </td>
-                </tr>
-            </table> 
-         </div>          
-         </a>
-    </script>    
-    
-     <!-- View activity info --> 
-     <div data-role="view" id="activityInfo" data-title="Info Attività" data-layout="mobile-view" data-show="OnLoadActivityInfo">
-          <div>
-        <table class="ActivityDetailsTable">
-            <tr>
-                <td class="ActivityDetailsTitle" data-bind="text: title" colspan="4">
-                    Titolo</td>
-            </tr>
-            <tr>
-                <td class="ActivityDetailsSubTitle" data-bind="text: address" colspan="4">
-                    Indirizzo</td>
-            </tr>
-            <tr>
-                <td style="text-align: center" colspan="4">
-                     <img alt="" data-bind="attr: {src: icon}" class="ActivityDetailsItemIcon" /></td>
-            </tr>
-            <tr data-bind="style: {opacity: emailOpacity}">
-                <td  rowspan="4" style="width:15%">
-                    </td>
-                <td class="ActivityDetailsIconContainerInfo" >
-                    <img class="ActivityDetailsInfoIcon" alt="" src="images/mail.png" data-bind="click: StartEmail"/></td>
-                <td class="ActivityDetailsInfo" >
-                    <div data-bind="text: email, click: StartEmail">Email</div></td>
-                <td  rowspan="4" style="width:15%">
-                    &nbsp;</td>
-            </tr>
-            <tr data-bind="style: {opacity: phoneOpacity}">
-                <td class="ActivityDetailsIconContainerInfo" >
-                    <img class="ActivityDetailsInfoIcon" alt="" src="images/phone.png" data-bind="click: StartPhone"/></td>
-                <td class="ActivityDetailsInfo">
-                   <div data-bind="text: phone, click: StartPhone"> Telefono</div></td>
-            </tr>
-            <tr data-bind="style: {opacity: webOpacity}">
-                <td class="ActivityDetailsIconContainerInfo" >
-                    <img class="ActivityDetailsInfoIcon" alt="" src="images/web.png" data-bind="click: StartWeb"/></td>
-                <td class="ActivityDetailsInfo">
-                    <div data-bind="text: web, click: StartWeb">Web</div></td>
-            </tr>
-            <tr data-bind="style: {opacity: mapOpacity}">
-                <td class="ActivityDetailsIconContainerInfo" >
-                    <img class="ActivityDetailsInfoIcon" alt="" src="images/maps.png" data-bind="click: StartMap" /></td>
-                <td class="ActivityDetailsInfo">
-                    <div data-bind="click: StartMap">Come raggiungerci</div></td>
-            </tr>
-            <tr>
-                <td class="ActivityDetailsSubTitle" colspan="4" >
-                    &nbsp;</td>
-            </tr>
-            <tr>
-            
-               <td  class="ActivityDetailsInfoContainer" colspan="4" >
-                  <div class="ActivityDetailsJustified" data-bind="text: info">Informazioni</div></td>
-            
-            </tr>
-        </table>
-        </div>           
-    </div>
-    
-    <!-- View offer info --> 
-     <div data-role="view" id="offerInfo" data-title="Info Offerte" data-layout="mobile-view" data-show="OnLoadOfferInfo">
-        <div>
-        <table class="OfferDetailsTable">                                    
-            <tr>
-                <td class="OfferDetailsTitle" data-bind="text: activityTitle">
-                    Attivita'</td>
-            </tr>
-            <tr>
-                <td class="OfferDetailsPeriod" data-bind="text: period">
-                   Periodo</td>
-            </tr>
-            <tr>
-                <td>
-                    <img alt="" data-bind="attr: {src: icon}" class="OfferDetailsItemIcon" /></td>
-            </tr>
-            <tr><td><br></td></tr>
-            <tr>
-                <td class="OfferDetailsTitle" data-bind="text: title">
-                    Titolo</td>
-            </tr>
-            <tr>
-                <td class="OfferDetailsDescription">
-                     <div class="ActivityDetailsJustified" data-bind="text: description">Descrizione</div></td>
-            </tr>
-            
-        </table>
-        </div>
-    </div>    
-    
-    <!-- Search view -->
-    <div data-role="view" id="searchController" data-layout="mobile-view" style="width: 100%; height: 100%;">
-        <div>
-        <br><br>
-        <table style="width: 100%;">
-            <tr>
-                <td colspan="2" class="SearchTitleContainer">
-                    Cosa stai cercando oggi?                 
-                </td>
-            </tr>
-               
-            <tr>
-                <td colspan="2" class="SearchBoxContainer">
-                <input id="searchKey" type="text" onkeypress="if(event.keyCode==13){SearchGlobal()}"/><br /><br /></td>
-            </tr>
-            
-            <tr>
-                <td class="EventImageContainer" rowspan="2">
-                   <div onclick="SearchToday()"><img alt="" src="images/eventDay.png" class="EventImage" /></div> </td>
-                <td>
-                <div onclick="SearchToday()"><strong class="SearchSubTitleContainer">Eventi del giorno</strong></div></td>
-            </tr>
-            <tr>
-                <td class="SearchSubDescriptionContainer">
-                            <div onclick="SearchToday()" class="SearchDescription">Scopri cosa c'e' oggi, spettacoli, serate, offerte ed eventi programmati per la 
-                            giornata odierna ...<br /><br /></div></td>
-            </tr>
-              
-            <tr>
-                <td class="EventImageContainer" rowspan="2">
-                   <div onclick="SearchWeekly()"><img alt="" src="images/eventWeek.png" class="EventImage" /></div></td>
-                <td>
-                   <div onclick="SearchWeekly()"><strong class="SearchSubTitleContainer">Eventi della settimana</strong></div></td>
-            </tr>
-            <tr>
-                <td class="SearchSubDescriptionContainer">
-                            <div onclick="SearchWeekly()" class="SearchDescription">Visualizza tutti gli eventi di questa settimana e programma la tua serata 
-                            preferita ...<br /><br /></div></td>
-            </tr>
-            <tr>
-                <td class="EventImageContainer" rowspan="2">
-                            <img alt="" src="images/ar.png" class="EventImage" /></td>
-                <td>
-                            <strong class="SearchSubTitleContainer">Cerca in 3D</strong></td>
-            </tr>
-            <tr>
-                <td class="SearchSubDescriptionContainer">
-                            <div class="SearchDescription">Attiva la realta' aumentata, inquadra una vetrina, un teatro o una discoteca e 
-                            scopri gli eventi e le offerte ...<br /><br /></div></td>
-            </tr>
-        </table>    
-      </div>    
-    </div>   
+	<head>
+		<title>What's Up Today</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+		<script src="cordova.js"></script>
+		<script src="kendo/js/jquery.min.js"></script>
+		<script src="kendo/js/kendo.mobile.min.js"></script>
+		<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+		<script src="scripts/jquerywcf.js"></script>
+		<script src="scripts/wutoday.js"></script>
+		<link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+		<link href="styles/Activities.css" rel="stylesheet" />
+		<link href="styles/Offers.css" rel="stylesheet" />
+		<link href="styles/Search.css" rel="stylesheet" />
+		<link href="styles/Shared.css" rel="stylesheet" />
+		<link href="styles/Rating.css" rel="stylesheet" />
+	</head>
+	<body>
+		<!-- Main layout -->
+		<div data-role="layout" data-id="mobile-view" data-show="ToggleNavBarButtons">
+			<header data-role="header">
+				<div data-role="navbar" id="navbar">
+					<table style="width:100%;">
+						<tr>
+							<td class="HeaderLeft">
+								<a id="backButton" class="HeaderLeft" data-align="left" data-role="backbutton" data-icon="reply"></a>
+								<a id="settingsButton" class="HeaderLeft" href="#settings" data-align="left" data-role="button" data-icon="settings"></a>
 
-    
-    <!-- Results events and offers-->
-    <div data-role="view" id="resultsOffers" data-title="Offerte ed eventi trovati..." data-layout="mobile-view" >       
-        <div style="width:150px; margin:auto;">
-        <ul id="resultsOffersGroup" data-role="buttongroup" data-index="0" data-select="OnResultsOffersSelected">
-            <li>Eventi ed offerte</li>
-            <li>Attivita'</li>
-        </ul>        
-        </div>             
-        <ul id="listViewResultsOffers" data-role="listview">       
-        </ul>
-        
-        <script id="itemTemplateResultOffer" type="text/x-kendo-template">
-         <a href="\#offerInfo?IDOffer=#:data.ID#&title=#=data.Title#">
-         <div>
-            <table class="OfferTable">
-                <tr>
-                    <td style="width: 64px;height:64px;text-align: center;" rowspan="3">
-                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="OfferItemIcon"/>
-                    </td>
-                    <td style="padding-left: 10px;" class="OfferTitle">
-                        <strong>#=data.Title#</strong>
-                     </td>
-                </tr>
-                <tr>
-                    <td style="width: 100%; padding-left: 10px;" class="OfferDescription">
-                        #=data.ShortDescription#
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 100%; padding-left: 10px;" class="OfferPeriod">
-                        #=data.Period#
-                    </td>
-                </tr>
-            </table> 
-         </div>          
-         </a>
-    </script>                     
-    </div>
-        
-    <!-- Results activities -->
-    <div data-role="view" id="resultsActivities" data-title="Attivita' trovate..." data-layout="mobile-view">       
-        <div style="width:150px; margin:auto;">
-        <ul id="resultsActivitiesGroup" data-role="buttongroup" data-index="1" data-select="OnResultsActivitiesSelected">
-            <li>Eventi ed offerte</li>
-            <li>Attivita'</li>
-        </ul>       
-        </div>
-                        
-        <ul id="listViewResultsActivities" data-role="listview">    
-        </ul>
-            
-        <script id="itemTemplateResultActivity" type="text/x-kendo-template">         
-        <a href="\#activityInfo?IDActivity=#:data.ID#&title=#=data.Title#"> 
-            <table class="ActivityTable">
-                <tr>                     
-                    <td style="width: 10%;text-align: center;"  rowspan="3">
-                        <img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityItemIcon" />
-                    </td>
-                    <td class="ActivityTitle" colspan="2">
-                        <strong>#=data.Title#</strong>
-                    </td>                         
-                </tr>
-                <tr>
-                    <td class="ActivitySubAddress" colspan="5">
-                        #=data.Address#
-                    </td>
-                </tr>                     
-                <tr>                                
-                    <td class="ActivityInfo">
-                        <img alt="" src="images/info.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Info)#" /></td>
-                    <td class="ActivityInfo">
-                        <img alt="" src="images/mail.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Email)#" /></td>
-                    <td class="ActivityInfo">
-                        <img alt="" src="images/phone.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Phone)#" /></td>
-                    <td class="ActivityInfo">
-                        <img alt="" src="images/web.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Web)#" /></td>
-                    <td class="ActivitySubDescription" style="text-align:right;">
-                        <a id="offersDetail" href="\#offers?IDActivity=#:data.ID#&title=#=data.Title#" data-role="button"  style="display:#=GetActivityDisplayOffersDetail(data.OffersCount)#;">Offerte (#=data.OffersCount#)</a>
-                    </td>    
-                </tr>
-             </table>                                           
-        </a> 
-    </script>                                            
+							</td>
+							<td class="HeaderCenter">
+								<img alt="" src="images/logo.png" class="ImageHeader" />
+							</td>
+							<td>
+								<a id="mapButton" class="HeaderRight" data-align="right" data-click="ShowMapActivities" data-icon="globe" data-role="button"></a>
+								<a id="homeButton" class="HeaderRight" data-align="right" data-click="GoToHome" data-icon="home" data-role="button"></a>
+								<a id="searchButton" class="HeaderRight" data-align="right" href="#searchController" data-icon="search" data-role="button"></a>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<!--<span id="titleView" data-role="view-title">The World in Hand...</span>-->
+			</header>
+			<div data-role="footer">
+			</div>
+		</div>
 
-    </div>
-                     
-            
-    <!-- Geocodes map -->        
-    <div data-role="view" id="geocodesMap" data-title="Come raggiungerci..." data-show="OnLoadGeocodesMap" data-layout="mobile-view">
-         <a id="streetView3D" class="HeaderRight" data-icon="camera" data-role="button" data-bind="click: StartStreetView">Visualizza Mappa 3D</a>
-         <div id="map_canvas" style="width:100%; height:360px">
-             
-         </div>
-    </div>
-            
-    <!-- StreetView map -->        
-    <div data-role="view" id="streetViewMap" data-title="Mappa attivita' 3D" data-show="OnLoadStreetViewMap" data-layout="mobile-view" >
-         <div id="pano" style="width:100%; height:360px">
-             
-         </div>
-    </div>
-            
-     <!-- Google map -->        
-    <div data-role="view" id="googleMap" data-title="Mappa attivita'" data-show="OnLoadGoogleMap" data-layout="mobile-view" >
-         <div id="map" style="width:100%; height:360px">
-             
-         </div>
-    </div>
-             
-            
-     <!-- Settings -->        
-    <div data-role="view" id="settings" data-title="Impostazioni" data-show="OnLoadSettings" data-layout="mobile-view" >
-         <ul id="listViewSettings" data-role="listview" data-type="group" data-style="inset"></ul>
-        
-        <script type="text/x-kendo-template" id="itemTemplateSetting">   
-            <label>
-                <input type="checkbox" checked="checked" ></input>
-                #=data.Title#
-            </label>                     
-        </script>
-    </div>            
-    
-    <!-- Script start application-->    
-    <script>
-        var app = new kendo.mobile.Application(document.body, { transition: "slide", layout: "mobile-view" });
-    </script>
-    
-</body>
+		<!-- View applications -->
+		<div data-role="view" id="applications" data-title="What's Up Today" data-layout="mobile-view">
+			<ul id="listViewApplications" data-role="listview"></ul>
+		</div>
+
+		<script id="itemTemplateApplication" type="text/x-kendo-template"> 
+			<a href="\#categories?IDApplication=#:data.ID#&title=#=data.Title#"> 
+			<div>
+			<table style="width: 100%; height: 100%;">
+			<tr>
+			<td style="width: 50px;text-align: center;" rowspan="2">
+			<img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ItemIcon" />
+			</td>
+			<td style="width: 100%;">
+			<strong>#=data.Title#</strong>
+			</td>
+			<td style="width: 20px;">
+			<span class="inline-rating">
+			<ul class="star-rating small-star">
+			<li class="current-rating" style="width:#=data.StatisticsRate#%"></li>                    		
+			</ul>	
+			</span>
+			</td>
+			</tr>
+			<tr>
+			<td style="height:30px" colspan="2" class="ItemSubDescription">
+			Categorie (#=data.CategoriesCount#) | #=data.TopCategories#
+			</td>
+			</tr>
+			</table> 
+			</div>  
+			</a>        
+		</script>
+
+		<!-- View categories -->
+		<div data-role="view" id="categories" data-title="Categorie" data-layout="mobile-view" data-show="OnLoadCategories">
+			<ul id="listViewCategories" data-role="listview"></ul>
+		</div>
+
+		<script id="itemTemplateCategory" type="text/x-kendo-template">
+			<a href="\#activities?IDCategory=#:data.ID#&title=#=data.Title#"">
+			<div>
+			<table style="width: 100%; height: 100%;">
+			<tr>
+			<td style="width: 50px;text-align: center;" rowspan="2">
+			<img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ItemIcon" />
+			</td>
+			<td style="width: 100%;">
+			<strong>#=data.Title#</strong>
+			</td>
+			<td style="width: 20px;">
+			<span class="inline-rating">
+			<ul class="star-rating small-star">
+			<li class="current-rating" style="width:#=data.StatisticsRate#%"></li>                    		
+			</ul>	
+			</span>
+			</td>
+			</tr>
+			<tr>
+			<td  style="height:30px" colspan="2" class="ItemSubDescription">
+			Attivita' (#=data.ActivitiesCount#) | #=data.TopActivities#
+			</td>
+			</tr>
+			</table> 
+			</div>      
+			</a>    
+		</script>
+
+		<!-- View activities -->
+		<div data-role="view" id="activities" data-title="Attivita'" data-layout="mobile-view" data-show="OnLoadActivities">
+			<ul id="listViewActivities" data-role="listview"></ul>
+		</div>
+
+		<script id="itemTemplateActivity" type="text/x-kendo-template">         
+			<a id="#=data.ID#" latitude="#=data.Latitude#" longitude="#=data.Longitude#" title="#=data.Title#" address="#=data.Address#"
+			href="\#activityInfo?IDActivity=#:data.ID#&title=#=data.Title#"> 
+			<table class="ActivityTable">
+			<tr>                     
+			<td style="width: 10%;text-align: center;"  rowspan="3">
+			<img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityItemIcon" />
+			</td>
+			<td class="ActivityTitle" colspan="2">
+			<strong>#=data.Title#</strong>
+			</td>                         
+			</tr>
+			<tr>
+			<td class="ActivitySubAddress" colspan="5">
+			#=data.Address#
+			</td>
+			</tr>                     
+			<tr>                                
+			<td class="ActivityInfo">
+			<img alt="" src="images/info.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Info)#" /></td>
+			<td class="ActivityInfo">
+			<img alt="" src="images/mail.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Email)#" /></td>
+			<td class="ActivityInfo">
+			<img alt="" src="images/phone.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Phone)#" /></td>
+			<td class="ActivityInfo">
+			<img alt="" src="images/web.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Web)#" /></td>
+			<td class="ActivitySubDescription" style="text-align:right;">
+			<a id="offersDetail" href="\#offers?IDActivity=#:data.ID#&title=#=data.Title#" data-role="button"  style="display:#=GetActivityDisplayOffersDetail(data.OffersCount)#;">Offerte (#=data.OffersCount#)</a>
+			</td>    
+			</tr>
+			</table>                                           
+			</a> 
+		</script>
+
+		<!-- View offers/events -->
+		<div data-role="view" id="offers" data-title="Offerte-Eventi" data-layout="mobile-view" data-show="OnLoadOffers">
+			<ul id="listViewOffers" data-role="listview"></ul>
+		</div>
+
+		<script id="itemTemplateOffer" type="text/x-kendo-template">
+			<a href="\#offerInfo?IDOffer=#:data.ID#&title=#=data.Title#">
+			<div>
+			<table class="OfferTable">
+			<tr>
+			<td style="width: 64px;height:64px;text-align: center;" rowspan="3">
+			<img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="OfferItemIcon"/>
+			</td>
+			<td style="padding-left: 10px;" class="OfferTitle">
+			<strong>#=data.Title#</strong>
+			</td>
+			</tr>
+			<tr>
+			<td style="width: 100%; padding-left: 10px;" class="OfferDescription">
+			#=data.ShortDescription#
+			</td>
+			</tr>
+			<tr>
+			<td style="width: 100%; padding-left: 10px;" class="OfferPeriod">
+			#=data.Period#
+			</td>
+			</tr>
+			</table> 
+			</div>          
+			</a>
+		</script>
+
+		<!-- View activity info -->
+		<div data-role="view" id="activityInfo" data-title="Info Attività" data-layout="mobile-view" data-show="OnLoadActivityInfo">
+			<div>
+				<table class="ActivityDetailsTable">
+					<tr>
+						<td class="ActivityDetailsTitle" data-bind="text: title" colspan="4">
+							Titolo
+						</td>
+					</tr>
+					<tr>
+						<td class="ActivityDetailsSubTitle" data-bind="text: address" colspan="4">
+							Indirizzo
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align: center" colspan="4">
+							<img alt="" data-bind="attr: {src: icon}" class="ActivityDetailsItemIcon" />
+						</td>
+					</tr>
+					<tr data-bind="style: {opacity: emailOpacity}">
+						<td  rowspan="4" style="width:15%">
+						</td>
+						<td class="ActivityDetailsIconContainerInfo" >
+							<img class="ActivityDetailsInfoIcon" alt="" src="images/mail.png" data-bind="click: StartEmail"/>
+						</td>
+						<td class="ActivityDetailsInfo" >
+							<div data-bind="text: email, click: StartEmail">Email</div>
+						</td>
+						<td  rowspan="4" style="width:15%">
+							&nbsp;
+						</td>
+					</tr>
+					<tr data-bind="style: {opacity: phoneOpacity}">
+						<td class="ActivityDetailsIconContainerInfo" >
+							<img class="ActivityDetailsInfoIcon" alt="" src="images/phone.png" data-bind="click: StartPhone"/>
+						</td>
+						<td class="ActivityDetailsInfo">
+							<div data-bind="text: phone, click: StartPhone"> Telefono</div>
+						</td>
+					</tr>
+					<tr data-bind="style: {opacity: webOpacity}">
+						<td class="ActivityDetailsIconContainerInfo" >
+							<img class="ActivityDetailsInfoIcon" alt="" src="images/web.png" data-bind="click: StartWeb"/>
+						</td>
+						<td class="ActivityDetailsInfo">
+							<div data-bind="text: web, click: StartWeb">Web</div>
+						</td>
+					</tr>
+					<tr data-bind="style: {opacity: mapOpacity}">
+						<td class="ActivityDetailsIconContainerInfo" >
+							<img class="ActivityDetailsInfoIcon" alt="" src="images/maps.png" data-bind="click: StartMap" />
+						</td>
+						<td class="ActivityDetailsInfo">
+							<div data-bind="click: StartMap">Come raggiungerci</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="ActivityDetailsSubTitle" colspan="4" >
+							&nbsp;
+						</td>
+					</tr>
+					<tr>
+
+						<td  class="ActivityDetailsInfoContainer" colspan="4" >
+							<div class="ActivityDetailsJustified" data-bind="text: info">Informazioni</div>
+						</td>
+
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- View offer info -->
+		<div data-role="view" id="offerInfo" data-title="Info Offerte" data-layout="mobile-view" data-show="OnLoadOfferInfo">
+			<div>
+				<table class="OfferDetailsTable">
+					<tr>
+						<td class="OfferDetailsTitle" data-bind="text: activityTitle">
+							Attivita'
+						</td>
+					</tr>
+					<tr>
+						<td class="OfferDetailsPeriod" data-bind="text: period">
+							Periodo
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img alt="" data-bind="attr: {src: icon}" class="OfferDetailsItemIcon" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<br>
+						</td>
+					</tr>
+					<tr>
+						<td class="OfferDetailsTitle" data-bind="text: title">
+							Titolo
+						</td>
+					</tr>
+					<tr>
+						<td class="OfferDetailsDescription">
+							<div class="ActivityDetailsJustified" data-bind="text: description">Descrizione</div>
+						</td>
+					</tr>
+
+				</table>
+			</div>
+		</div>
+
+		<!-- Search view -->
+		<div data-role="view" id="searchController" data-layout="mobile-view" style="width: 100%; height: 100%;">
+			<div>
+				<br><br>
+				<table style="width: 100%;">
+					<tr>
+						<td colspan="2" class="SearchTitleContainer">
+							Cosa stai cercando oggi?
+						</td>
+					</tr>
+
+					<tr>
+						<td colspan="2" class="SearchBoxContainer">
+							<input id="searchKey" type="text" onkeypress="if (event.keyCode == 13) {
+								SearchGlobal()
+							}"/><br /><br />
+						</td>
+					</tr>
+						
+					<tr>
+						<td class="EventImageContainer" rowspan="2">
+							<div onclick="SearchToday()">
+								<img alt="" src="images/eventDay.png" class="EventImage" />
+							</div>
+						</td>
+						<td>
+							<div onclick="SearchToday()">
+								<strong class="SearchSubTitleContainer">Eventi del giorno</strong>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="SearchSubDescriptionContainer">
+							<div onclick="SearchToday()" class="SearchDescription">
+								Scopri cosa c'e' oggi, spettacoli, serate, offerte ed eventi programmati per la
+								giornata odierna ...<br /><br />
+							</div>
+						</td>
+					</tr>
+						
+					<tr>
+						<td class="EventImageContainer" rowspan="2">
+							<div onclick="SearchWeekly()">
+								<img alt="" src="images/eventWeek.png" class="EventImage" />
+							</div>
+						</td>
+						<td>
+							<div onclick="SearchWeekly()">
+								<strong class="SearchSubTitleContainer">Eventi della settimana</strong>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="SearchSubDescriptionContainer">
+							<div onclick="SearchWeekly()" class="SearchDescription">
+								Visualizza tutti gli eventi di questa settimana e programma la tua serata
+								preferita ...<br /><br />
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="EventImageContainer" rowspan="2">
+							<img alt="" src="images/ar.png" class="EventImage" />
+						</td>
+						<td>
+							<strong class="SearchSubTitleContainer">Cerca in 3D</strong>
+						</td>
+					</tr>
+					<tr>
+						<td class="SearchSubDescriptionContainer">
+							<div class="SearchDescription">
+								Attiva la realta' aumentata, inquadra una vetrina, un teatro o una discoteca e
+								scopri gli eventi e le offerte ...<br /><br />
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<!-- Results events and offers-->
+		<div data-role="view" id="resultsOffers" data-title="Offerte ed eventi trovati..." data-layout="mobile-view" >
+			<div style="width:150px; margin:auto;">
+				<ul id="resultsOffersGroup" data-role="buttongroup" data-index="0" data-select="OnResultsOffersSelected">
+					<li>Eventi ed offerte</li>
+					<li>Attivita'</li>
+				</ul>
+			</div>
+			<ul id="listViewResultsOffers" data-role="listview">
+			</ul>
+				
+			<script id="itemTemplateResultOffer" type="text/x-kendo-template">
+				<a href="\#offerInfo?IDOffer=#:data.ID#&title=#=data.Title#">
+				<div>
+				<table class="OfferTable">
+				<tr>
+				<td style="width: 64px;height:64px;text-align: center;" rowspan="3">
+				<img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="OfferItemIcon"/>
+				</td>
+				<td style="padding-left: 10px;" class="OfferTitle">
+				<strong>#=data.Title#</strong>
+				</td>
+				</tr>
+				<tr>
+				<td style="width: 100%; padding-left: 10px;" class="OfferDescription">
+				#=data.ShortDescription#
+				</td>
+				</tr>
+				<tr>
+				<td style="width: 100%; padding-left: 10px;" class="OfferPeriod">
+				#=data.Period#
+				</td>
+				</tr>
+				</table> 
+				</div>          
+				</a>
+			</script>
+		</div>
+		
+		<!-- Results activities -->
+		<div data-role="view" id="resultsActivities" data-title="Attivita' trovate..." data-layout="mobile-view">
+			<div style="width:150px; margin:auto;">
+				<ul id="resultsActivitiesGroup" data-role="buttongroup" data-index="1" data-select="OnResultsActivitiesSelected">
+					<li>Eventi ed offerte</li>
+					<li>Attivita'</li>
+				</ul>
+			</div>
+			
+			<ul id="listViewResultsActivities" data-role="listview">
+			</ul>
+				
+			<script id="itemTemplateResultActivity" type="text/x-kendo-template">     
+				<a id="#=data.ID#" latitude="#=data.Latitude#" longitude="#=data.Longitude#" title="#=data.Title#" address="#=data.Address#"    
+				href="\#activityInfo?IDActivity=#:data.ID#&title=#=data.Title#"> 
+				<table class="ActivityTable">
+				<tr>                     
+				<td style="width: 10%;text-align: center;"  rowspan="3">
+				<img alt="" src="http://www.whatsuptoday.it/resources/images/#=data.Icon#" class="ActivityItemIcon" />
+				</td>
+				<td class="ActivityTitle" colspan="2">
+				<strong>#=data.Title#</strong>
+				</td>                         
+				</tr>
+				<tr>
+				<td class="ActivitySubAddress" colspan="5">
+				#=data.Address#
+				</td>
+				</tr>                     
+				<tr>                                
+				<td class="ActivityInfo">
+				<img alt="" src="images/info.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Info)#" /></td>
+				<td class="ActivityInfo">
+				<img alt="" src="images/mail.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Email)#" /></td>
+				<td class="ActivityInfo">
+				<img alt="" src="images/phone.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Phone)#" /></td>
+				<td class="ActivityInfo">
+				<img alt="" src="images/web.png" class="ActivityIcon" style="opacity: #=GetActivityIconOpacity(data.Web)#" /></td>
+				<td class="ActivitySubDescription" style="text-align:right;">
+				<a id="offersDetail" href="\#offers?IDActivity=#:data.ID#&title=#=data.Title#" data-role="button"  style="display:#=GetActivityDisplayOffersDetail(data.OffersCount)#;">Offerte (#=data.OffersCount#)</a>
+				</td>    
+				</tr>
+				</table>                                           
+				</a> 
+			</script>
+
+		</div>
+		
+		<!-- Geocodes map -->
+		<div data-role="view" id="geocodesMap" data-title="Come raggiungerci..." data-show="OnLoadGeocodesMap" data-layout="mobile-view">
+			<a id="streetView3D" class="HeaderRight" data-icon="camera" data-role="button" data-bind="click: StartStreetView">Visualizza Mappa 3D</a>
+			<div id="map_canvas" style="width:100%; height:360px">
+		
+			</div>
+		</div>
+		
+		<!-- StreetView map -->
+		<div data-role="view" id="streetViewMap" data-title="Mappa attivita' 3D" data-show="OnLoadStreetViewMap" data-layout="mobile-view" >
+			<div id="pano" style="width:100%; height:360px">
+		
+			</div>
+		</div>
+		
+		<!-- Google map -->
+		<div data-role="view" id="googleMap" data-title="Mappa attivita'" data-show="OnLoadGoogleMap" data-layout="mobile-view" >
+			<div id="map" style="width:100%; height:360px">
+		
+			</div>
+		</div>
+		
+		<!-- Settings -->
+		<div data-role="view" id="settings" data-title="Impostazioni" data-show="OnLoadSettings" data-layout="mobile-view" >
+			<ul id="listViewSettings" data-role="listview" data-type="group" data-style="inset"></ul>
+				
+			<script type="text/x-kendo-template" id="itemTemplateSetting">   
+				<label>
+				<input id="check#=data.ID#" data-role="switch" #=GetPreference(data.ID)?"checked":""# onclick="alert('ok')" ></input>
+				#=data.Title#  
+				</label>                     
+			</script>
+		</div>
+		
+		<!-- Script start application-->
+		<script>
+			var app = new kendo.mobile.Application(document.body, { transition: "slide", layout: "mobile-view" });
+		</script>
+
+	</body>
 </html>
