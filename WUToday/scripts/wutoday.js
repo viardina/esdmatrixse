@@ -494,7 +494,7 @@ function ShowStreetViewMap(latitude,longitude) {
 
 function ShowMapActivities(){
     $("#listViewActivities").children().each(function(index){
-        alert($(this).html());
+        alert($(this).find("a").attr('id'));
     });
 }
 
