@@ -17,6 +17,7 @@
 		<link href="styles/Search.css" rel="stylesheet" />
 		<link href="styles/Shared.css" rel="stylesheet" />
 		<link href="styles/Rating.css" rel="stylesheet" />
+        <link href="styles/Settings.css" rel="stylesheet" />
 	</head>
 	<body>
 		<!-- Main layout -->
@@ -43,13 +44,15 @@
                 </div>
                    
                  <div class="HeaderLogo">
+                     <a href="#about">
                     <img alt="" src="images/logo.png" style="vertical-align: middle; width:24px;height:24px;" />
-                        <a style="vertical-align: middle">WHAT'S UP TODAY</a>
-                </div>            
+                        <a style="vertical-align: middle" href="#about">WHAT'S UP TODAY</a>
+                    </a>
+                 </div>            
              </header>
             
             <div data-role="footer" style="width:100%; height:42px; text-align:center;">
-                <img id="bannerController" style="width:320px; height:42px" src="" />
+                <img id="bannerController" style="width:320px; height:42px" src="" alt="Caricamento..." class="Footer"/>
     		</div>        
     			
 		</div>
@@ -514,7 +517,7 @@
 			<ul id="listViewSettings" data-role="listview" data-type="group" data-style="inset"></ul>
 				
 			<script type="text/x-kendo-template" id="itemTemplateSetting">   
-				<label id="lblCheck#=data.ID#" style="opacity: #=GetPreference(data.ID)?1:0.25#">  
+				<label id="lblCheck#=data.ID#" class="SettingItem" style="opacity: #=GetPreferenceOpacity(GetPreference(data.ID))#">  
 				<input id="check#=data.ID#" type="checkbox" #= GetPreference(data.ID)?checked="checked":"" # onclick="SetPreference(#=data.ID#)" ></input>			
 				      #=data.Title#  
                 </label>             
@@ -529,6 +532,34 @@
 			</div>
 		</div>                   
 		
+                              
+        <!-- About -->
+       <div data-role="view" id="about" data-title="Informazioni" data-layout="mobile-view">         
+            <div style="height=360px;">
+            <table align="center" style="width: 100%; height: 300px;">
+                
+                <tr>
+                    <td class="AboutContent" height="5%">
+                        Versione 1.0</td>
+                </tr>
+                <tr>
+                    <td class="AboutContentTitle">
+                        A2D srl<br />
+                        <a href="http://www.whatustoday.it">www.whatustoday.it</a><br />
+                        <a href="mailto:info@whatustoday.it">info@whatustoday.it</a></td>
+                </tr>
+                <tr>
+                    <td class="AboutContent" height="5%">
+                        Comunicazione integrata : Vircillo &amp; Succurro</td>
+                </tr>
+                <tr>
+                    <td class="AboutContent" height="5%">
+                        Sviluppo: ESD, Matrix S.E., AI First srl</td>
+                </tr>
+            </table>
+            </div>            
+        </div>                    
+                    
 		<!-- Script start application-->
 		<script>
 			var app = new kendo.mobile.Application(document.body, { transition: "slide", layout: "mobile-view" });

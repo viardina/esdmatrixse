@@ -1,0 +1,16 @@
+/* Settings style */
+
+.SettingItem
+{
+    text-align: left;
+    font-family: HelveticaNeue, Roboto, 'Myriad Pro', 'Nokia Pure', Arial, sans-serif;
+    font-size: 0.9em;
+    font-weight: normal;
+    font-style: normal;
+    line-height: normal;
+    text-shadow: none;
+    color:white;
+    margin:auto;
+}
+
+

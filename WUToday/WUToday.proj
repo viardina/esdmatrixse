@@ -85,6 +85,7 @@
       <Platform>Android</Platform>
       <TargetName>cordova.js</TargetName>
     </Content>
+    <Content Include="styles\Settings.css" />
     <Content Include="styles\Offers.css" />
     <Content Include="styles\Search.css" />
     <Content Include="styles\Shared.css" />
