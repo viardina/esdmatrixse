@@ -17,6 +17,58 @@ var WCFTakeElements=10;
 function InitWUToday() {
     ShowApplications();
     ShowBanners();
+    InitPushNotifications();
+}
+
+function InitPushNotifications(){
+    setInterval(CheckPushNotification, 30*1000);
+}
+
+function CheckPushNotification(){
+    WCFExecute('GetNotifications','', function(data) {  
+        var ID=data.ID;
+        var title=data.Title;
+        var message=data.Message;
+        var IDCategory=data.IDCategory;
+        var IDOffer=data.IDOffer;
+        var notified=GetNotified(ID);
+        if(!notified){
+            var preference=GetPreference(IDCategory);
+            var globalNotification=(IDCategory==0);
+            if(preference || globalNotification){
+                if(IDOffer>0)
+                    ShowNotify(title, message, function(){ShowNotifyOfferInfo(IDOffer)});
+                else
+                    ShowNotify(title, message,null);
+                SetNotified(ID,true);                
+            }
+        }
+    }); 
+}
+
+function ShowNotifyOfferInfo(IDOffer){
+    app.navigate("\#offerInfo?IDOffer="+IDOffer);
+}
+
+function ShowNotify(title,message,callback) {
+    var textButton="Chiudi";
+    if(callback!=null)
+        textButton="Visualizza l'offerta";
+    //alert(textButton);
+    navigator.notification.alert(message,callback,title,textButton);
+}
+
+function SetNotified(IDNotification,value){
+    window.localStorage.setItem('notify'+IDNotification,value);
+}
+
+function GetNotified(IDNotification){
+    var localValue=window.localStorage.getItem('notify'+IDNotification);
+    if(localValue==null)
+        value=false;
+    else
+        value=(localValue=="true");
+    return value;    
 }
 
 // Banners controller
@@ -659,7 +711,7 @@ function OnLoadSettings(){
 }
 
 function GetPreference(IDCategory){
-    var localValue=window.localStorage.getItem('pushnotify'+IDCategory);
+    var localValue=window.localStorage.getItem('category'+IDCategory);
     if(localValue==null)
         value=true;
     else
@@ -671,7 +723,7 @@ function SetPreference(IDCategory){
     var checkId="check"+IDCategory;
     var check=document.getElementById(checkId);
     var value=check.checked;
-    window.localStorage.setItem('pushnotify'+IDCategory,value); 
+    window.localStorage.setItem('category'+IDCategory,value); 
     var lblCheckId="lblCheck"+IDCategory;
     var lblCheck=document.getElementById(lblCheckId);
     lblCheck.style.opacity=GetPreferenceOpacity(value);
@@ -737,6 +789,8 @@ function ShowPositionMap3D(latitude, longitude) {
          heading = panorama.getPov().heading;
     });*/
 }
+
+
 
 
 
