@@ -6,7 +6,7 @@
 		<script src="cordova.js"></script>
 		<script src="kendo/js/jquery.min.js"></script>
 		<script src="kendo/js/kendo.mobile.min.js"></script>
-		<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+		<!--script src="http://maps.google.com/maps/api/js?sensor=true"></script-->
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 		<script src="scripts/jquerywcf.js"></script>
 		<script src="scripts/wutoday.js"></script>
@@ -43,11 +43,11 @@
                    
                  <div class="HeaderLogo">
                     <img alt="" src="images/logo.png" style="vertical-align: middle; width:24px;height:24px;" />
-                        <a style="vertical-align: middle">What'Up Today</a>
+                        <a style="vertical-align: middle">WHAT'S UP TODAY</a>
                 </div>            
              </header>
             
-            <div data-role="footer" style="width:100%; height:42px; text-align:center; backgroundColor: #FFFFFF">
+            <div data-role="footer" style="width:100%; height:42px; text-align:center;">
                 <img id="bannerController" style="width:320px; height:42px" src="" />
     		</div>        
     			
@@ -58,9 +58,9 @@
 			<ul id="listViewApplications" data-role="listview"></ul>
 		</div>
 
-		<script id="itemTemplateApplication" type="text/x-kendo-template"> 
-			<a href="\#categories?IDApplication=#:data.ID#&title=#=data.Title#"> 
+		<script id="itemTemplateApplication" type="text/x-kendo-template"> 		
 			<div>
+            <a href="\#categories?IDApplication=#:data.ID#&title=#=data.Title#"> 
 			<table style="width: 100%; height: 100%;">
 			<tr>
 			<td style="width: 50px;text-align: center;" rowspan="2">
@@ -83,8 +83,8 @@
 			</td>
 			</tr>
 			</table> 
-			</div>  
 			</a>        
+			</div>  
 		</script>       
     
 		<!-- View categories -->
@@ -93,8 +93,8 @@
 		</div>
 
 		<script id="itemTemplateCategory" type="text/x-kendo-template">
-			<a href="\#activities?IDCategory=#:data.ID#&title=#=data.Title#"">
 			<div>
+			<a href="\#activities?IDCategory=#:data.ID#&title=#=data.Title#"">
 			<table style="width: 100%; height: 100%;">
 			<tr>
 			<td style="width: 50px;text-align: center;" rowspan="2">
@@ -117,8 +117,8 @@
 			</td>
 			</tr>
 			</table> 
-			</div>      
 			</a>    
+			</div>      
 		</script>
 
 		<!-- View activities -->
@@ -126,7 +126,8 @@
 			<ul id="listViewActivities" data-role="listview"></ul>
 		</div>
 
-		<script id="itemTemplateActivity" type="text/x-kendo-template">         
+		<script id="itemTemplateActivity" type="text/x-kendo-template">     
+            <div>
 			<a id="#=data.ID#" latitude="#=data.Latitude#" longitude="#=data.Longitude#" title="#=data.Title#" address="#=data.Address#"
 			href="\#activityInfo?IDActivity=#:data.ID#&title=#=data.Title#"> 
 			<table class="ActivityTable">
@@ -158,6 +159,7 @@
 			</tr>
 			</table>                                           
 			</a> 
+            <div>    
 		</script>
 
 		<!-- View offers/events -->
@@ -166,7 +168,8 @@
 		</div>
 
 		<script id="itemTemplateOffer" type="text/x-kendo-template">
-			<a href="\#offerInfo?IDOffer=#:data.ID#&title=#=data.Title#">
+			<div>
+            <a href="\#offerInfo?IDOffer=#:data.ID#&title=#=data.Title#">
 			<div>
 			<table class="OfferTable">
 			<tr>
@@ -190,6 +193,7 @@
 			</table> 
 			</div>          
 			</a>
+            </div> 
 		</script>
 
 		<!-- View activity info -->
@@ -306,7 +310,7 @@
 		<!-- Search view -->
 		<div data-role="view" id="searchController" data-layout="mobile-view" style="width: 100%; height: 100%;">
 			<div>
-				<br><br>
+				<br>
 				<table style="width: 100%;">
 					<tr>
 						<td colspan="2" class="SearchTitleContainer">
@@ -318,14 +322,16 @@
 						<td colspan="2" class="SearchBoxContainer">
 							<input id="searchKey" type="text" onkeypress="if (event.keyCode == 13) {
 								SearchGlobal()
-							}"/><br /><br />
+							}"/>
+                            <a data-role="button" data-click="SearchGlobal" >Trova</a>
+                            <br /><br />    
 						</td>
 					</tr>
 						
 					<tr>
 						<td class="EventImageContainer" rowspan="2">
 							<div onclick="SearchToday()">
-								<img alt="" src="images/eventDay.png" class="EventImage" />
+								<img alt="" src="images/eventsday.png" class="EventImage" />
 							</div>
 						</td>
 						<td>
@@ -346,7 +352,7 @@
 					<tr>
 						<td class="EventImageContainer" rowspan="2">
 							<div onclick="SearchWeekly()">
-								<img alt="" src="images/eventWeek.png" class="EventImage" />
+								<img alt="" src="images/eventsweek.png" class="EventImage" />
 							</div>
 						</td>
 						<td>
@@ -378,7 +384,7 @@
 					<tr>
 						<td class="SearchSubDescriptionContainer">
 							<div onclick="SearchAR()" class="SearchDescription">
-								Attiva la realta' aumentata, inquadra una vetrina, un teatro o una discoteca e
+								Attiva la realta' aumentata, inquadra una vetrina, un teatro o una discoteca, 
 								scopri gli eventi e le offerte ...<br /><br />
 							</div>
 						</td>
@@ -399,7 +405,8 @@
 			</ul>
 				
 			<script id="itemTemplateResultOffer" type="text/x-kendo-template">
-				<a href="\#offerInfo?IDOffer=#:data.ID#&title=#=data.Title#">
+				<div>
+                <a href="\#offerInfo?IDOffer=#:data.ID#&title=#=data.Title#">
 				<div>
 				<table class="OfferTable">
 				<tr>
@@ -423,6 +430,7 @@
 				</table> 
 				</div>          
 				</a>
+                </div>    
 			</script>
 		</div>
 		
@@ -439,7 +447,8 @@
 			</ul>
 				
 			<script id="itemTemplateResultActivity" type="text/x-kendo-template">     
-				<a id="#=data.ID#" latitude="#=data.Latitude#" longitude="#=data.Longitude#" title="#=data.Title#" address="#=data.Address#"    
+				<div>
+                <a id="#=data.ID#" latitude="#=data.Latitude#" longitude="#=data.Longitude#" title="#=data.Title#" address="#=data.Address#"    
 				href="\#activityInfo?IDActivity=#:data.ID#&title=#=data.Title#"> 
 				<table class="ActivityTable">
 				<tr>                     
@@ -470,14 +479,17 @@
 				</tr>
 				</table>                                           
 				</a> 
+                </div>
 			</script>
 
 		</div>
 		
 		<!-- Geocodes map -->
 		<div data-role="view" id="geocodesMap" data-title="Come raggiungerci..." data-show="OnLoadGeocodesMap" data-layout="mobile-view">
-			<a id="streetView3D" class="HeaderRight" data-icon="camera" data-role="button" data-bind="click: StartStreetView">Visualizza Mappa 3D</a>
-			<div id="map_canvas" style="width:100%; height:360px">
+			<div style="text-align:center">
+                <a id="streetView3D" class="HeaderRight" data-icon="globe" data-role="button" data-bind="click: StartStreetView">Mappa 3D</a>
+			</div>
+            <div id="map_canvas" style="width:100%; height:360px">
 		
 			</div>
 		</div>

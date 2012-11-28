@@ -53,10 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\ar.png" />
-    <Content Include="images\eventDay.png" />
-    <Content Include="images\eventWeek.png" />
-    <Content Include="images\iPhoneGPS.png" />
+    <Content Include="images\eventsday.png" />
+    <Content Include="images\eventsweek.png" />
+    <Content Include="images\locationmarker.png" />
+    <Content Include="images\locationsmarker.png" />
+    <Content Include="images\maps.png" />
     <Content Include="images\logo.png" />
+    <Content Include="images\video.png" />
     <Content Include="images\web.png" />
     <Content Include="images\info.png" />
     <Content Include="images\mail.png" />
@@ -70,7 +73,7 @@
     <Content Include="kendo\styles\images\iconmasks.svg" />
     <Content Include="kendo\styles\images\android-sprite.png" />
     <Content Include="kendo\styles\kendo.mobile.all.min.css" />
-    <Content Include="images\maps.png" />
+    <Content Include="scripts\InfoBox.js" />
     <Content Include="scripts\jquerywcf.js" />
     <Content Include="scripts\wutoday.js" />
     <Content Include="styles\Activities.css" />

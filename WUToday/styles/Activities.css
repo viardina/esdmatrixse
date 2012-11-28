@@ -1,4 +1,4 @@
-﻿/* Item style activity details */
+/* Item style activity details */
 .ActivityDetailsTable
 {
     width: 100%;
@@ -123,7 +123,7 @@
 .ActivitySubDescription {
     font-size: xx-small;
     font-weight: normal;
-    padding-right: 10%;
+    padding-right: 1%;
     text-decoration: none;
     opacity: .4;
     width:60%;
@@ -132,7 +132,7 @@
 .ActivitySubAddress {
     font-size: 0.9em;
     font-weight: normal;
-    padding-right: 10%;
+    padding-right: 5%;
     text-decoration: none;
     opacity: .4;
     line-height: 1.4em;

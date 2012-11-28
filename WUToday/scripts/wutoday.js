@@ -39,9 +39,8 @@ function ChangeBanner(){
     var banner=banners[indexBanner];
     var image = $("#bannerController");
     image.fadeOut("fast", function () {
-        image.attr("src", "http://www.whatsuptoday.it/resources/images/"+banner+'?'+Math.random());
+        image.attr("src", "http://www.whatsuptoday.it/resources/images/"+banner+'?timestamp='+Math.random());
         image.fadeIn("fast");
-
     });
     
 }
@@ -597,37 +596,39 @@ function OnLoadGoogleMap(e){
 }
 
 function ShowGoogleMap(locations,latitude,longitude){
-      var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: new google.maps.LatLng(latitude, longitude),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-      });
-      $.each(locations, function(index,location) {
-          var latitude=location.latitude;
-          var longitude=location.longitude;
-          var title=location.title;
-          var marker = new google.maps.Marker({
-              position: new google.maps.LatLng(latitude,longitude),
-              map: map,
-              title: title
-          });
-          google.maps.event.addListener(marker, 'click', function (marker) {
-              var infowindow = new google.maps.InfoWindow(); 
-              infowindow.setContent(title);
-              infowindow.open(map, marker);          
-          });
-      });
-      var myMarker = new google.maps.Marker({
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12,
+      center: new google.maps.LatLng(latitude, longitude),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+   
+    $.each(locations, function(index,location) {
+      var latitude=location.latitude;
+      var longitude=location.longitude;
+      var content=location.title;
+      var marker = new google.maps.Marker({
           position: new google.maps.LatLng(latitude,longitude),
           map: map,
-          title: 'La tua posizione',
-          icon: 'images/iphonegps.png'
+          icon: 'images/locationsmarker.png'
       });
-      google.maps.event.addListener(myMarker, 'click', function () {
-          var infowindow = new google.maps.InfoWindow();     
-          infowindow.setContent('La tua posizione');
-          infowindow.open(map, myMarker);
-      });
+      AddInfoWindow(marker, content);
+    });
+    var myMarker = new google.maps.Marker({
+      position: new google.maps.LatLng(latitude,longitude),
+      map: map,
+      icon: 'images/locationmarker.png'
+    });
+    AddInfoWindow(myMarker, 'La tua posizione');
+}
+
+function AddInfoWindow(marker, content) {    
+    var infoWindow = new google.maps.InfoWindow();
+    google.maps.event.addListener(marker, 'click', function (e) {
+        e.preventDefault;
+        alert(content);
+        infoWindow.setContent(content);
+       // infoWindow.open(map, marker);
+    });
 }
 
 function OnLoadSettings(){
