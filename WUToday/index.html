@@ -514,7 +514,7 @@
 			<ul id="listViewSettings" data-role="listview" data-type="group" data-style="inset"></ul>
 				
 			<script type="text/x-kendo-template" id="itemTemplateSetting">   
-				<label>  
+				<label id="lblCheck#=data.ID#" style="opacity: #=GetPreference(data.ID)?1:0.25#">  
 				<input id="check#=data.ID#" type="checkbox" #= GetPreference(data.ID)?checked="checked":"" # onclick="SetPreference(#=data.ID#)" ></input>			
 				      #=data.Title#  
                 </label>             

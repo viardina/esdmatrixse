@@ -669,9 +669,17 @@ function GetPreference(IDCategory){
 
 function SetPreference(IDCategory){
     var checkId="check"+IDCategory;
-    var obj=document.getElementById(checkId);
-    var value=obj.checked;
+    var check=document.getElementById(checkId);
+    var value=check.checked;
     window.localStorage.setItem('pushnotify'+IDCategory,value); 
+    var lblCheckId="lblCheck"+IDCategory;
+    var lblCheck=document.getElementById(lblCheckId);
+    lblCheck.style.opacity=GetPreferenceOpacity(value);
+}
+
+function GetPreferenceOpacity(value){
+    var opacity=value?1:0.25;
+    return opacity
 }
 
 
