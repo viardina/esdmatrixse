@@ -27,23 +27,23 @@
                  <table style="width:100%;">
                   <tr>
                    <td class="HeaderLeft">
-                    <a id="backButton" class="HeaderLeft" data-align="left" data-role="backbutton" data-icon="reply"></a>
-                    <a id="settingsButton" class="HeaderLeft" href="#settings" data-align="left" data-role="button" data-icon="settings"></a>
+                    <a id="backButton" class="HeaderLeft" data-align="left" data-role="backbutton" data-icon="reply"> </a>
+                    <a id="settingsButton" class="HeaderLeft" href="#settings" data-align="left" data-role="button" data-icon="settings"> </a>
             
                    </td>
                    <td class="HeaderCenter">
 
                    </td>
                    <td>
-                    <a id="mapButton" class="HeaderRight" data-align="right" data-click="ShowMapActivities" data-icon="globe" data-role="button"></a>
-                    <a id="homeButton" class="HeaderRight" data-align="right" data-click="GoToHome" data-icon="home" data-role="button"></a>
-                    <a id="searchButton" class="HeaderRight" data-align="right" href="#searchController" data-icon="search" data-role="button"></a>
+                    <a id="mapButton" class="HeaderRight" data-align="right" data-click="ShowMapActivities" data-icon="globe" data-role="button"> </a>
+                    <a id="homeButton" class="HeaderRight" data-align="right" data-click="GoToHome" data-icon="home" data-role="button"> </a>
+                    <a id="searchButton" class="HeaderRight" data-align="right" href="#searchController" data-icon="search" data-role="button"> </a>
                    </td>
                   </tr>
                  </table>
                 </div>
                    
-                 <div class="HeaderLogo">
+                 <div id="headerLogo" class="HeaderLogo">
                      <a href="#about">
                     <img alt="" src="images/logo.png" style="vertical-align: middle; width:24px;height:24px;" />
                         <a style="vertical-align: middle" href="#about">WHAT'S UP TODAY</a>
@@ -52,7 +52,7 @@
              </header>
             
             <div data-role="footer" style="width:100%; height:42px; text-align:center;">
-                <img id="bannerController" style="width:320px; height:42px" src="" alt="Caricamento..." class="Footer"/>
+                <img id="bannerController" style="width:320px; height:42px" src=""/>
     		</div>        
     			
 		</div>
@@ -324,7 +324,7 @@
 
 					<tr>
 						<td colspan="2" class="SearchBoxContainer">
-							<input id="searchKey" type="text" onkeypress="if (event.keyCode == 13) {
+							<input id="searchKey" style="background-color: #FFFFFF; color: #000000;" type="text" onkeypress="if (event.keyCode == 13) {
 								SearchGlobal()
 							}"/>
                             <a data-role="button" data-click="SearchGlobal" >Trova</a>
@@ -539,7 +539,8 @@
             <table align="center" style="width: 100%; height: 300px;">                
                 <tr>
                     <td class="AboutContent" height="5%">
-                        Versione 1.0</td>
+                        <img style="width:87px;height: 96px" src="images/logoabout.png" />
+                        </td>
                 </tr>
                 <tr>
                     <td class="AboutContentTitle">

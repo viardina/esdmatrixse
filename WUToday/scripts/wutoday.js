@@ -12,6 +12,8 @@ function onDeviceReady() {
 var WCFUrl = "http://95.110.169.199/wcfmobile/service.svc";
 WCFService=WCFUrl;
 var WCFTakeElements=10;
+var timeoutNotification=120; // in sec
+var timeoutBanners=5; // in sec
 
 // Start main module
 function InitWUToday() {
@@ -21,7 +23,7 @@ function InitWUToday() {
 }
 
 function InitPushNotifications(){
-    setInterval(CheckPushNotification, 30*1000);
+    setInterval(CheckPushNotification, timeoutNotification*1000);
 }
 
 function CheckPushNotification(){
@@ -54,7 +56,6 @@ function ShowNotify(title,message,callback) {
     var textButton="Chiudi";
     if(callback!=null)
         textButton="Visualizza l'offerta";
-    //alert(textButton);
     navigator.notification.alert(message,callback,title,textButton);
 }
 
@@ -80,7 +81,7 @@ function ShowBanners(){
         $.each(data, function(index,value){
            banners.push(value.Icon); 
         }); 
-        setInterval(ChangeBanner, 5*1000);
+        setInterval(ChangeBanner, timeoutBanners*1000);
     });   
 }
 
@@ -94,7 +95,6 @@ function ChangeBanner(){
         image.attr("src", "http://www.whatsuptoday.it/resources/images/"+banner+'?timestamp='+Math.random());
         image.fadeIn("fast");
     });
-    
 }
 
 function SetTitle(title){
@@ -124,6 +124,12 @@ function ToggleNavBarButtons(e) {
     }
     else{
         view.element.find("[id=mapButton]").css("display", "none");     
+    }
+    if(view.id=="#about"){
+        view.element.find("[id=headerLogo]").css("display", "none");   
+    }
+    else{
+        view.element.find("[id=headerLogo]").css("display", "");     
     }
 }
 
@@ -444,7 +450,7 @@ function OnLoadCategories(e) {
     var title=view.params.title;
     SetTitle(title);
     var IDApplication=view.params.IDApplication;
-    ShowCategories(IDApplication,'');  
+    ShowCategories(IDApplication,''); 
 }
 
 function OnLoadActivities(e) {

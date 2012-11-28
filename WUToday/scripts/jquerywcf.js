@@ -36,7 +36,7 @@ function WCFServiceRequest(WCFType,WCFUrl,WCFData,WCFContentType,WCFDataType,WCF
 
 function ServiceFailed(result) 
 {
-    alert("Service call failed: " + result.status + " " + result.statusText);
+    //alert("Service call failed: " + result.status + " " + result.statusText);
 }
 
 function ServiceSucceeded(result,WCFMethod,WCFCallback) 
