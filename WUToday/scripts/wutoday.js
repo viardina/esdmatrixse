@@ -19,12 +19,13 @@ function InitWUToday() {
     ShowBanners();
 }
 
+// Banners controller
 var banners;
 var indexBanner=0;
 function ShowBanners(){
     banners=new Array();
     WCFExecute('GetBanners','', function(data) {  
-        $.each(data, function(idex,value){
+        $.each(data, function(index,value){
            banners.push(value.Icon); 
         }); 
         setInterval(ChangeBanner, 5*1000);
@@ -35,9 +36,14 @@ function ChangeBanner(){
     indexBanner+=1;
     if(indexBanner>banners.length-1)
         indexBanner=0;
-    var bannerController=document.getElementById("bannerController");
     var banner=banners[indexBanner];
-    bannerController.setAttribute("src","http://www.whatsuptoday.it/resources/images/"+banner);
+    var image = $("#bannerController");
+    image.fadeOut("fast", function () {
+        image.attr("src", "http://www.whatsuptoday.it/resources/images/"+banner+'?'+Math.random());
+        image.fadeIn("fast");
+
+    });
+    
 }
 
 function SetTitle(title){
@@ -387,7 +393,7 @@ function OnLoadCategories(e) {
     var title=view.params.title;
     SetTitle(title);
     var IDApplication=view.params.IDApplication;
-    ShowCategories(IDApplication,'');    
+    ShowCategories(IDApplication,'');  
 }
 
 function OnLoadActivities(e) {
