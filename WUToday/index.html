@@ -21,28 +21,34 @@
 		<!-- Main layout -->
 		<div data-role="layout" data-id="mobile-view" data-show="ToggleNavBarButtons">
 			<header data-role="header">
-				<div data-role="navbar" id="navbar">
-					<table style="width:100%;">
-						<tr>
-							<td class="HeaderLeft">
-								<a id="backButton" class="HeaderLeft" data-align="left" data-role="backbutton" data-icon="reply"></a>
-								<a id="settingsButton" class="HeaderLeft" href="#settings" data-align="left" data-role="button" data-icon="settings"></a>
+                <div data-role="navbar" id="navbar">
+                 <table style="width:100%;">
+                  <tr>
+                   <td class="HeaderLeft">
+                    <a id="backButton" class="HeaderLeft" data-align="left" data-role="backbutton" data-icon="reply"></a>
+                    <a id="settingsButton" class="HeaderLeft" href="#settings" data-align="left" data-role="button" data-icon="settings"></a>
+            
+                   </td>
+                   <td class="HeaderCenter">
 
-							</td>
-							<td class="HeaderCenter">
-								<img alt="" src="images/logo.png" class="ImageHeader" />
-							</td>
-							<td>
-								<a id="mapButton" class="HeaderRight" data-align="right" data-click="ShowMapActivities" data-icon="globe" data-role="button"></a>
-								<a id="homeButton" class="HeaderRight" data-align="right" data-click="GoToHome" data-icon="home" data-role="button"></a>
-								<a id="searchButton" class="HeaderRight" data-align="right" href="#searchController" data-icon="search" data-role="button"></a>
-							</td>
-						</tr>
-					</table>
-				</div>
-				<!--<span id="titleView" data-role="view-title">The World in Hand...</span>-->
-			</header>
-			<div data-role="footer">
+                   </td>
+                   <td>
+                    <a id="mapButton" class="HeaderRight" data-align="right" data-click="ShowMapActivities" data-icon="globe" data-role="button"></a>
+                    <a id="homeButton" class="HeaderRight" data-align="right" data-click="GoToHome" data-icon="home" data-role="button"></a>
+                    <a id="searchButton" class="HeaderRight" data-align="right" href="#searchController" data-icon="search" data-role="button"></a>
+                   </td>
+                  </tr>
+                 </table>
+                </div>
+                   
+                 <div class="HeaderLogo">
+                    <img alt="" src="images/logo.png" style="vertical-align: middle; width:24px;height:24px;" />
+                        <a style="vertical-align: middle">What'Up Today</a>
+                </div>            
+             </header>
+        
+			<div data-role="footer" style="width:100%; height:42px">
+                <img id="bannerController" style="width:100%; height:100%" src="http://www.whatsuptoday.it/resources/images/easycall.png" />
 			</div>
 		</div>
 
@@ -503,7 +509,7 @@
                     
                     
         <!-- Google StreetView AR 3D -->
-		<div data-role="view" id="googleAR3D" data-title="Cerca in 3D" data-show="OnLoadGoogleAR3D" data-layout="mobile-view">
+		<div data-role="view" id="googleAR3D" data-title="Cerca in 3D" data-show="OnLoadGoogleAR3D" data-layout="mobile-view" data-stretch="true">
 			<div id="panoAR" style="width:100%; height:360px">
 		
 			</div>

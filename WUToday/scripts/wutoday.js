@@ -16,6 +16,28 @@ var WCFTakeElements=10;
 // Start main module
 function InitWUToday() {
     ShowApplications();
+    ShowBanners();
+}
+
+var banners;
+var indexBanner=0;
+function ShowBanners(){
+    banners=new Array();
+    WCFExecute('GetBanners','', function(data) {  
+        $.each(data, function(idex,value){
+           banners.push(value.Icon); 
+        }); 
+        setInterval(ChangeBanner, 5*1000);
+    });   
+}
+
+function ChangeBanner(){
+    indexBanner+=1;
+    if(indexBanner>banners.length-1)
+        indexBanner=0;
+    var bannerController=document.getElementById("bannerController");
+    var banner=banners[indexBanner];
+    bannerController.setAttribute("src","http://www.whatsuptoday.it/resources/images/"+banner);
 }
 
 function SetTitle(title){
