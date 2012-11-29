@@ -135,7 +135,7 @@ function ToggleNavBarButtons(e) {
 
 function GetActivityIconOpacity(value){
     if(value!=null && value!="")
-        return .5;
+        return .7;
     else
         return .1;
 }
@@ -267,7 +267,7 @@ function FillActivityInfo(IDActivity) {
             emailOpacity: GetActivityIconOpacity(data.Email),
             phoneOpacity: GetActivityIconOpacity(data.Phone),
             webOpacity: GetActivityIconOpacity(data.Web),
-            mapOpacity: .5,
+            mapOpacity: .7,
             StartEmail: function(){
                window.open('mailto:'+data.Email);
             },
@@ -458,6 +458,8 @@ function OnLoadActivities(e) {
     var title=view.params.title;
     SetTitle(title);
     var IDCategory=view.params.IDCategory;
+    var latitude='';
+    var longitude='';
     var search='';
     var region='';
     var country='';
@@ -469,7 +471,6 @@ function OnLoadActivities(e) {
     }, function (){
         ShowActivities(IDCategory, search, latitude, longitude, region, country, city);
     }); 
-    
 }
 
 function OnLoadOffers(e) {
@@ -503,6 +504,8 @@ function CloseSearch(){
 function SearchGlobal(){
     var search=document.getElementById('searchKey').value;
     app.navigate("#resultsOffers");
+    var latitude='';
+    var longitude='';
     var region='';
     var country='';
     var city='';
@@ -564,7 +567,7 @@ function OnLoadGeocodesMap(e) {
             });
         kendo.bind($("#geocodesMap"),viewModel);    
     }, function (){
-
+        alert("Navigatore GPS non disponibile. Abilitare l'app mobile all'uso del dispositivo GPS.");
     }); 
 }
 
@@ -649,7 +652,9 @@ function OnLoadGoogleMap(e){
         var latitude = position.coords.latitude;  
         var longitude = position.coords.longitude; 
         ShowGoogleMap(locations,latitude,longitude);
-    }, function (){});    
+    }, function (){
+        alert("Navigatore GPS non disponibile. Abilitare l'app mobile all'uso del dispositivo GPS.");
+    });    
 }
 
 function ShowGoogleMap(locations,latitude,longitude){
@@ -693,7 +698,7 @@ function ShowInfoBox(map, content,marker) {
 		,zIndex: null
 		,boxStyle: { 
 		  background: "url('tipbox.gif') no-repeat"
-		  ,opacity: 0.75
+		  ,opacity: 0.7
 		  ,width: "280px"
 		 }
 		,closeBoxMargin: "10px 2px 2px 2px"
@@ -753,18 +758,24 @@ function OnLoadGoogleAR3D(e){
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
         SetPositionMap3D(latitude, longitude);
-    }, function () {}, { frequency: 5000 });
+    }, function () {
+        alert("Navigatore GPS non disponibile. Abilitare l'app mobile all'uso del dispositivo GPS.");
+    }, { frequency: 5000 });
 
     navigator.geolocation.getCurrentPosition(function (position) {
         latitude = position.coords.latitude;  
         longitude = position.coords.longitude; 
         ShowPositionMap3D(latitude, longitude);
-    }, function () { });
+    }, function () { 
+        alert("Navigatore GPS non disponibile. Abilitare l'app mobile all'uso del dispositivo GPS.");
+    });
 
     navigator.compass.watchHeading(function (heading) {
         var compass = heading.magneticHeading;
         SetHeadingMap3D(compass);
-    }, function () { }, { frequency: 5000 });
+    }, function () { 
+        alert("Navigatore GPS non disponibile. Abilitare l'app mobile all'uso del dispositivo GPS.");
+    }, { frequency: 5000 });
 
 
 }

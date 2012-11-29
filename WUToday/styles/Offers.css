@@ -1,4 +1,4 @@
-﻿/* Item style offer Info */
+/* Item style offer Info */
 .OfferDetailsTable
 {
     width: 100%;
@@ -32,7 +32,7 @@
     font-weight: normal;
     padding: 3px 3px 0 0;
     text-decoration: none;
-    opacity: .4;
+    opacity: .8;
     width:100%;
 }
 .OfferDetailsPeriod {

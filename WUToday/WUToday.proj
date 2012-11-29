@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ProjectGuid>d7db44d2-50a0-4cdb-a2ad-4c319362f86b</ProjectGuid>
     <ProjectTypeGuids>{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}</ProjectTypeGuids>
-    <AppIdentifier>A2D.WUToday</AppIdentifier>
+    <AppIdentifier>a2d.esdmatrix.WUToday</AppIdentifier>
     <ProjectName>WUToday</ProjectName>
     <IsRunnable>true</IsRunnable>
     <TemplateAppName>Cordova200</TemplateAppName>

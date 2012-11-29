@@ -2,12 +2,12 @@
 <html>
 	<head>
 		<title>What's Up Today</title>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+		<!--meta http-equiv="X-UA-Compatible" content="IE=edge" --> 
 		<script src="cordova.js"></script>
 		<script src="kendo/js/jquery.min.js"></script>
 		<script src="kendo/js/kendo.mobile.min.js"></script>
-		<!--script src="http://maps.google.com/maps/api/js?sensor=true"></script-->
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+		<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+		<!--script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script-->
 		<script src="scripts/jquerywcf.js"></script>
 		<script src="scripts/wutoday.js"></script>
         <script src="scripts/infobox.js"></script>    
@@ -20,7 +20,7 @@
         <link href="styles/Settings.css" rel="stylesheet" />
 	</head>
 	<body>
-		<!-- Main layout -->
+		<!-- Main layout for iOS/BB-->
 		<div data-role="layout" data-id="mobile-view" data-show="ToggleNavBarButtons">
 			<header data-role="header">
                 <div data-role="navbar" id="navbar">
@@ -56,6 +56,44 @@
     		</div>        
     			
 		</div>
+        
+        <div data-role="layout" data-id="mobile-view" data-show="ToggleNavBarButtons" data-platform="android">
+			<div data-role="footer" style="width:100%; height:25px; text-align:center;">                                       
+                 <div id="headerLogo" class="HeaderLogo">
+                     <a href="#about">
+                    <img alt="" src="images/logo.png" style="vertical-align: middle; width:24px;height:24px;" />
+                        <a style="vertical-align: middle" href="#about">WHAT'S UP TODAY</a>
+                    </a>
+                 </div>                  
+    		</div>    
+            <header data-role="header" style="text-align:center;">
+                <img id="bannerController" style="width:320px; height:42px" src=""/> 
+                <div data-role="navbar" id="navbar">                        
+                 <table style="width:100%;">
+                  <tr>
+                   <td class="HeaderLeft">
+                    <a id="backButton" class="HeaderLeft" data-align="left" data-role="backbutton" data-icon="reply"> </a>
+                    <a id="settingsButton" class="HeaderLeft" href="#settings" data-align="left" data-role="button" data-icon="settings"> </a>
+            
+                   </td>
+                   <td class="HeaderCenter">
+
+                   </td>
+                   <td>
+                    <a id="mapButton" class="HeaderRight" data-align="right" data-click="ShowMapActivities" data-icon="globe" data-role="button"> </a>
+                    <a id="homeButton" class="HeaderRight" data-align="right" data-click="GoToHome" data-icon="home" data-role="button"> </a>
+                    <a id="searchButton" class="HeaderRight" data-align="right" href="#searchController" data-icon="search" data-role="button"> </a>
+                   </td>
+                  </tr>
+                 </table>
+                </div>
+                    
+             </header>
+            
+                
+    			
+		</div>
+
 
 		<!-- View applications -->
 		<div data-role="view" id="applications" data-title="What's Up Today" data-layout="mobile-view">
@@ -163,7 +201,7 @@
 			</tr>
 			</table>                                           
 			</a> 
-            <div>    
+            </div>    
 		</script>
 
 		<!-- View offers/events -->
