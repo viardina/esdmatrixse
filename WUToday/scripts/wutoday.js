@@ -629,18 +629,20 @@ var locations;
 function ShowMapActivities(){
     locations=new Array();
     $("#listViewActivities").children().each(function(index){
+        var IDActivity=$(this).find("a").attr('id');
         var title=$(this).find("a").attr('title');
         var address=$(this).find("a").attr('address');
         var latitude=$(this).find("a").attr('latitude');
         var longitude=$(this).find("a").attr('longitude');    
         var content=title+" "+address;
-        var location=new Location(content,latitude,longitude);
+        var location=new Location(IDActivity,content,latitude,longitude);
         locations.push(location);
     });
     app.navigate("#googleMap?locations="+locations);
 }
 
-var Location=function(content,latitude,longitude){
+var Location=function(IDActivity,content,latitude,longitude){
+    this.IDActivity=IDActivity;
     this.content=content;
     this.latitude=latitude;
     this.longitude=longitude;    
@@ -666,50 +668,34 @@ function ShowGoogleMap(locations,latitude,longitude){
     $.each(locations, function(index,location) {
       var latitude=location.latitude;
       var longitude=location.longitude;
-      var content=location.content;
+      var IDActivity=location.IDActivity;
       var marker = new google.maps.Marker({
           position: new google.maps.LatLng(latitude,longitude),
           map: map,
-          icon: 'images/locationsmarker.png'
+          icon: 'images/locationsmarker.png',
+          animation: google.maps.Animation.DROP
       });
       google.maps.event.addListener(marker, 'click', function (e) {
-        ShowInfoBox(map,content,this);
+        ShowGoogleMapActivityInfo(IDActivity);
       });
     });
     var myMarker = new google.maps.Marker({
       position: new google.maps.LatLng(latitude,longitude),
       map: map,
-      icon: 'images/locationmarker.png'
+      icon: 'images/locationmarker.png',
+      animation: google.maps.Animation.BOUNCE
     });
-    google.maps.event.addListener(myMarker, 'click', function (e) {
-        ShowInfoBox(map,'La tua posizione',this);
-    });
+    
+
+    setTimeout(function(){StopMarkerAnimation(myMarker)},3*1000);
 }
 
-function ShowInfoBox(map, content,marker) {   
-    var boxText = document.createElement("div");
-	boxText.style.cssText = "border: 1px solid black; margin-top: 8px; background: black; padding: 5px;";
-	boxText.innerHTML = content;
-    var options = {
-		 content: boxText
-		,disableAutoPan: false
-		,maxWidth: 0
-		,pixelOffset: new google.maps.Size(-140, 0)
-		,zIndex: null
-		,boxStyle: { 
-		  background: "url('tipbox.gif') no-repeat"
-		  ,opacity: 0.7
-		  ,width: "280px"
-		 }
-		,closeBoxMargin: "10px 2px 2px 2px"
-		,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
-		,infoBoxClearance: new google.maps.Size(1, 1)
-		,isHidden: false
-		,pane: "floatPane"
-		,enableEventPropagation: false
-	};
-    var infoBox=new InfoBox(options);
-    infoBox.open(map,marker);
+function StopMarkerAnimation(marker){
+    marker.setAnimation(null);
+}
+
+function ShowGoogleMapActivityInfo(IDActivity) {  
+    app.navigate("#activityInfo?IDActivity="+IDActivity);   
 }
 
 function OnLoadSettings(){

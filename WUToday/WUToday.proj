@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ProjectGuid>d7db44d2-50a0-4cdb-a2ad-4c319362f86b</ProjectGuid>
     <ProjectTypeGuids>{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}</ProjectTypeGuids>
-    <AppIdentifier>a2d.esdmatrix.WUToday</AppIdentifier>
+    <AppIdentifier>it.whatsuptoday.A2D</AppIdentifier>
     <ProjectName>WUToday</ProjectName>
     <IsRunnable>true</IsRunnable>
     <TemplateAppName>Cordova200</TemplateAppName>
@@ -76,7 +76,6 @@
     <Content Include="kendo\styles\images\iconmasks.svg" />
     <Content Include="kendo\styles\images\android-sprite.png" />
     <Content Include="kendo\styles\kendo.mobile.all.min.css" />
-    <Content Include="scripts\InfoBox.js" />
     <Content Include="scripts\jquerywcf.js" />
     <Content Include="scripts\wutoday.js" />
     <Content Include="styles\Activities.css" />
